@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Oct 19 21:49:49 2016
+
+@author: herbz
+"""
+
+tableData = [['apples', 'oranges', 'cherries', 'banana'],
+             ['Alice', 'Bob', 'Carol', 'David'],
+             ['dogs', 'cats', 'moose', 'goose']]

@@ -1,0 +1,28 @@
+'''  But if you had a program that could search the text in your clipboard for phone numbers
+and email addresses, you could simply press CTRL-A to select all the text,
+press CTRL-C to copy it to the clipboard, and then run your program.'''
+
+import re
+
+#first create a string contained copied lines
+clipboard = '''
+Programme Manager for Winton Programme
+
+Email: nlp28@cam.ac.uk
+Office Phone: 01223 337073
+Download as vCard
+Biography:
+
+Bachelor (1998) in Physics from Imperial College, PhD in semiconductor physics on the fabrication and science of low dimensional structures in the group of Prof Mike Pepper at the Cavendish Laboratory, Cambridge (1991). In 2003 he also completed his MBA at Warwick University and has authored over 50 papers and holds over 20 patents.
+
+Work Experience: After completing his Ph.D., Nalin joined Toshiba working in Japan at the R&D Center. After a year in Japan, he returned to Cambridge to join the Toshiba Cambridge Research Laboratory, where he worked on a number of areas related to semiconductor device physics and hybrid magnetic semiconductor systems. Nalin joined Cambridge Display Technology (CDT) a spin-out form the University of Cambridge in 2001. During his time at CDT he worked in a number of areas from device research, business development to project management. He returned to the Cavendish laboratory in August 2011 to take up the role of Programme Manager for the Winton Programme.
+
+'''
+
+#Create 2 regex to match mobile phone and email addresses
+phone_reg = re.compile()
+
+
+# format and  print 2 all matched results
+
+# show error when there is no phone/email
