@@ -1,0 +1,251 @@
+welcome to test, number29 friend 
+Q1 the capital of Washington is ? 
+A Oklahoma City
+B Carson City
+C Olympia
+D Madison
+Q2 the capital of New Jersey is ? 
+A Tallahassee
+B Juneau
+C Saint Paul
+D Trenton
+Q3 the capital of Minnesota is ? 
+A Springfield
+B Saint Paul
+C Des Moines
+D Bismarck
+Q4 the capital of New Jersey is ? 
+A Saint Paul
+B Baton Rouge
+C Trenton
+D Raleigh
+Q5 the capital of Maine is ? 
+A Harrisburg
+B Albany
+C Augusta
+D Montpelier
+Q6 the capital of Nebraska is ? 
+A Madison
+B Lincoln
+C Oklahoma City
+D Cheyenne
+Q7 the capital of Maryland is ? 
+A Springfield
+B Frankfort
+C Annapolis
+D Columbia
+Q8 the capital of Rhode Island is ? 
+A Carson City
+B Providence
+C Annapolis
+D Topeka
+Q9 the capital of Vermont is ? 
+A Carson City
+B Montpelier
+C Santa Fe
+D Austin
+Q10 the capital of Arkansas is ? 
+A Pierre
+B Oklahoma City
+C Montpelier
+D Little Rock
+Q11 the capital of Alabama is ? 
+A Carson City
+B Montgomery
+C Salt Lake City
+D Olympia
+Q12 the capital of Delaware is ? 
+A Dover
+B Columbus
+C Columbia
+D Oklahoma City
+Q13 the capital of Florida is ? 
+A Olympia
+B Tallahassee
+C Frankfort
+D Concord
+Q14 the capital of Connecticut is ? 
+A Cheyenne
+B Harrisburg
+C Hartford
+D Saint Paul
+Q15 the capital of New Mexico is ? 
+A Santa Fe
+B Boise
+C Columbus
+D Austin
+Q16 the capital of South Dakota is ? 
+A Annapolis
+B Cheyenne
+C Columbia
+D Pierre
+Q17 the capital of Florida is ? 
+A Jefferson City
+B Tallahassee
+C Lansing
+D Indianapolis
+Q18 the capital of New Jersey is ? 
+A Little Rock
+B Lincoln
+C Trenton
+D Phoenix
+Q19 the capital of Kentucky is ? 
+A Phoenix
+B Denver
+C Frankfort
+D Atlanta
+Q20 the capital of Kentucky is ? 
+A Frankfort
+B Tallahassee
+C Trenton
+D Juneau
+Q21 the capital of Pennsylvania is ? 
+A Honolulu
+B Harrisburg
+C Montpelier
+D Jackson
+Q22 the capital of Louisiana is ? 
+A Madison
+B Baton Rouge
+C Juneau
+D Des Moines
+Q23 the capital of South Dakota is ? 
+A Pierre
+B Dover
+C Jefferson City
+D Boston
+Q24 the capital of Kansas is ? 
+A Santa Fe
+B Montpelier
+C Annapolis
+D Topeka
+Q25 the capital of Utah is ? 
+A Pierre
+B Albany
+C Sacramento
+D Salt Lake City
+Q26 the capital of Florida is ? 
+A Springfield
+B Montpelier
+C Tallahassee
+D Dover
+Q27 the capital of Wisconsin is ? 
+A Denver
+B Harrisburg
+C Salt Lake City
+D Madison
+Q28 the capital of Alabama is ? 
+A Columbia
+B Trenton
+C Montgomery
+D Springfield
+Q29 the capital of Rhode Island is ? 
+A Providence
+B Pierre
+C Oklahoma City
+D Austin
+Q30 the capital of Texas is ? 
+A Austin
+B Olympia
+C Harrisburg
+D Little Rock
+Q31 the capital of New Hampshire is ? 
+A Columbia
+B Concord
+C Bismarck
+D Olympia
+Q32 the capital of California is ? 
+A Sacramento
+B Hartford
+C Montgomery
+D Oklahoma City
+Q33 the capital of Iowa is ? 
+A Helena
+B Des Moines
+C Jackson
+D Albany
+Q34 the capital of California is ? 
+A Columbia
+B Helena
+C Sacramento
+D Annapolis
+Q35 the capital of Alabama is ? 
+A Lincoln
+B Richmond
+C Montgomery
+D Phoenix
+Q36 the capital of Oklahoma is ? 
+A Oklahoma City
+B Jefferson City
+C Olympia
+D Topeka
+Q37 the capital of Pennsylvania is ? 
+A Harrisburg
+B Boston
+C Cheyenne
+D Olympia
+Q38 the capital of Missouri is ? 
+A Frankfort
+B Jefferson City
+C Boston
+D Olympia
+Q39 the capital of Pennsylvania is ? 
+A Frankfort
+B Madison
+C Salt Lake City
+D Harrisburg
+Q40 the capital of Illinois is ? 
+A Springfield
+B Lincoln
+C Tallahassee
+D Bismarck
+Q41 the capital of Alabama is ? 
+A Madison
+B Montgomery
+C Atlanta
+D Baton Rouge
+Q42 the capital of Nevada is ? 
+A Montpelier
+B Carson City
+C Honolulu
+D Sacramento
+Q43 the capital of Alaska is ? 
+A Juneau
+B Santa Fe
+C Lincoln
+D Topeka
+Q44 the capital of Kansas is ? 
+A Raleigh
+B Carson City
+C Topeka
+D Saint Paul
+Q45 the capital of Michigan is ? 
+A Olympia
+B Lansing
+C Atlanta
+D Augusta
+Q46 the capital of Alaska is ? 
+A Denver
+B Richmond
+C Bismarck
+D Juneau
+Q47 the capital of West Virginia is ? 
+A Charleston
+B Boise
+C Jackson
+D Montgomery
+Q48 the capital of Wisconsin is ? 
+A Madison
+B Trenton
+C Nashville
+D Jefferson City
+Q49 the capital of Texas is ? 
+A Charleston
+B Austin
+C Carson City
+D Raleigh
+Q50 the capital of Iowa is ? 
+A Columbus
+B Salt Lake City
+C Jefferson City
+D Des Moines

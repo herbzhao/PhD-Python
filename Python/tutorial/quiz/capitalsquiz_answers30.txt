@@ -1,0 +1,51 @@
+the answers for number30 friend 
+0 A Saint Paul 
+1 C Columbia 
+2 B Cheyenne 
+3 D Jefferson City 
+4 C Madison 
+5 A Little Rock 
+6 C Columbus 
+7 A Columbus 
+8 B Boston 
+9 B Boston 
+10 B Salem 
+11 D Concord 
+12 C Charleston 
+13 C Cheyenne 
+14 A Phoenix 
+15 A Baton Rouge 
+16 C Raleigh 
+17 B Nashville 
+18 D Dover 
+19 C Concord 
+20 C Cheyenne 
+21 C Concord 
+22 B Hartford 
+23 D Helena 
+24 A Santa Fe 
+25 A Austin 
+26 A Phoenix 
+27 C Boston 
+28 B Dover 
+29 D Honolulu 
+30 B Augusta 
+31 B Denver 
+32 D Columbia 
+33 C Carson City 
+34 D Boise 
+35 C Oklahoma City 
+36 A Lincoln 
+37 C Boise 
+38 C Atlanta 
+39 A Jefferson City 
+40 A Providence 
+41 C Harrisburg 
+42 A Juneau 
+43 D Santa Fe 
+44 C Raleigh 
+45 C Sacramento 
+46 D Augusta 
+47 B Pierre 
+48 B Bismarck 
+49 C Bismarck 

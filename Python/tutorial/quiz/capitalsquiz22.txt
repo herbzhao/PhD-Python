@@ -1,0 +1,251 @@
+welcome to test, number22 friend 
+Q1 the capital of Kansas is ? 
+A Tallahassee
+B Atlanta
+C Lansing
+D Topeka
+Q2 the capital of Alabama is ? 
+A Dover
+B Montgomery
+C Columbus
+D Tallahassee
+Q3 the capital of Vermont is ? 
+A Madison
+B Honolulu
+C Dover
+D Montpelier
+Q4 the capital of West Virginia is ? 
+A Harrisburg
+B Phoenix
+C Charleston
+D Augusta
+Q5 the capital of Nebraska is ? 
+A Springfield
+B Pierre
+C Hartford
+D Lincoln
+Q6 the capital of North Dakota is ? 
+A Cheyenne
+B Santa Fe
+C Atlanta
+D Bismarck
+Q7 the capital of West Virginia is ? 
+A Raleigh
+B Trenton
+C Charleston
+D Austin
+Q8 the capital of Virginia is ? 
+A Bismarck
+B Richmond
+C Honolulu
+D Salem
+Q9 the capital of Texas is ? 
+A Austin
+B Salem
+C Columbus
+D Lansing
+Q10 the capital of Nevada is ? 
+A Columbus
+B Salt Lake City
+C Albany
+D Carson City
+Q11 the capital of Georgia is ? 
+A Sacramento
+B Atlanta
+C Augusta
+D Charleston
+Q12 the capital of Kansas is ? 
+A Topeka
+B Denver
+C Juneau
+D Santa Fe
+Q13 the capital of Florida is ? 
+A Bismarck
+B Albany
+C Tallahassee
+D Augusta
+Q14 the capital of Maine is ? 
+A Oklahoma City
+B Augusta
+C Helena
+D Jackson
+Q15 the capital of Illinois is ? 
+A Springfield
+B Topeka
+C Annapolis
+D Santa Fe
+Q16 the capital of New Mexico is ? 
+A Concord
+B Santa Fe
+C Springfield
+D Sacramento
+Q17 the capital of Colorado is ? 
+A Denver
+B Oklahoma City
+C Springfield
+D Baton Rouge
+Q18 the capital of Wyoming is ? 
+A Des Moines
+B Atlanta
+C Cheyenne
+D Sacramento
+Q19 the capital of Wyoming is ? 
+A Cheyenne
+B Trenton
+C Jefferson City
+D Albany
+Q20 the capital of Wyoming is ? 
+A Harrisburg
+B Cheyenne
+C Montpelier
+D Albany
+Q21 the capital of Michigan is ? 
+A Baton Rouge
+B Atlanta
+C Lansing
+D Salt Lake City
+Q22 the capital of Iowa is ? 
+A Albany
+B Des Moines
+C Jefferson City
+D Lansing
+Q23 the capital of Texas is ? 
+A Austin
+B Saint Paul
+C Frankfort
+D Atlanta
+Q24 the capital of Delaware is ? 
+A Dover
+B Annapolis
+C Tallahassee
+D Boston
+Q25 the capital of Michigan is ? 
+A Helena
+B Saint Paul
+C Lansing
+D Denver
+Q26 the capital of Maryland is ? 
+A Springfield
+B Annapolis
+C Phoenix
+D Augusta
+Q27 the capital of Tennessee is ? 
+A Nashville
+B Baton Rouge
+C Tallahassee
+D Springfield
+Q28 the capital of Montana is ? 
+A Helena
+B Lansing
+C Tallahassee
+D Montgomery
+Q29 the capital of North Dakota is ? 
+A Richmond
+B Madison
+C Bismarck
+D Boise
+Q30 the capital of Massachusetts is ? 
+A Boise
+B Boston
+C Bismarck
+D Charleston
+Q31 the capital of Montana is ? 
+A Albany
+B Cheyenne
+C Carson City
+D Helena
+Q32 the capital of New York is ? 
+A Albany
+B Charleston
+C Jackson
+D Salt Lake City
+Q33 the capital of Ohio is ? 
+A Columbus
+B Topeka
+C Phoenix
+D Honolulu
+Q34 the capital of South Dakota is ? 
+A Pierre
+B Olympia
+C Little Rock
+D Cheyenne
+Q35 the capital of Maryland is ? 
+A Annapolis
+B Lansing
+C Boise
+D Columbus
+Q36 the capital of South Dakota is ? 
+A Concord
+B Honolulu
+C Pierre
+D Indianapolis
+Q37 the capital of Virginia is ? 
+A Annapolis
+B Bismarck
+C Richmond
+D Trenton
+Q38 the capital of Maryland is ? 
+A Annapolis
+B Boston
+C Jackson
+D Juneau
+Q39 the capital of Connecticut is ? 
+A Austin
+B Pierre
+C Cheyenne
+D Hartford
+Q40 the capital of Georgia is ? 
+A Lincoln
+B Madison
+C Helena
+D Atlanta
+Q41 the capital of Louisiana is ? 
+A Sacramento
+B Baton Rouge
+C Dover
+D Nashville
+Q42 the capital of Utah is ? 
+A Annapolis
+B Dover
+C Salt Lake City
+D Jefferson City
+Q43 the capital of Connecticut is ? 
+A Montgomery
+B Jackson
+C Augusta
+D Hartford
+Q44 the capital of Pennsylvania is ? 
+A Jefferson City
+B Harrisburg
+C Montgomery
+D Austin
+Q45 the capital of Pennsylvania is ? 
+A Harrisburg
+B Atlanta
+C Montgomery
+D Salem
+Q46 the capital of Alaska is ? 
+A Juneau
+B Madison
+C Harrisburg
+D Albany
+Q47 the capital of Connecticut is ? 
+A Pierre
+B Hartford
+C Augusta
+D Lincoln
+Q48 the capital of Nevada is ? 
+A Phoenix
+B Olympia
+C Nashville
+D Carson City
+Q49 the capital of Nevada is ? 
+A Austin
+B Carson City
+C Augusta
+D Tallahassee
+Q50 the capital of Texas is ? 
+A Hartford
+B Austin
+C Madison
+D Helena

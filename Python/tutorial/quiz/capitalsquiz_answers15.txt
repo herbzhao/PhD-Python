@@ -1,0 +1,51 @@
+the answers for number15 friend 
+0 C Salt Lake City 
+1 C Indianapolis 
+2 C Richmond 
+3 A Helena 
+4 D Charleston 
+5 A Concord 
+6 D Denver 
+7 B Lansing 
+8 D Providence 
+9 B Providence 
+10 A Richmond 
+11 C Atlanta 
+12 D Austin 
+13 C Richmond 
+14 B Concord 
+15 A Providence 
+16 B Montpelier 
+17 D Columbus 
+18 A Indianapolis 
+19 B Jackson 
+20 C Trenton 
+21 D Annapolis 
+22 D Nashville 
+23 A Jackson 
+24 A Columbia 
+25 D Lansing 
+26 D Columbus 
+27 B Columbia 
+28 C Jefferson City 
+29 D Dover 
+30 A Hartford 
+31 A Oklahoma City 
+32 A Oklahoma City 
+33 B Cheyenne 
+34 A Augusta 
+35 A Lincoln 
+36 C Jefferson City 
+37 C Boston 
+38 B Des Moines 
+39 C Saint Paul 
+40 A Albany 
+41 D Nashville 
+42 B Bismarck 
+43 D Indianapolis 
+44 B Oklahoma City 
+45 A Trenton 
+46 B Bismarck 
+47 B Saint Paul 
+48 B Columbus 
+49 C Helena 

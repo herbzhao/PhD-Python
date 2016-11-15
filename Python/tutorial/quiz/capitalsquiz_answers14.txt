@@ -1,0 +1,51 @@
+the answers for number14 friend 
+0 B Denver 
+1 C Honolulu 
+2 B Charleston 
+3 D Honolulu 
+4 B Concord 
+5 A Topeka 
+6 B Carson City 
+7 C Dover 
+8 D Bismarck 
+9 C Columbia 
+10 C Phoenix 
+11 A Atlanta 
+12 D Oklahoma City 
+13 C Little Rock 
+14 A Columbus 
+15 D Baton Rouge 
+16 B Austin 
+17 D Columbia 
+18 C Des Moines 
+19 C Concord 
+20 C Tallahassee 
+21 A Lincoln 
+22 C Hartford 
+23 C Bismarck 
+24 A Augusta 
+25 D Little Rock 
+26 C Annapolis 
+27 B Sacramento 
+28 D Frankfort 
+29 C Jefferson City 
+30 C Austin 
+31 C Cheyenne 
+32 B Concord 
+33 A Baton Rouge 
+34 D Boston 
+35 A Sacramento 
+36 C Saint Paul 
+37 D Charleston 
+38 C Saint Paul 
+39 A Boston 
+40 C Denver 
+41 C Montpelier 
+42 D Jackson 
+43 C Annapolis 
+44 C Providence 
+45 C Boston 
+46 D Frankfort 
+47 C Annapolis 
+48 A Albany 
+49 C Lincoln 

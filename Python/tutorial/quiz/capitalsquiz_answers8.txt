@@ -1,0 +1,51 @@
+the answers for number8 friend 
+0 B Lincoln 
+1 A Lincoln 
+2 C Olympia 
+3 B Indianapolis 
+4 B Tallahassee 
+5 D Sacramento 
+6 A Lincoln 
+7 C Raleigh 
+8 B Tallahassee 
+9 D Raleigh 
+10 D Montgomery 
+11 A Trenton 
+12 A Jefferson City 
+13 D Boise 
+14 A Cheyenne 
+15 B Richmond 
+16 B Augusta 
+17 A Atlanta 
+18 B Frankfort 
+19 C Cheyenne 
+20 A Hartford 
+21 C Phoenix 
+22 C Frankfort 
+23 C Honolulu 
+24 D Des Moines 
+25 A Annapolis 
+26 A Lansing 
+27 A Raleigh 
+28 A Jackson 
+29 C Salem 
+30 C Springfield 
+31 A Augusta 
+32 C Des Moines 
+33 C Sacramento 
+34 D Atlanta 
+35 A Raleigh 
+36 D Denver 
+37 B Concord 
+38 B Dover 
+39 B Jackson 
+40 D Salem 
+41 A Dover 
+42 B Providence 
+43 D Montpelier 
+44 C Hartford 
+45 B Indianapolis 
+46 A Dover 
+47 C Carson City 
+48 C Madison 
+49 A Raleigh 

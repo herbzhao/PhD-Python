@@ -1,0 +1,51 @@
+the answers for number11 friend 
+0 A Lincoln 
+1 A Cheyenne 
+2 C Lincoln 
+3 A Des Moines 
+4 C Saint Paul 
+5 B Pierre 
+6 D Charleston 
+7 D Montgomery 
+8 D Jackson 
+9 A Columbus 
+10 A Indianapolis 
+11 B Montgomery 
+12 D Pierre 
+13 B Augusta 
+14 A Honolulu 
+15 A Baton Rouge 
+16 D Boise 
+17 B Santa Fe 
+18 C Columbus 
+19 C Boise 
+20 D Hartford 
+21 C Richmond 
+22 D Austin 
+23 D Salt Lake City 
+24 A Lansing 
+25 A Little Rock 
+26 D Austin 
+27 D Montpelier 
+28 B Lincoln 
+29 D Albany 
+30 A Boston 
+31 B Montpelier 
+32 A Carson City 
+33 A Sacramento 
+34 C Saint Paul 
+35 A Trenton 
+36 A Sacramento 
+37 B Phoenix 
+38 A Albany 
+39 B Raleigh 
+40 D Oklahoma City 
+41 D Santa Fe 
+42 A Juneau 
+43 A Raleigh 
+44 A Lincoln 
+45 A Bismarck 
+46 D Annapolis 
+47 A Little Rock 
+48 C Topeka 
+49 A Salt Lake City 

@@ -1,0 +1,51 @@
+the answers for number12 friend 
+0 C Columbia 
+1 C Baton Rouge 
+2 A Topeka 
+3 C Montgomery 
+4 D Cheyenne 
+5 D Lansing 
+6 A Tallahassee 
+7 B Honolulu 
+8 A Pierre 
+9 C Harrisburg 
+10 D Albany 
+11 B Montpelier 
+12 C Hartford 
+13 C Montgomery 
+14 B Denver 
+15 C Salem 
+16 B Austin 
+17 C Denver 
+18 D Helena 
+19 C Sacramento 
+20 D Bismarck 
+21 A Montpelier 
+22 C Honolulu 
+23 D Lansing 
+24 D Dover 
+25 D Raleigh 
+26 D Nashville 
+27 D Harrisburg 
+28 D Boston 
+29 D Annapolis 
+30 C Charleston 
+31 B Juneau 
+32 C Columbus 
+33 D Trenton 
+34 D Frankfort 
+35 B Concord 
+36 A Olympia 
+37 B Little Rock 
+38 A Saint Paul 
+39 C Trenton 
+40 C Providence 
+41 C Olympia 
+42 A Columbus 
+43 C Jackson 
+44 A Frankfort 
+45 D Frankfort 
+46 C Concord 
+47 B Indianapolis 
+48 D Phoenix 
+49 B Boise 

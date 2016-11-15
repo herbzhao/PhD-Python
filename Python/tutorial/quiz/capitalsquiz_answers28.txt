@@ -1,0 +1,51 @@
+the answers for number28 friend 
+0 D Boston 
+1 D Annapolis 
+2 B Saint Paul 
+3 C Denver 
+4 C Salt Lake City 
+5 B Madison 
+6 A Trenton 
+7 C Montpelier 
+8 C Montpelier 
+9 D Pierre 
+10 D Tallahassee 
+11 A Augusta 
+12 B Salt Lake City 
+13 A Springfield 
+14 A Santa Fe 
+15 A Frankfort 
+16 B Albany 
+17 D Augusta 
+18 B Trenton 
+19 A Santa Fe 
+20 C Dover 
+21 A Juneau 
+22 A Jackson 
+23 A Dover 
+24 C Augusta 
+25 A Phoenix 
+26 B Topeka 
+27 C Tallahassee 
+28 B Cheyenne 
+29 A Boston 
+30 D Austin 
+31 D Des Moines 
+32 B Boston 
+33 D Trenton 
+34 A Frankfort 
+35 D Baton Rouge 
+36 C Baton Rouge 
+37 B Helena 
+38 B Honolulu 
+39 D Frankfort 
+40 B Annapolis 
+41 B Tallahassee 
+42 B Jackson 
+43 D Springfield 
+44 D Albany 
+45 A Montpelier 
+46 C Jackson 
+47 B Annapolis 
+48 C Baton Rouge 
+49 D Trenton 

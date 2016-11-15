@@ -1,0 +1,51 @@
+the answers for number31 friend 
+0 B Providence 
+1 D Des Moines 
+2 A Boston 
+3 A Boise 
+4 A Jefferson City 
+5 A Denver 
+6 C Raleigh 
+7 B Denver 
+8 C Salt Lake City 
+9 A Richmond 
+10 C Juneau 
+11 C Trenton 
+12 B Pierre 
+13 A Springfield 
+14 A Concord 
+15 D Raleigh 
+16 B Oklahoma City 
+17 C Des Moines 
+18 A Pierre 
+19 B Annapolis 
+20 D Indianapolis 
+21 B Harrisburg 
+22 C Frankfort 
+23 A Tallahassee 
+24 A Baton Rouge 
+25 C Saint Paul 
+26 D Boise 
+27 A Columbia 
+28 A Raleigh 
+29 A Atlanta 
+30 C Jackson 
+31 D Trenton 
+32 B Montpelier 
+33 B Charleston 
+34 C Sacramento 
+35 A Topeka 
+36 D Indianapolis 
+37 C Charleston 
+38 B Dover 
+39 D Austin 
+40 A Concord 
+41 C Salem 
+42 D Cheyenne 
+43 A Santa Fe 
+44 B Des Moines 
+45 B Trenton 
+46 A Salt Lake City 
+47 D Austin 
+48 B Columbia 
+49 B Helena 

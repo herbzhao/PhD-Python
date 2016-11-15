@@ -1,0 +1,251 @@
+welcome to test, number34 friend 
+Q1 the capital of Colorado is ? 
+A Oklahoma City
+B Phoenix
+C Denver
+D Madison
+Q2 the capital of Indiana is ? 
+A Columbia
+B Indianapolis
+C Denver
+D Salt Lake City
+Q3 the capital of New Mexico is ? 
+A Boston
+B Frankfort
+C Harrisburg
+D Santa Fe
+Q4 the capital of Nebraska is ? 
+A Denver
+B Boston
+C Tallahassee
+D Lincoln
+Q5 the capital of Connecticut is ? 
+A Carson City
+B Hartford
+C Cheyenne
+D Albany
+Q6 the capital of Pennsylvania is ? 
+A Harrisburg
+B Salem
+C Topeka
+D Oklahoma City
+Q7 the capital of Arizona is ? 
+A Trenton
+B Little Rock
+C Columbus
+D Phoenix
+Q8 the capital of New York is ? 
+A Charleston
+B Salt Lake City
+C Cheyenne
+D Albany
+Q9 the capital of Michigan is ? 
+A Lansing
+B Madison
+C Jackson
+D Augusta
+Q10 the capital of Missouri is ? 
+A Hartford
+B Indianapolis
+C Jefferson City
+D Des Moines
+Q11 the capital of Iowa is ? 
+A Santa Fe
+B Pierre
+C Carson City
+D Des Moines
+Q12 the capital of New Jersey is ? 
+A Albany
+B Trenton
+C Hartford
+D Raleigh
+Q13 the capital of Michigan is ? 
+A Richmond
+B Des Moines
+C Salem
+D Lansing
+Q14 the capital of Oregon is ? 
+A Tallahassee
+B Topeka
+C Salem
+D Baton Rouge
+Q15 the capital of Oregon is ? 
+A Salem
+B Trenton
+C Columbus
+D Pierre
+Q16 the capital of Illinois is ? 
+A Springfield
+B Cheyenne
+C Saint Paul
+D Columbus
+Q17 the capital of North Dakota is ? 
+A Bismarck
+B Oklahoma City
+C Austin
+D Columbus
+Q18 the capital of Pennsylvania is ? 
+A Pierre
+B Trenton
+C Harrisburg
+D Lansing
+Q19 the capital of Massachusetts is ? 
+A Little Rock
+B Columbia
+C Boston
+D Santa Fe
+Q20 the capital of New Mexico is ? 
+A Santa Fe
+B Columbia
+C Lincoln
+D Tallahassee
+Q21 the capital of Oklahoma is ? 
+A Honolulu
+B Little Rock
+C Lansing
+D Oklahoma City
+Q22 the capital of New Mexico is ? 
+A Jackson
+B Sacramento
+C Santa Fe
+D Boston
+Q23 the capital of Maryland is ? 
+A Helena
+B Annapolis
+C Bismarck
+D Denver
+Q24 the capital of Oregon is ? 
+A Montgomery
+B Salem
+C Boston
+D Charleston
+Q25 the capital of Connecticut is ? 
+A Sacramento
+B Hartford
+C Dover
+D Charleston
+Q26 the capital of Virginia is ? 
+A Richmond
+B Olympia
+C Atlanta
+D Sacramento
+Q27 the capital of New Mexico is ? 
+A Indianapolis
+B Saint Paul
+C Springfield
+D Santa Fe
+Q28 the capital of Indiana is ? 
+A Indianapolis
+B Montpelier
+C Jefferson City
+D Little Rock
+Q29 the capital of Vermont is ? 
+A Denver
+B Carson City
+C Oklahoma City
+D Montpelier
+Q30 the capital of Maine is ? 
+A Charleston
+B Sacramento
+C Jackson
+D Augusta
+Q31 the capital of Virginia is ? 
+A Albany
+B Richmond
+C Des Moines
+D Tallahassee
+Q32 the capital of Indiana is ? 
+A Indianapolis
+B Albany
+C Providence
+D Hartford
+Q33 the capital of Mississippi is ? 
+A Atlanta
+B Des Moines
+C Montpelier
+D Jackson
+Q34 the capital of Wisconsin is ? 
+A Madison
+B Hartford
+C Oklahoma City
+D Lansing
+Q35 the capital of Massachusetts is ? 
+A Topeka
+B Indianapolis
+C Boston
+D Salem
+Q36 the capital of South Carolina is ? 
+A Columbia
+B Phoenix
+C Augusta
+D Indianapolis
+Q37 the capital of Nevada is ? 
+A Boise
+B Phoenix
+C Carson City
+D Salem
+Q38 the capital of Mississippi is ? 
+A Concord
+B Madison
+C Olympia
+D Jackson
+Q39 the capital of Indiana is ? 
+A Madison
+B Oklahoma City
+C Indianapolis
+D Columbus
+Q40 the capital of Arkansas is ? 
+A Little Rock
+B Augusta
+C Olympia
+D Raleigh
+Q41 the capital of Georgia is ? 
+A Jackson
+B Harrisburg
+C Atlanta
+D Columbus
+Q42 the capital of Vermont is ? 
+A Hartford
+B Montpelier
+C Providence
+D Atlanta
+Q43 the capital of South Carolina is ? 
+A Dover
+B Springfield
+C Bismarck
+D Columbia
+Q44 the capital of North Carolina is ? 
+A Raleigh
+B Olympia
+C Columbia
+D Harrisburg
+Q45 the capital of Florida is ? 
+A Harrisburg
+B Nashville
+C Columbia
+D Tallahassee
+Q46 the capital of Kentucky is ? 
+A Saint Paul
+B Frankfort
+C Nashville
+D Lansing
+Q47 the capital of Mississippi is ? 
+A Santa Fe
+B Baton Rouge
+C Augusta
+D Jackson
+Q48 the capital of Kentucky is ? 
+A Frankfort
+B Boston
+C Sacramento
+D Boise
+Q49 the capital of Indiana is ? 
+A Indianapolis
+B Dover
+C Trenton
+D Raleigh
+Q50 the capital of West Virginia is ? 
+A Providence
+B Charleston
+C Columbus
+D Oklahoma City

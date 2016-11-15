@@ -1,0 +1,51 @@
+the answers for number6 friend 
+0 B Topeka 
+1 A Jefferson City 
+2 C Lincoln 
+3 D Charleston 
+4 D Frankfort 
+5 C Montpelier 
+6 C Atlanta 
+7 B Topeka 
+8 B Tallahassee 
+9 C Cheyenne 
+10 A Raleigh 
+11 C Pierre 
+12 D Santa Fe 
+13 C Jefferson City 
+14 B Hartford 
+15 C Charleston 
+16 D Columbus 
+17 D Albany 
+18 C Honolulu 
+19 D Saint Paul 
+20 C Honolulu 
+21 C Trenton 
+22 A Honolulu 
+23 B Raleigh 
+24 A Concord 
+25 D Jefferson City 
+26 A Honolulu 
+27 C Des Moines 
+28 B Indianapolis 
+29 C Bismarck 
+30 C Concord 
+31 D Springfield 
+32 A Providence 
+33 B Indianapolis 
+34 C Olympia 
+35 B Hartford 
+36 B Lansing 
+37 A Helena 
+38 C Columbus 
+39 B Tallahassee 
+40 B Nashville 
+41 B Cheyenne 
+42 B Denver 
+43 B Augusta 
+44 D Lansing 
+45 C Jackson 
+46 B Jackson 
+47 A Atlanta 
+48 D Boston 
+49 C Annapolis 

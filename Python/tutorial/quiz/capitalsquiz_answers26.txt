@@ -1,0 +1,51 @@
+the answers for number26 friend 
+0 A Raleigh 
+1 C Montpelier 
+2 D Des Moines 
+3 D Austin 
+4 A Baton Rouge 
+5 B Lincoln 
+6 D Albany 
+7 C Phoenix 
+8 C Phoenix 
+9 C Augusta 
+10 A Concord 
+11 B Topeka 
+12 B Annapolis 
+13 D Jefferson City 
+14 D Baton Rouge 
+15 D Dover 
+16 D Denver 
+17 D Honolulu 
+18 C Jackson 
+19 B Raleigh 
+20 A Honolulu 
+21 B Santa Fe 
+22 A Olympia 
+23 A Tallahassee 
+24 A Oklahoma City 
+25 B Juneau 
+26 C Annapolis 
+27 C Oklahoma City 
+28 C Sacramento 
+29 D Jefferson City 
+30 A Raleigh 
+31 B Saint Paul 
+32 C Montpelier 
+33 C Austin 
+34 D Des Moines 
+35 A Denver 
+36 C Olympia 
+37 A Charleston 
+38 B Jackson 
+39 B Trenton 
+40 C Jefferson City 
+41 D Columbus 
+42 C Raleigh 
+43 B Springfield 
+44 A Little Rock 
+45 D Lansing 
+46 C Salem 
+47 A Indianapolis 
+48 B Montpelier 
+49 D Providence 

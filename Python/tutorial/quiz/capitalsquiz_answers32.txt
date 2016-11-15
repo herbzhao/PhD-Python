@@ -1,0 +1,51 @@
+the answers for number32 friend 
+0 C Pierre 
+1 A Columbus 
+2 B Cheyenne 
+3 A Hartford 
+4 D Juneau 
+5 C Tallahassee 
+6 B Austin 
+7 D Sacramento 
+8 C Providence 
+9 D Salt Lake City 
+10 A Montpelier 
+11 D Columbia 
+12 C Columbia 
+13 C Charleston 
+14 B Salem 
+15 D Richmond 
+16 D Pierre 
+17 D Atlanta 
+18 C Des Moines 
+19 B Frankfort 
+20 D Olympia 
+21 D Carson City 
+22 A Little Rock 
+23 C Harrisburg 
+24 C Bismarck 
+25 C Phoenix 
+26 A Jefferson City 
+27 D Boston 
+28 D Lincoln 
+29 A Santa Fe 
+30 D Salt Lake City 
+31 D Juneau 
+32 A Jefferson City 
+33 C Harrisburg 
+34 B Frankfort 
+35 D Phoenix 
+36 C Concord 
+37 D Harrisburg 
+38 D Columbus 
+39 B Frankfort 
+40 C Jefferson City 
+41 C Lansing 
+42 B Atlanta 
+43 D Salt Lake City 
+44 C Cheyenne 
+45 D Trenton 
+46 B Raleigh 
+47 C Baton Rouge 
+48 A Little Rock 
+49 A Pierre 

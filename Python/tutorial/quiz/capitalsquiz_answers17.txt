@@ -1,0 +1,51 @@
+the answers for number17 friend 
+0 C Phoenix 
+1 C Little Rock 
+2 D Atlanta 
+3 A Pierre 
+4 A Richmond 
+5 D Salem 
+6 D Trenton 
+7 D Lincoln 
+8 D Montpelier 
+9 B Lansing 
+10 B Lincoln 
+11 C Carson City 
+12 C Sacramento 
+13 C Phoenix 
+14 C Charleston 
+15 C Trenton 
+16 D Montpelier 
+17 C Cheyenne 
+18 A Bismarck 
+19 C Montpelier 
+20 D Pierre 
+21 B Augusta 
+22 B Sacramento 
+23 A Sacramento 
+24 C Providence 
+25 D Des Moines 
+26 A Salt Lake City 
+27 D Madison 
+28 D Atlanta 
+29 A Columbia 
+30 A Providence 
+31 C Providence 
+32 C Dover 
+33 C Cheyenne 
+34 B Jackson 
+35 D Little Rock 
+36 D Lincoln 
+37 D Honolulu 
+38 C Indianapolis 
+39 D Olympia 
+40 C Tallahassee 
+41 C Charleston 
+42 C Jefferson City 
+43 A Montgomery 
+44 D Honolulu 
+45 D Albany 
+46 A Lincoln 
+47 D Phoenix 
+48 A Trenton 
+49 B Montpelier 

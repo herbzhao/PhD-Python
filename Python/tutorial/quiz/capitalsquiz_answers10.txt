@@ -1,0 +1,51 @@
+the answers for number10 friend 
+0 C Richmond 
+1 D Juneau 
+2 D Columbus 
+3 D Frankfort 
+4 D Annapolis 
+5 D Trenton 
+6 D Concord 
+7 A Salem 
+8 B Oklahoma City 
+9 D Harrisburg 
+10 D Boise 
+11 C Hartford 
+12 D Atlanta 
+13 B Harrisburg 
+14 A Jackson 
+15 D Little Rock 
+16 A Honolulu 
+17 B Tallahassee 
+18 C Honolulu 
+19 C Baton Rouge 
+20 C Springfield 
+21 D Albany 
+22 A Montpelier 
+23 C Albany 
+24 D Raleigh 
+25 C Frankfort 
+26 D Boise 
+27 C Dover 
+28 B Phoenix 
+29 D Tallahassee 
+30 B Oklahoma City 
+31 A Topeka 
+32 A Saint Paul 
+33 A Juneau 
+34 B Montgomery 
+35 D Annapolis 
+36 D Hartford 
+37 A Montgomery 
+38 C Lincoln 
+39 C Boise 
+40 B Santa Fe 
+41 B Dover 
+42 A Springfield 
+43 B Trenton 
+44 A Trenton 
+45 B Jackson 
+46 B Lincoln 
+47 C Pierre 
+48 B Tallahassee 
+49 D Annapolis 

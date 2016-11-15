@@ -1,0 +1,51 @@
+the answers for number13 friend 
+0 B Olympia 
+1 B Springfield 
+2 C Atlanta 
+3 B Des Moines 
+4 A Baton Rouge 
+5 C Springfield 
+6 D Saint Paul 
+7 D Lincoln 
+8 C Austin 
+9 A Richmond 
+10 A Pierre 
+11 B Jackson 
+12 B Phoenix 
+13 C Richmond 
+14 A Augusta 
+15 B Columbia 
+16 A Boise 
+17 A Oklahoma City 
+18 C Little Rock 
+19 D Bismarck 
+20 A Topeka 
+21 C Indianapolis 
+22 B Lansing 
+23 B Saint Paul 
+24 B Montpelier 
+25 B Springfield 
+26 B Lincoln 
+27 A Lansing 
+28 A Concord 
+29 D Carson City 
+30 B Columbus 
+31 A Juneau 
+32 A Tallahassee 
+33 C Little Rock 
+34 C Denver 
+35 B Salt Lake City 
+36 C Denver 
+37 B Nashville 
+38 B Jefferson City 
+39 C Boston 
+40 A Denver 
+41 A Providence 
+42 B Des Moines 
+43 C Trenton 
+44 B Cheyenne 
+45 C Raleigh 
+46 B Raleigh 
+47 B Topeka 
+48 A Jefferson City 
+49 A Des Moines 

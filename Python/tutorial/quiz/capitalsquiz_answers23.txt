@@ -1,0 +1,51 @@
+the answers for number23 friend 
+0 D Saint Paul 
+1 D Lincoln 
+2 A Augusta 
+3 B Boston 
+4 A Carson City 
+5 D Lincoln 
+6 D Frankfort 
+7 C Cheyenne 
+8 A Nashville 
+9 B Harrisburg 
+10 D Augusta 
+11 B Des Moines 
+12 B Baton Rouge 
+13 D Albany 
+14 C Salt Lake City 
+15 B Boise 
+16 A Columbia 
+17 D Richmond 
+18 D Cheyenne 
+19 A Santa Fe 
+20 D Columbia 
+21 A Madison 
+22 B Salt Lake City 
+23 D Oklahoma City 
+24 C Jefferson City 
+25 C Atlanta 
+26 C Raleigh 
+27 C Montgomery 
+28 C Lincoln 
+29 C Bismarck 
+30 C Salem 
+31 D Columbus 
+32 C Jackson 
+33 D Austin 
+34 C Cheyenne 
+35 C Bismarck 
+36 A Dover 
+37 D Topeka 
+38 C Trenton 
+39 B Albany 
+40 B Dover 
+41 A Montgomery 
+42 D Annapolis 
+43 C Salt Lake City 
+44 D Little Rock 
+45 A Boise 
+46 B Columbia 
+47 B Sacramento 
+48 A Augusta 
+49 D Columbus 

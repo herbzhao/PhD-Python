@@ -1,0 +1,251 @@
+welcome to test, number21 friend 
+Q1 the capital of Colorado is ? 
+A Denver
+B Augusta
+C Hartford
+D Little Rock
+Q2 the capital of Maryland is ? 
+A Annapolis
+B Helena
+C Phoenix
+D Honolulu
+Q3 the capital of North Carolina is ? 
+A Atlanta
+B Honolulu
+C Denver
+D Raleigh
+Q4 the capital of Rhode Island is ? 
+A Providence
+B Pierre
+C Sacramento
+D Nashville
+Q5 the capital of New Mexico is ? 
+A Lincoln
+B Frankfort
+C Columbia
+D Santa Fe
+Q6 the capital of Connecticut is ? 
+A Hartford
+B Dover
+C Richmond
+D Concord
+Q7 the capital of Minnesota is ? 
+A Saint Paul
+B Dover
+C Indianapolis
+D Topeka
+Q8 the capital of Massachusetts is ? 
+A Raleigh
+B Trenton
+C Boston
+D Annapolis
+Q9 the capital of Washington is ? 
+A Salt Lake City
+B Springfield
+C Richmond
+D Olympia
+Q10 the capital of Texas is ? 
+A Austin
+B Providence
+C Cheyenne
+D Jefferson City
+Q11 the capital of Ohio is ? 
+A Olympia
+B Salem
+C Columbus
+D Lincoln
+Q12 the capital of Wyoming is ? 
+A Providence
+B Cheyenne
+C Jackson
+D Pierre
+Q13 the capital of Maine is ? 
+A Topeka
+B Des Moines
+C Denver
+D Augusta
+Q14 the capital of Ohio is ? 
+A Columbus
+B Nashville
+C Bismarck
+D Annapolis
+Q15 the capital of Nebraska is ? 
+A Topeka
+B Lincoln
+C Oklahoma City
+D Cheyenne
+Q16 the capital of Texas is ? 
+A Des Moines
+B Austin
+C Jefferson City
+D Augusta
+Q17 the capital of Kentucky is ? 
+A Sacramento
+B Oklahoma City
+C Frankfort
+D Denver
+Q18 the capital of North Carolina is ? 
+A Nashville
+B Juneau
+C Raleigh
+D Annapolis
+Q19 the capital of Ohio is ? 
+A Honolulu
+B Columbus
+C Pierre
+D Des Moines
+Q20 the capital of Texas is ? 
+A Tallahassee
+B Austin
+C Boston
+D Salt Lake City
+Q21 the capital of Mississippi is ? 
+A Hartford
+B Atlanta
+C Pierre
+D Jackson
+Q22 the capital of New Hampshire is ? 
+A Oklahoma City
+B Concord
+C Santa Fe
+D Salem
+Q23 the capital of North Carolina is ? 
+A Boston
+B Raleigh
+C Salem
+D Frankfort
+Q24 the capital of Colorado is ? 
+A Denver
+B Nashville
+C Columbus
+D Providence
+Q25 the capital of Florida is ? 
+A Trenton
+B Baton Rouge
+C Tallahassee
+D Denver
+Q26 the capital of Georgia is ? 
+A Nashville
+B Atlanta
+C Providence
+D Lansing
+Q27 the capital of West Virginia is ? 
+A Richmond
+B Montgomery
+C Albany
+D Charleston
+Q28 the capital of South Carolina is ? 
+A Columbia
+B Tallahassee
+C Nashville
+D Honolulu
+Q29 the capital of New York is ? 
+A Albany
+B Madison
+C Pierre
+D Olympia
+Q30 the capital of Utah is ? 
+A Trenton
+B Salt Lake City
+C Charleston
+D Nashville
+Q31 the capital of Maine is ? 
+A Augusta
+B Olympia
+C Lansing
+D Springfield
+Q32 the capital of New Jersey is ? 
+A Trenton
+B Baton Rouge
+C Atlanta
+D Cheyenne
+Q33 the capital of Michigan is ? 
+A Concord
+B Olympia
+C Lansing
+D Little Rock
+Q34 the capital of Pennsylvania is ? 
+A Denver
+B Boston
+C Harrisburg
+D Charleston
+Q35 the capital of Missouri is ? 
+A Jefferson City
+B Oklahoma City
+C Madison
+D Richmond
+Q36 the capital of New Mexico is ? 
+A Santa Fe
+B Dover
+C Jackson
+D Little Rock
+Q37 the capital of Michigan is ? 
+A Phoenix
+B Austin
+C Topeka
+D Lansing
+Q38 the capital of Rhode Island is ? 
+A Frankfort
+B Augusta
+C Columbia
+D Providence
+Q39 the capital of North Dakota is ? 
+A Bismarck
+B Indianapolis
+C Providence
+D Tallahassee
+Q40 the capital of Georgia is ? 
+A Trenton
+B Atlanta
+C Lansing
+D Raleigh
+Q41 the capital of Arizona is ? 
+A Phoenix
+B Augusta
+C Indianapolis
+D Columbia
+Q42 the capital of Nevada is ? 
+A Atlanta
+B Olympia
+C Carson City
+D Charleston
+Q43 the capital of Hawaii is ? 
+A Honolulu
+B Concord
+C Tallahassee
+D Boston
+Q44 the capital of Montana is ? 
+A Helena
+B Columbia
+C Boston
+D Hartford
+Q45 the capital of Rhode Island is ? 
+A Providence
+B Jefferson City
+C Phoenix
+D Boise
+Q46 the capital of Michigan is ? 
+A Salt Lake City
+B Lansing
+C Cheyenne
+D Little Rock
+Q47 the capital of Rhode Island is ? 
+A Frankfort
+B Austin
+C Springfield
+D Providence
+Q48 the capital of West Virginia is ? 
+A Salem
+B Tallahassee
+C Charleston
+D Austin
+Q49 the capital of New York is ? 
+A Montgomery
+B Albany
+C Atlanta
+D Cheyenne
+Q50 the capital of Wyoming is ? 
+A Annapolis
+B Columbia
+C Cheyenne
+D Lincoln

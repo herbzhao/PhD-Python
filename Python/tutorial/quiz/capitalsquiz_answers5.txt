@@ -1,0 +1,51 @@
+the answers for number5 friend 
+0 B Oklahoma City 
+1 A Dover 
+2 D Augusta 
+3 B Austin 
+4 D Cheyenne 
+5 B Cheyenne 
+6 C Boise 
+7 A Richmond 
+8 C Little Rock 
+9 C Charleston 
+10 A Denver 
+11 A Dover 
+12 B Juneau 
+13 B Trenton 
+14 B Nashville 
+15 D Columbia 
+16 D Little Rock 
+17 B Trenton 
+18 B Raleigh 
+19 A Phoenix 
+20 D Hartford 
+21 D Saint Paul 
+22 C Dover 
+23 A Oklahoma City 
+24 C Oklahoma City 
+25 D Austin 
+26 A Indianapolis 
+27 C Frankfort 
+28 D Frankfort 
+29 B Columbia 
+30 C Lincoln 
+31 D Albany 
+32 D Columbia 
+33 D Saint Paul 
+34 B Lansing 
+35 C Bismarck 
+36 D Raleigh 
+37 D Raleigh 
+38 A Madison 
+39 C Raleigh 
+40 B Topeka 
+41 B Jefferson City 
+42 B Phoenix 
+43 B Dover 
+44 B Santa Fe 
+45 C Juneau 
+46 D Juneau 
+47 D Bismarck 
+48 D Carson City 
+49 A Honolulu 

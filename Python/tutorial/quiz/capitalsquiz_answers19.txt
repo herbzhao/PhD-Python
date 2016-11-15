@@ -1,0 +1,51 @@
+the answers for number19 friend 
+0 B Salt Lake City 
+1 B Denver 
+2 C Raleigh 
+3 A Trenton 
+4 B Indianapolis 
+5 A Frankfort 
+6 D Topeka 
+7 B Bismarck 
+8 C Nashville 
+9 A Santa Fe 
+10 B Olympia 
+11 D Richmond 
+12 B Bismarck 
+13 B Austin 
+14 B Sacramento 
+15 A Bismarck 
+16 C Trenton 
+17 C Baton Rouge 
+18 D Raleigh 
+19 D Topeka 
+20 D Denver 
+21 D Jefferson City 
+22 D Des Moines 
+23 B Nashville 
+24 A Annapolis 
+25 A Concord 
+26 D Augusta 
+27 A Columbia 
+28 B Trenton 
+29 C Boston 
+30 C Indianapolis 
+31 A Des Moines 
+32 B Cheyenne 
+33 C Saint Paul 
+34 B Helena 
+35 A Atlanta 
+36 C Montgomery 
+37 D Indianapolis 
+38 D Columbus 
+39 C Frankfort 
+40 D Montgomery 
+41 B Tallahassee 
+42 C Charleston 
+43 D Indianapolis 
+44 C Lansing 
+45 A Des Moines 
+46 A Oklahoma City 
+47 C Concord 
+48 B Boise 
+49 C Concord 

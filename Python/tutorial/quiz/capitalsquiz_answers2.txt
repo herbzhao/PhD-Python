@@ -1,0 +1,51 @@
+the answers for number2 friend 
+0 B Raleigh 
+1 A Denver 
+2 C Jefferson City 
+3 C Concord 
+4 A Des Moines 
+5 B Hartford 
+6 B Austin 
+7 D Columbus 
+8 A Montgomery 
+9 B Raleigh 
+10 B Pierre 
+11 C Jefferson City 
+12 D Concord 
+13 B Richmond 
+14 A Nashville 
+15 A Concord 
+16 B Topeka 
+17 B Frankfort 
+18 A Carson City 
+19 B Carson City 
+20 D Columbia 
+21 B Augusta 
+22 C Hartford 
+23 A Concord 
+24 B Montpelier 
+25 B Carson City 
+26 D Concord 
+27 B Topeka 
+28 B Montpelier 
+29 C Jackson 
+30 A Boise 
+31 C Richmond 
+32 B Santa Fe 
+33 C Indianapolis 
+34 A Sacramento 
+35 C Austin 
+36 B Juneau 
+37 D Helena 
+38 C Boston 
+39 A Salt Lake City 
+40 B Olympia 
+41 A Carson City 
+42 B Columbus 
+43 D Concord 
+44 C Topeka 
+45 D Montgomery 
+46 B Helena 
+47 B Indianapolis 
+48 D Richmond 
+49 B Albany 

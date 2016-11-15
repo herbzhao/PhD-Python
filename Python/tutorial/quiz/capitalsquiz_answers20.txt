@@ -1,0 +1,51 @@
+the answers for number20 friend 
+0 B Bismarck 
+1 A Atlanta 
+2 A Raleigh 
+3 A Lincoln 
+4 C Little Rock 
+5 D Little Rock 
+6 D Providence 
+7 D Phoenix 
+8 A Augusta 
+9 B Baton Rouge 
+10 D Jackson 
+11 B Tallahassee 
+12 C Columbus 
+13 A Cheyenne 
+14 D Olympia 
+15 C Jackson 
+16 A Little Rock 
+17 B Indianapolis 
+18 C Jackson 
+19 C Charleston 
+20 D Topeka 
+21 B Salem 
+22 A Juneau 
+23 A Boise 
+24 A Salt Lake City 
+25 C Salt Lake City 
+26 C Indianapolis 
+27 A Trenton 
+28 C Atlanta 
+29 C Salem 
+30 A Springfield 
+31 D Bismarck 
+32 A Des Moines 
+33 D Columbia 
+34 C Topeka 
+35 C Phoenix 
+36 A Helena 
+37 D Indianapolis 
+38 A Olympia 
+39 A Baton Rouge 
+40 C Cheyenne 
+41 A Providence 
+42 D Pierre 
+43 A Denver 
+44 D Austin 
+45 A Charleston 
+46 B Augusta 
+47 A Little Rock 
+48 D Atlanta 
+49 A Jefferson City 

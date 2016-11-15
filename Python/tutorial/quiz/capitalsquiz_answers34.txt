@@ -1,0 +1,51 @@
+the answers for number34 friend 
+0 C Denver 
+1 B Indianapolis 
+2 D Santa Fe 
+3 D Lincoln 
+4 B Hartford 
+5 A Harrisburg 
+6 D Phoenix 
+7 D Albany 
+8 A Lansing 
+9 C Jefferson City 
+10 D Des Moines 
+11 B Trenton 
+12 D Lansing 
+13 C Salem 
+14 A Salem 
+15 A Springfield 
+16 A Bismarck 
+17 C Harrisburg 
+18 C Boston 
+19 A Santa Fe 
+20 D Oklahoma City 
+21 C Santa Fe 
+22 B Annapolis 
+23 B Salem 
+24 B Hartford 
+25 A Richmond 
+26 D Santa Fe 
+27 A Indianapolis 
+28 D Montpelier 
+29 D Augusta 
+30 B Richmond 
+31 A Indianapolis 
+32 D Jackson 
+33 A Madison 
+34 C Boston 
+35 A Columbia 
+36 C Carson City 
+37 D Jackson 
+38 C Indianapolis 
+39 A Little Rock 
+40 C Atlanta 
+41 B Montpelier 
+42 D Columbia 
+43 A Raleigh 
+44 D Tallahassee 
+45 B Frankfort 
+46 D Jackson 
+47 A Frankfort 
+48 A Indianapolis 
+49 B Charleston 

@@ -1,0 +1,51 @@
+the answers for number3 friend 
+0 D Concord 
+1 D Atlanta 
+2 D Bismarck 
+3 A Nashville 
+4 D Tallahassee 
+5 B Frankfort 
+6 D Providence 
+7 A Austin 
+8 A Indianapolis 
+9 A Salt Lake City 
+10 A Nashville 
+11 C Bismarck 
+12 C Little Rock 
+13 D Dover 
+14 C Juneau 
+15 D Indianapolis 
+16 A Salt Lake City 
+17 B Raleigh 
+18 C Austin 
+19 D Richmond 
+20 A Cheyenne 
+21 A Providence 
+22 D Frankfort 
+23 A Carson City 
+24 C Baton Rouge 
+25 A Oklahoma City 
+26 C Cheyenne 
+27 A Baton Rouge 
+28 B Honolulu 
+29 C Jackson 
+30 D Salem 
+31 D Salem 
+32 B Topeka 
+33 C Austin 
+34 A Columbus 
+35 B Jefferson City 
+36 A Annapolis 
+37 D Boise 
+38 B Lincoln 
+39 D Saint Paul 
+40 B Cheyenne 
+41 C Oklahoma City 
+42 A Lansing 
+43 B Denver 
+44 D Madison 
+45 D Columbus 
+46 B Des Moines 
+47 B Annapolis 
+48 C Providence 
+49 C Boise 

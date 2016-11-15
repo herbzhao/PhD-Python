@@ -1,0 +1,51 @@
+the answers for number25 friend 
+0 B Concord 
+1 A Lansing 
+2 B Santa Fe 
+3 A Salem 
+4 B Springfield 
+5 C Santa Fe 
+6 A Saint Paul 
+7 D Pierre 
+8 B Montgomery 
+9 A Cheyenne 
+10 C Albany 
+11 C Boise 
+12 B Lansing 
+13 B Salem 
+14 C Cheyenne 
+15 B Saint Paul 
+16 D Harrisburg 
+17 B Santa Fe 
+18 A Cheyenne 
+19 C Trenton 
+20 A Juneau 
+21 D Jackson 
+22 D Topeka 
+23 A Baton Rouge 
+24 B Augusta 
+25 B Des Moines 
+26 D Frankfort 
+27 D Sacramento 
+28 D Montpelier 
+29 B Indianapolis 
+30 B Bismarck 
+31 D Oklahoma City 
+32 C Atlanta 
+33 D Helena 
+34 A Lansing 
+35 D Charleston 
+36 D Annapolis 
+37 A Carson City 
+38 A Carson City 
+39 D Phoenix 
+40 C Springfield 
+41 C Boston 
+42 D Nashville 
+43 C Madison 
+44 B Denver 
+45 C Charleston 
+46 B Montgomery 
+47 C Concord 
+48 C Columbia 
+49 A Madison 

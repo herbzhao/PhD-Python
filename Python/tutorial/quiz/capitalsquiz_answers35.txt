@@ -1,0 +1,51 @@
+the answers for number35 friend 
+0 C Boston 
+1 A Salem 
+2 D Augusta 
+3 A Oklahoma City 
+4 C Annapolis 
+5 D Concord 
+6 D Nashville 
+7 D Montgomery 
+8 C Frankfort 
+9 C Atlanta 
+10 A Olympia 
+11 C Jefferson City 
+12 C Bismarck 
+13 D Santa Fe 
+14 D Sacramento 
+15 D Boise 
+16 A Nashville 
+17 C Hartford 
+18 B Richmond 
+19 C Little Rock 
+20 D Montpelier 
+21 B Jackson 
+22 C Salt Lake City 
+23 B Trenton 
+24 D Salt Lake City 
+25 A Lincoln 
+26 B Carson City 
+27 A Concord 
+28 D Albany 
+29 A Frankfort 
+30 D Nashville 
+31 D Dover 
+32 C Lansing 
+33 A Lansing 
+34 D Montpelier 
+35 A Jefferson City 
+36 C Harrisburg 
+37 A Annapolis 
+38 C Springfield 
+39 B Providence 
+40 A Salem 
+41 D Frankfort 
+42 C Madison 
+43 C Des Moines 
+44 D Tallahassee 
+45 B Oklahoma City 
+46 C Concord 
+47 C Salem 
+48 D Springfield 
+49 D Providence 

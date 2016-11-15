@@ -1,0 +1,51 @@
+the answers for number24 friend 
+0 A Sacramento 
+1 D Jefferson City 
+2 D Tallahassee 
+3 B Carson City 
+4 B Juneau 
+5 A Charleston 
+6 C Madison 
+7 D Hartford 
+8 B Salem 
+9 C Tallahassee 
+10 B Carson City 
+11 B Santa Fe 
+12 D Hartford 
+13 C Salt Lake City 
+14 C Des Moines 
+15 C Jefferson City 
+16 C Pierre 
+17 B Cheyenne 
+18 C Indianapolis 
+19 C Honolulu 
+20 A Lansing 
+21 C Denver 
+22 D Pierre 
+23 C Atlanta 
+24 B Salem 
+25 B Indianapolis 
+26 A Columbia 
+27 B Jackson 
+28 D Nashville 
+29 A Atlanta 
+30 A Boston 
+31 B Raleigh 
+32 A Salt Lake City 
+33 B Jackson 
+34 D Austin 
+35 B Olympia 
+36 D Providence 
+37 D Hartford 
+38 B Jefferson City 
+39 C Juneau 
+40 B Columbus 
+41 D Saint Paul 
+42 C Nashville 
+43 D Columbia 
+44 A Helena 
+45 C Sacramento 
+46 A Nashville 
+47 A Columbus 
+48 C Phoenix 
+49 B Providence 

@@ -1,0 +1,51 @@
+the answers for number21 friend 
+0 A Denver 
+1 A Annapolis 
+2 D Raleigh 
+3 A Providence 
+4 D Santa Fe 
+5 A Hartford 
+6 A Saint Paul 
+7 C Boston 
+8 D Olympia 
+9 A Austin 
+10 C Columbus 
+11 B Cheyenne 
+12 D Augusta 
+13 A Columbus 
+14 B Lincoln 
+15 B Austin 
+16 C Frankfort 
+17 C Raleigh 
+18 B Columbus 
+19 B Austin 
+20 D Jackson 
+21 B Concord 
+22 B Raleigh 
+23 A Denver 
+24 C Tallahassee 
+25 B Atlanta 
+26 D Charleston 
+27 A Columbia 
+28 A Albany 
+29 B Salt Lake City 
+30 A Augusta 
+31 A Trenton 
+32 C Lansing 
+33 C Harrisburg 
+34 A Jefferson City 
+35 A Santa Fe 
+36 D Lansing 
+37 D Providence 
+38 A Bismarck 
+39 B Atlanta 
+40 A Phoenix 
+41 C Carson City 
+42 A Honolulu 
+43 A Helena 
+44 A Providence 
+45 B Lansing 
+46 D Providence 
+47 C Charleston 
+48 B Albany 
+49 C Cheyenne 

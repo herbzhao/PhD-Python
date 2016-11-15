@@ -1,0 +1,51 @@
+the answers for number27 friend 
+0 B Cheyenne 
+1 C Topeka 
+2 B Indianapolis 
+3 D Atlanta 
+4 A Atlanta 
+5 A Oklahoma City 
+6 B Austin 
+7 A Providence 
+8 B Olympia 
+9 D Little Rock 
+10 B Augusta 
+11 A Indianapolis 
+12 B Saint Paul 
+13 C Boston 
+14 A Concord 
+15 C Salem 
+16 B Harrisburg 
+17 A Tallahassee 
+18 D Saint Paul 
+19 D Richmond 
+20 B Bismarck 
+21 C Jackson 
+22 A Helena 
+23 A Boston 
+24 D Atlanta 
+25 C Olympia 
+26 B Juneau 
+27 A Little Rock 
+28 B Olympia 
+29 A Carson City 
+30 B Jefferson City 
+31 B Frankfort 
+32 C Pierre 
+33 B Richmond 
+34 D Sacramento 
+35 C Annapolis 
+36 A Charleston 
+37 B Sacramento 
+38 A Dover 
+39 A Lincoln 
+40 D Lincoln 
+41 D Austin 
+42 D Harrisburg 
+43 D Lincoln 
+44 A Phoenix 
+45 D Pierre 
+46 B Saint Paul 
+47 D Providence 
+48 B Pierre 
+49 A Providence 

@@ -1,0 +1,51 @@
+the answers for number9 friend 
+0 C Dover 
+1 D Cheyenne 
+2 D Lincoln 
+3 C Little Rock 
+4 D Des Moines 
+5 C Austin 
+6 C Topeka 
+7 D Columbus 
+8 B Frankfort 
+9 C Trenton 
+10 C Austin 
+11 C Denver 
+12 D Carson City 
+13 B Denver 
+14 C Jackson 
+15 B Des Moines 
+16 D Lincoln 
+17 A Cheyenne 
+18 D Oklahoma City 
+19 D Phoenix 
+20 A Little Rock 
+21 D Juneau 
+22 B Indianapolis 
+23 B Harrisburg 
+24 A Austin 
+25 C Concord 
+26 A Augusta 
+27 D Austin 
+28 A Oklahoma City 
+29 C Columbus 
+30 D Jackson 
+31 A Springfield 
+32 A Hartford 
+33 D Baton Rouge 
+34 A Nashville 
+35 D Concord 
+36 C Augusta 
+37 C Saint Paul 
+38 A Indianapolis 
+39 D Honolulu 
+40 B Helena 
+41 A Augusta 
+42 C Augusta 
+43 C Bismarck 
+44 B Baton Rouge 
+45 B Concord 
+46 B Nashville 
+47 A Montpelier 
+48 D Oklahoma City 
+49 B Phoenix 

@@ -1,0 +1,51 @@
+the answers for number7 friend 
+0 A Bismarck 
+1 A Jackson 
+2 B Santa Fe 
+3 B Springfield 
+4 C Dover 
+5 A Tallahassee 
+6 D Madison 
+7 C Harrisburg 
+8 C Lincoln 
+9 B Raleigh 
+10 D Charleston 
+11 B Lincoln 
+12 B Albany 
+13 C Salem 
+14 C Augusta 
+15 A Concord 
+16 A Annapolis 
+17 A Springfield 
+18 B Phoenix 
+19 D Charleston 
+20 D Sacramento 
+21 B Concord 
+22 D Bismarck 
+23 C Phoenix 
+24 A Frankfort 
+25 D Little Rock 
+26 B Denver 
+27 B Salt Lake City 
+28 B Santa Fe 
+29 B Lincoln 
+30 A Springfield 
+31 B Augusta 
+32 C Richmond 
+33 A Phoenix 
+34 B Boston 
+35 D Carson City 
+36 A Boston 
+37 A Tallahassee 
+38 D Cheyenne 
+39 D Santa Fe 
+40 C Jackson 
+41 D Lansing 
+42 C Frankfort 
+43 D Augusta 
+44 A Annapolis 
+45 C Jefferson City 
+46 B Olympia 
+47 D Annapolis 
+48 D Providence 
+49 D Montgomery 

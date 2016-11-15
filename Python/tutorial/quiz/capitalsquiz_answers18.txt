@@ -1,0 +1,51 @@
+the answers for number18 friend 
+0 A Madison 
+1 D Santa Fe 
+2 A Richmond 
+3 A Concord 
+4 B Providence 
+5 A Austin 
+6 B Harrisburg 
+7 B Augusta 
+8 C Austin 
+9 A Carson City 
+10 C Richmond 
+11 B Denver 
+12 A Sacramento 
+13 B Columbia 
+14 C Saint Paul 
+15 A Carson City 
+16 D Boston 
+17 A Hartford 
+18 B Carson City 
+19 A Augusta 
+20 D Lansing 
+21 A Saint Paul 
+22 C Concord 
+23 D Springfield 
+24 D Lincoln 
+25 C Honolulu 
+26 A Columbus 
+27 C Denver 
+28 C Harrisburg 
+29 D Denver 
+30 D Lincoln 
+31 B Oklahoma City 
+32 B Trenton 
+33 B Jackson 
+34 D Nashville 
+35 A Lansing 
+36 D Bismarck 
+37 C Nashville 
+38 A Jackson 
+39 C Jefferson City 
+40 D Concord 
+41 C Salt Lake City 
+42 C Boise 
+43 C Little Rock 
+44 A Trenton 
+45 C Hartford 
+46 B Honolulu 
+47 B Topeka 
+48 B Springfield 
+49 C Santa Fe 

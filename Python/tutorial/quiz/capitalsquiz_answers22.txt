@@ -1,0 +1,51 @@
+the answers for number22 friend 
+0 D Topeka 
+1 B Montgomery 
+2 D Montpelier 
+3 C Charleston 
+4 D Lincoln 
+5 D Bismarck 
+6 C Charleston 
+7 B Richmond 
+8 A Austin 
+9 D Carson City 
+10 B Atlanta 
+11 A Topeka 
+12 C Tallahassee 
+13 B Augusta 
+14 A Springfield 
+15 B Santa Fe 
+16 A Denver 
+17 C Cheyenne 
+18 A Cheyenne 
+19 B Cheyenne 
+20 C Lansing 
+21 B Des Moines 
+22 A Austin 
+23 A Dover 
+24 C Lansing 
+25 B Annapolis 
+26 A Nashville 
+27 A Helena 
+28 C Bismarck 
+29 B Boston 
+30 D Helena 
+31 A Albany 
+32 A Columbus 
+33 A Pierre 
+34 A Annapolis 
+35 C Pierre 
+36 C Richmond 
+37 A Annapolis 
+38 D Hartford 
+39 D Atlanta 
+40 B Baton Rouge 
+41 C Salt Lake City 
+42 D Hartford 
+43 B Harrisburg 
+44 A Harrisburg 
+45 A Juneau 
+46 B Hartford 
+47 D Carson City 
+48 B Carson City 
+49 B Austin 

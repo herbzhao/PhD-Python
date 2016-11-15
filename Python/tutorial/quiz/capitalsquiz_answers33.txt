@@ -1,0 +1,51 @@
+the answers for number33 friend 
+0 B Tallahassee 
+1 B Olympia 
+2 B Columbia 
+3 D Salt Lake City 
+4 D Charleston 
+5 D Phoenix 
+6 D Juneau 
+7 C Indianapolis 
+8 A Richmond 
+9 D Austin 
+10 A Dover 
+11 B Little Rock 
+12 D Springfield 
+13 B Jackson 
+14 A Santa Fe 
+15 C Jackson 
+16 C Lansing 
+17 D Columbia 
+18 A Atlanta 
+19 D Raleigh 
+20 D Helena 
+21 A Saint Paul 
+22 A Tallahassee 
+23 C Salt Lake City 
+24 D Saint Paul 
+25 A Honolulu 
+26 B Boise 
+27 C Little Rock 
+28 A Salem 
+29 C Trenton 
+30 A Baton Rouge 
+31 B Saint Paul 
+32 A Charleston 
+33 B Lincoln 
+34 C Concord 
+35 D Sacramento 
+36 D Richmond 
+37 D Sacramento 
+38 A Tallahassee 
+39 C Richmond 
+40 D Nashville 
+41 B Phoenix 
+42 A Nashville 
+43 A Austin 
+44 B Little Rock 
+45 B Lincoln 
+46 B Salt Lake City 
+47 B Hartford 
+48 B Saint Paul 
+49 A Madison 

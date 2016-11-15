@@ -12,7 +12,7 @@ import cv2
 
 face_cascade = cv2.CascadeClassifier('C:\\Users\\herbz\\Anaconda3\\Library\\etc\\haarcascades\\haarcascade_frontalface_alt.xml')
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(2)
 #img = cv2.imread('C:\\Users\\herbz\\OneDrive - University Of Cambridge\\Documents\\GitHub\\PhD-python\\Python\\openCV\\test.png')
 while(1):
     ret, frame = cap.read()

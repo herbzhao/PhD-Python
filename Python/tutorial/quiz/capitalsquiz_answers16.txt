@@ -1,0 +1,51 @@
+the answers for number16 friend 
+0 D Lincoln 
+1 D Juneau 
+2 A Columbia 
+3 D Jefferson City 
+4 C Oklahoma City 
+5 C Pierre 
+6 A Honolulu 
+7 B Annapolis 
+8 C Honolulu 
+9 B Trenton 
+10 B Montgomery 
+11 C Santa Fe 
+12 D Richmond 
+13 C Indianapolis 
+14 C Lansing 
+15 D Oklahoma City 
+16 A Providence 
+17 B Concord 
+18 B Montpelier 
+19 A Providence 
+20 C Richmond 
+21 C Little Rock 
+22 D Atlanta 
+23 A Austin 
+24 D Jefferson City 
+25 C Tallahassee 
+26 C Augusta 
+27 D Charleston 
+28 B Jefferson City 
+29 B Salt Lake City 
+30 B Madison 
+31 D Raleigh 
+32 C Boston 
+33 C Cheyenne 
+34 A Atlanta 
+35 C Salem 
+36 C Jefferson City 
+37 D Cheyenne 
+38 A Springfield 
+39 A Boston 
+40 C Lansing 
+41 D Frankfort 
+42 B Saint Paul 
+43 B Sacramento 
+44 A Albany 
+45 B Oklahoma City 
+46 B Annapolis 
+47 C Harrisburg 
+48 B Columbus 
+49 A Baton Rouge 

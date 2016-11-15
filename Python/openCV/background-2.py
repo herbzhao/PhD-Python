@@ -8,7 +8,7 @@ Created on Sun Oct 23 00:35:34 2016
 import numpy as np
 import cv2
 
-cap = cv2.VideoCapture('C:\\Users\\herbz\\OneDrive - University Of Cambridge\\Documents\\GitHub\\PhD-python\\Python\\openCV\\droplet.avi')
+cap = cv2.VideoCapture(2)
 
 fgbg = cv2.bgsegm.createBackgroundSubtractorMOG()
 

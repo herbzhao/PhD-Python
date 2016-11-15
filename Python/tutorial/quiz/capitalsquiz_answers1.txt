@@ -1,0 +1,51 @@
+the answers for number1 friend 
+0 A Nashville 
+1 B Des Moines 
+2 B Santa Fe 
+3 C Cheyenne 
+4 B Springfield 
+5 D Hartford 
+6 D Denver 
+7 A Nashville 
+8 A Oklahoma City 
+9 C Columbia 
+10 A Dover 
+11 D Nashville 
+12 A Lansing 
+13 A Austin 
+14 C Oklahoma City 
+15 A Cheyenne 
+16 A Tallahassee 
+17 B Lansing 
+18 A Austin 
+19 D Charleston 
+20 A Oklahoma City 
+21 C Nashville 
+22 B Hartford 
+23 A Providence 
+24 D Baton Rouge 
+25 C Boston 
+26 B Tallahassee 
+27 A Lansing 
+28 A Topeka 
+29 A Carson City 
+30 D Carson City 
+31 A Boston 
+32 D Trenton 
+33 A Harrisburg 
+34 C Lincoln 
+35 D Springfield 
+36 D Baton Rouge 
+37 B Trenton 
+38 D Annapolis 
+39 A Salem 
+40 C Helena 
+41 B Richmond 
+42 D Dover 
+43 D Phoenix 
+44 C Atlanta 
+45 D Augusta 
+46 A Boise 
+47 A Charleston 
+48 A Salt Lake City 
+49 B Denver 

@@ -1,0 +1,51 @@
+the answers for number29 friend 
+0 C Olympia 
+1 D Trenton 
+2 B Saint Paul 
+3 C Trenton 
+4 C Augusta 
+5 B Lincoln 
+6 C Annapolis 
+7 B Providence 
+8 B Montpelier 
+9 D Little Rock 
+10 B Montgomery 
+11 A Dover 
+12 B Tallahassee 
+13 C Hartford 
+14 A Santa Fe 
+15 D Pierre 
+16 B Tallahassee 
+17 C Trenton 
+18 C Frankfort 
+19 A Frankfort 
+20 B Harrisburg 
+21 B Baton Rouge 
+22 A Pierre 
+23 D Topeka 
+24 D Salt Lake City 
+25 C Tallahassee 
+26 D Madison 
+27 C Montgomery 
+28 A Providence 
+29 A Austin 
+30 B Concord 
+31 A Sacramento 
+32 B Des Moines 
+33 C Sacramento 
+34 C Montgomery 
+35 A Oklahoma City 
+36 A Harrisburg 
+37 B Jefferson City 
+38 D Harrisburg 
+39 A Springfield 
+40 B Montgomery 
+41 B Carson City 
+42 A Juneau 
+43 C Topeka 
+44 B Lansing 
+45 D Juneau 
+46 A Charleston 
+47 A Madison 
+48 B Austin 
+49 D Des Moines 
