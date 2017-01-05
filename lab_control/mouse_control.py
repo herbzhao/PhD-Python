@@ -1,13 +1,19 @@
 import pyautogui  # http://pyautogui.readthedocs.io/en/latest/cheatsheet.html
 import time
-
+import os
 
 def system_setup():
     pyautogui.FAILSAFE = True
 
+def pyautogui_click():
+    try:
+        pyautogui.click()
+    except:
+        pass
+        
 def record_image():
     '''Record any image from screen to later come back'''
-    crop_size = 100 # Higher value, higher sensitivity
+    crop_size = 15 # Higher value, higher sensitivity
     pyautogui.moveTo(pyautogui.size()[0], 0) # move mouse out of window
     # Take a screenshot without mouse on any button
     screenshot_full= pyautogui.screenshot('screenshot_full.png')
@@ -40,10 +46,27 @@ def move_to_recorded_position(record):
         record = pyautogui.locateCenterOnScreen('screenshot_crop.png')
     pyautogui.moveTo(record[0], record[1], 0.2)
     time.sleep(0.5)
-    pyautogui.click()
+    pyautogui_click()
 
+def modify_folder(folder):
+    if os.path.exists(folder):
+        pass
+    else:
+        os.makedirs(folder)
+    pyautogui.moveTo(pyautogui.size()[0], 0)
+    record = pyautogui.locateCenterOnScreen('folder_chooser.png')
+    pyautogui.moveTo(record[0]-100, record[1], 0.2)
+    time.sleep(0.5)
+    pyautogui_click()
+    pyautogui.hotkey('delete')
+    pyautogui.typewrite(folder+'\n', interval = 0.05)
+    record = pyautogui.locateCenterOnScreen('cancel_chooser.png')
+    pyautogui.moveTo(record[0], record[1], 0.2)
+    pyautogui_click()
+
+    
 def record_filepath():
-    folder = pyautogui.prompt(title='Paste the filepath here.', default=r'C:\Users\herbz')
+    folder = pyautogui.prompt(title='Paste the filepath here.', default=r'C:\Users\Public\Documents\tz275\20170104\Hydrophobic\test')
     if folder is None:
         raise SystemExit
     filename = pyautogui.prompt(title='type filename here', default=r'20x-TL-CP-001.jpg')
@@ -53,8 +76,12 @@ def record_filepath():
     return folder, filename, image_number
 
 def save_to_file(folder, filename, image_number):
+    if os.path.exists(folder):
+        pass
+    else:
+        os.makedirs(folder)
     filename = filename[:-8]
-    filepath = folder + r'/' +filename +'-{:03}'.format(image_number) + '.jpg'
+    filepath = folder + '\\' + filename + '-{:03}'.format(image_number)
     secs_between_keys = 0.05
     pyautogui.hotkey('ctrl','a')
     pyautogui.hotkey('delete')
@@ -70,18 +97,23 @@ def time_lapse(repeat_times = 5, time_intervals = 1, wait_time = 1):
     else:
         raise SystemExit
     folder, filename, image_number = record_filepath()
+    # modify_folder(folder)
+
     for i in range(repeat_times):
-        time.sleep(time_intervals)
         print('Taking actions. Get away from keyboard please!')
         time.sleep(wait_time)
+        pyautogui.moveTo(pyautogui.size()[0], 0, 0.1) # move mouse out of window
         move_to_recorded_position(recorded_item)
         save_to_file(folder, filename, image_number)
         pyautogui.moveTo(pyautogui.size()[0], 0) # move mouse out of window
+        time.sleep(time_intervals)
         image_number +=1
+
 
 if __name__ == '__main__':
     system_setup()
-    time_lapse(repeat_times = 5, time_intervals = 2, wait_time = 0.5)
+    input_time_intervals = pyautogui.prompt(title='time_difference between each photo ..?', default='300')
+    time_lapse(repeat_times = 300, time_intervals = int(input_time_intervals), wait_time = 0.5)
     
 
     
