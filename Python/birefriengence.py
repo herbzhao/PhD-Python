@@ -8,11 +8,16 @@ import matplotlib.pyplot as plt
 
 mpl.rcParams['legend.fontsize'] = 10
 
-fig = plt.figure()
+fig = plt.figure(figsize=(24,24))
 ax = fig.gca(projection='3d')
 
-#n is the number of periods
+'the parameters that require changes'
+#n is the number of periods (light path in bifriengence material)
 n = 3
+#phase lag caused by n1-n2
+phase_diff = np.pi/2    
+
+
 
 theta = np.linspace( 0,  2*n*np.pi, 100)
 #indicate the rotating axis
@@ -29,7 +34,7 @@ ax.plot(x1, y1 ,z1, label='z-axis')
 
 #component light 2
 
-phase_diff = np.pi/2    #phase difference
+
 
 x2 = np.sin(theta+phase_diff)  
 #this creates the phase difference due to liquid crystal

@@ -2,10 +2,8 @@ import numpy as np
 import cv2
 
 #video capture
-cap = cv2.VideoCapture('droplet.avi')  # this is the number of camera
-#recrod video
-fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-out = cv2.VideoWriter('result.avi',fourcc,25.0,(640,480))
+cap = cv2.VideoCapture('C:\\Users\\herbz\\OneDrive - University Of Cambridge\\Documents\\GitHub\\PhD-python\\Python\\openCV\\droplet.avi')  # this is the number of camera
+
 
 
 # this is for background subtraction
@@ -30,7 +28,6 @@ while(1):
     	#print (area)
      
 
-    out.write(frame)  # record video
     
     cv2.imshow('Image', frame)
     #cv2.imshow('Threshold',fgmask)

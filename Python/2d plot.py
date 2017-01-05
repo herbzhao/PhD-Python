@@ -9,17 +9,18 @@ fig, ax = plt.subplots()
 #n is the number of periods
 n = 3
 
-theta = np.linspace( 0,  2*n*np.pi, 100)
+theta = np.linspace( 0,  0.5*np.pi, 100)
+
+x1 = np.linspace(0, 90, 100)
+y1 = np.sin(theta)
+y2 = 1/np.sin(theta)
+ax.plot(x1, y1, label='sin(theta)')
+ax.plot(x1, y2, label = 'sin(theta)^-1')
+ax.set_xlim((30, 90)) 
+ax.set_ylim((0,y2[30]))
 
 
 
-x1 = np.linspace(0, 0, 100)
-y1 = np.linspace(0, 2*n*np.pi, 100)
-z1 = np.sin(theta)
-ax.plot(x1, y1 ,z1, label='z-axis')
-
-
-    
-ax.legend()
+ax.legend(fontsize = 30)
 
 plt.show()

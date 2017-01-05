@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Oct 23 08:02:42 2016
+Created on Wed Nov 30 08:16:46 2016
 
 @author: herbz
 """
 
-
-import numpy as np 
+import numpy as np
 import cv2
 
-cap = cv2.VideoCapture('C:\\Users\\herbz\\OneDrive - University Of Cambridge\\Documents\\GitHub\\PhD-python\\Python\\openCV\\droplet.avi')
+#cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture('C:/Users/herbz/OneDrive - University Of Cambridge/Documents/GitHub/PhD-python/Python/GUI/droplet.avi')
 
 while(cap.isOpened()):
     ret, frame = cap.read()
