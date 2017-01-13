@@ -1,11 +1,26 @@
-'''Element capture'''
-import pyautogui  # http://pyautogui.readthedocs.io/en/latest/cheatsheet.html
-import time
-from datetime import datetime
+'''Element capture
 
+Prompt users to choose what is the event: mouse click, image memorise or keyboard action
+
+whenever the action is recorded, a paragraph of python code is also written. (potentially calling functions from a library)
+
+'''
+
+import time
+import sys
+from datetime import datetime
+if sys.version_info < (3, 0):
+    import Tkinter as tkinter
+else:
+    import tkinter
+
+
+import pyautogui  # http://pyautogui.readthedocs.io/en/latest/cheatsheet.html
 
 def system_setup():
+    global screenWidth, screenHeight
     pyautogui.FAILSAFE = True
+    screenWidth, screenHeight = pyautogui.size()
 
 def record_image():
     '''Record any image from screen to later come back'''
