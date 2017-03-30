@@ -35,67 +35,40 @@ def system_setup():
     screenWidth, screenHeight = pyautogui.size()
 
 def hide_message_box():
-    record_options_frame.pack_forget() # hide the message_box for screenshot
+    for i in ('<Escape>','<Return>', '<F1>', '<F2>'):
+        message_box.unbind_all(i)# http://www.python-course.eu/tkinter_events_binds.php
+    message_box.destroy() # hide the message_box for screenshot
+
 def show_message_box():
-    record_options_frame.pack() # reappear message_box after screenshot
-    # hotkeys 
-    message_box.bind('<Return>', start_record) 
-    # http://www.python-course.eu/tkinter_events_binds.php
-    message_box.bind('<Escape>', stop_record) 
-    message_box.bind('<F1>', record_mouse)
-    message_box.bind('<F2>', record_image)
-    message_box.bind('<F3>', record_mouse)
-    message_box.bind('<F4>', record_mouse)
+    create_message_box() # reappear message_box after screenshot
 
 def create_message_box():
     global message_box
-    global record_options_frame
-    global start_record
     # create a window tkinter.Tk() to host all components
     message_box = tkinter.Tk()
-    record_options_frame = tkinter.Frame(message_box)
-    record_options_frame.pack()
-
     task = tkinter.IntVar() # the result of radiobutton
-    mouse_option = tkinter.Radiobutton(
-        record_options_frame, text = "Remember mouse location (F1)", 
-        variable = task, value = 1)
-    img_option = tkinter.Radiobutton(
-        record_options_frame, text = "Remember image (F2)", 
-        variable = task, value = 2)
-    keyboard_option = tkinter.Radiobutton(
-        record_options_frame, text = "Keyboard input/hotkey (F3)", 
-        variable = task, value = 3)
-    timing_option = tkinter.Radiobutton(
-        record_options_frame, text = "Timing (F4)", 
-        variable = task, value = 4)
     
-    def start_record(*argv):
-        if task.get() == 1:
-            record_mouse()
-        if task.get() == 2:
-            record_image()
-        if task.get() == 3:
-            record_keyboard()
-        if task.get() == 4:
-            set_timing()
+    buttons = {}
 
-    ok_button = tkinter.Button(record_options_frame, text = 'OK', command = start_record) 
-    cancel_button = tkinter.Button(record_options_frame, text = 'Cancel', command = stop_record)
-    # add all the elements go GUI
-    for i in [mouse_option, img_option, keyboard_option, timing_option]:
-        i.pack(anchor = tkinter.W)
-    for i in [ok_button, cancel_button]:
-        i.pack(side = tkinter.LEFT)
-
+    for i,j,k in [
+        ('mouse_option',"Remember mouse location (F1)", record_mouse),
+        ('image_option',"Remember image (F2)", record_image),
+        ('keyboard_option', "Keyboard input/hotkey (F3)", record_keyboard),
+        ('timing_option',"Timing (F4)", record_mouse),
+        ('cancel_button', "Cancel (ESC)", stop_record)]:
+        buttons[i] = tkinter.Button(message_box, text = j, command = k).pack(fill = tkinter.X)
     # hotkeys 
-    message_box.bind('<Return>', start_record) # http://www.python-course.eu/tkinter_events_binds.php
-    message_box.bind('<Escape>', stop_record) 
-    message_box.bind('<F1>', record_mouse)
-    message_box.bind('<F2>', record_image)
-    message_box.bind('<F3>', record_mouse)
-    message_box.bind('<F4>', record_mouse)
+    for i, j in (('<Escape>', stop_record), ('<F1>',record_mouse), ('<F2>', record_image)):
+        message_box.bind(i, j) # http://www.python-course.eu/tkinter_events_binds.php
     
+    screen_width = message_box.winfo_screenwidth() # width of the screen
+    screen_height = message_box.winfo_screenheight() # height of the screen
+    message_box_width = 300
+    message_box_height = 300
+    message_box_x = int((screen_width - message_box_width)/2)
+    message_box_y = int((screen_height - message_box_height)/2)
+    message_box.geometry('{}x{}+{}+{}'.format(message_box_width, message_box_height, message_box_x, message_box_y))
+    message_box.focus_force()
     message_box.mainloop()
     
 def stop_record(*argv):
@@ -107,49 +80,47 @@ def record_mouse(*argv):
         '''Move mouse to memoriable location.\n
         Press enter to memorise the location''') == 'Cancel':
         show_message_box() # if user click "Cancel", show the message_box
-        return 
-    
+        return
     recorded_mouse_position = pyautogui.position()
-    mouse_option_frame = tkinter.Frame(message_box)
-    mouse_option_frame.pack()
-    task = tkinter.IntVar() # the result of radiobutton
-    left_click_option = tkinter.Radiobutton(
-        mouse_option_frame, text = "left click", 
-        variable = task, value = 1)
-    right_click_option = tkinter.Radiobutton(
-        mouse_option_frame, text = "right click", 
-        variable = task, value = 2)
-    scroll_option = tkinter.Radiobutton(
-        mouse_option_frame, text = "scroll (+ for up, - for down)", 
-        variable = task, value = 3)
-    scroll_amount_input = tkinter.Entry(mouse_option_frame)
-    scroll_amount = scroll_amount_input.get()
-    
-    def record_mouse_action(*argv):
-        mouse_option_frame.pack_forget()
-        choice = task.get()
-        if choice == 1:
-            print('left click')
-        if choice == 2:
-            print('right click')
-        if choice == 3:
-            print('scroll {}'.format(scroll_amount))
-        show_message_box()
-    
-    ok_button = tkinter.Button(mouse_option_frame, text = 'OK', command = record_mouse_action) 
-    cancel_button = tkinter.Button(mouse_option_frame, text = 'Cancel', command = stop_record)
+    mouse_message_box = tkinter.Tk()
+    mouse_message_box.focus_force()
+   
 
-    for i in [left_click_option, right_click_option, scroll_option, scroll_amount_input]:
+    task = tkinter.IntVar() # the result of radiobutton
+    def record_left_click(*argv):
+        print('left click')
+    def record_right_click(*argv):
+        print('right click')
+    def record_scroll(*argv):
+        scroll_amount = scroll_amount_input.get()
+        print('scroll {}'.format(scroll_amount))
+
+    #mouse_message_box.unbind_all(i)# http://www.python-course.eu/tkinter_events_binds.php
+    #mouse_message_box.destroy()
+    #show_message_box()
+
+    right_click_option = tkinter.Radiobutton(
+        mouse_message_box, text = "right click", indicatoron = 0,
+        variable = task, value = 2, command = record_right_click)
+    left_click_option = tkinter.Radiobutton(
+        mouse_message_box, text = "left click", indicatoron = 0,
+        variable = task, value = 1, command = record_left_click)
+    scroll_option = tkinter.Radiobutton(
+        mouse_message_box, text = "scroll (+ for up, - for down)", indicatoron = 0,
+        variable = task, value = 3, command = record_scroll)
+    scroll_amount_input = tkinter.Entry(mouse_message_box)
+    cancel_button = tkinter.Button(mouse_message_box, text = 'Cancel', command = stop_record)
+    # add all the elements go GUI
+    for i in [right_click_option, left_click_option, scroll_option, scroll_amount_input, cancel_button]:
         i.pack(side = tkinter.LEFT)
-    for i in [ok_button, cancel_button]:
-        i.pack()
 
     # hotkeys 
-    message_box.bind('<Return>', record_mouse_action) # http://www.python-course.eu/tkinter_events_binds.php
-    message_box.bind('<Escape>', stop_record) 
-    message_box.bind('<F1>', record_mouse_action(1))
-    message_box.bind('<F2>', record_mouse_action(2))
-    message_box.bind('<F3>', record_mouse_action(3))
+    for i, j in [
+        ('<Escape>', stop_record),
+        ('<F1>', record_right_click), ('<F2>', record_left_click), 
+        ('<F3>', record_scroll)]:
+        mouse_message_box.bind(i, j)
+
 
     return recorded_mouse_position
 
@@ -169,7 +140,7 @@ def record_image(*argv):
         return 
     try:
         if int(sensitivity) >= 0 and int(sensitivity) <= 100:
-            sensitivity = int(sensitivity)
+            sensitivity = int(sensitivity)         
         else:
             sensitivity = default_sensitivity
     except:

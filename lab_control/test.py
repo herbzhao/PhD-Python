@@ -13,26 +13,13 @@ else:
     from tkinter import messagebox
 
 
+elements = {}
 
-message_box = tkinter.Tk()
-frame = tkinter.Frame(message_box)
-frame.pack()
+for i,j in [
+    ('mouse_option',"Remember mouse location (F1)"),
+    ('img_option',"Remember image (F2)"),
+    ('keyboard_option', "Keyboard input/hotkey (F3)"),
+    ('timing_option',"Timing (F4)")]:
+    elements[i] = j
 
-
-task = tkinter.IntVar() # the result of radiobutton
-left_click_option = tkinter.Radiobutton(
-    frame, text = "left click", 
-    variable = task, value = 1)
-right_click_option = tkinter.Radiobutton(
-    frame, text = "right click", 
-    variable = task, value = 2)
-scroll_option = tkinter.Radiobutton(
-    frame, text = "scroll (+ for up, - for down)", 
-    variable = task, value = 3)
-
-for i in [left_click_option,right_click_option,scroll_option]:
-    i.pack()
-
-
-frame.pack_forget()
-message_box.mainloop()
+print(elements['mouse_option'])
