@@ -4,8 +4,8 @@ import re
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.io as sio
-from scipy import signal
 
+from scipy import signal
 import peakutils
 
 
@@ -45,12 +45,15 @@ class read_spectrometer():
         self.total_scan_number = len(self.scan_result['wl'])
     
     def read_result(self, feature, scan_number): 
-        ' Return all datapoints with certain features of certain scan'
-        all_datapoints = self.scan_result[feature][scan_number][0]
+        '''Return all datapoints with certain features of certain scan
+
         #print(all_datapoints)
         # read value at certain datapoint
         #data_point = 100
-        #print(all_datapoints[data_point])
+        #print(all_datapoints[data_point])'''
+
+        all_datapoints = self.scan_result[feature][scan_number][0]
+
         return all_datapoints
 
     def format_result(self):
@@ -78,7 +81,7 @@ class read_spectrometer():
                 self.formatted_scan_results[scan_number][1] - background_intensity)) 
    
     def format_description(self):
-        'Use regex to format the description. Exporting spot number, temperature, and humidity'
+        'Use regex to format the description. Exporting sample number, temperature, and humidity'
         self.temperature = {}
         self.humidity = {}
         self.sample_numbers = {}
@@ -107,7 +110,6 @@ class read_spectrometer():
 
             self.temperature[scan_number] = temperature
             self.humidity[scan_number] = humidity
-            #self.sample_numbers[scan_number] = sample_number
 
         # override the self.sample_numbers
         #self.sample_numbers[0] = range(1,20)
@@ -130,6 +132,7 @@ class read_spectrometer():
                     if peak_wavelength > self.wavelength_lim[0] and peak_wavelength < self.wavelength_lim[1]:
                         self.peak_wavelength[scan_number] = peak_wavelength
                         self.peak_intensity[scan_number] = self.formatted_scan_results[scan_number][1][peak_data_point]
+                        break
 
         elif find_peak_method == 'peakutils':
             for scan_number in range(self.total_scan_number):
@@ -226,14 +229,14 @@ if __name__ == "__main__":
 # visualisation
     spectrometer_result = read_spectrometer()
     # initialise some parameters
-    spectrometer_result.folder = r"D:\GDrive\Research\BIP\Humidity sensor project\data\20170406"
+    spectrometer_result.folder = r"D:\GDrive\Research\BIP\Humidity sensor project\data\20170421"
     spectrometer_result.background_substraction = False # secondary background substraction
     spectrometer_result.show_peaks = True # draw a line at peak positions
-    spectrometer_result.wavelength_lim = (600,900) # range of wavelength to plot
+    spectrometer_result.wavelength_lim = (400,700) # range of wavelength to plot
     
     spectrometer_result.initialise_methods()
     # plot individual scan
-    spectrometer_result.plot_spectrum(30)
+    spectrometer_result.plot_spectrum(1)
     # plot peak wavelength change with relative humidity
     spectrometer_result.plot_humidity_vs_peaks()
     # export data to scan.csv
