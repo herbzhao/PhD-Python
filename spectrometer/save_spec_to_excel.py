@@ -78,8 +78,7 @@ class read_spectrometer():
         
         # reverse the header order
         header = self.df.columns.tolist()[::-1]
-        print(self.df[header])
-        #writer = pd.ExcelWriter(self.folder +'\\'+ 'output_smoothed_peaks.xlsx')
+        self.df = self.df[header]
         self.df.to_csv(self.folder +'\\'+ self.output_filename,  sep=',')
     
 
