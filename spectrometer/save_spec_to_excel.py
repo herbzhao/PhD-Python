@@ -15,77 +15,87 @@ class read_spectrometer():
         self.temperature_re = re.compile('T\d+.?\d*')
         self.humidity_re = re.compile('H\d+.?\d*-')
         self.spot_number_re = re.compile('sample\d+-')
-        
-        
-    def convert_matlab_scan(self):
+        # default humidity output is false
+        self.output_humidity = False
+
+
+    def save_matlab_spectra_to_csv(self):
         'this converts matlab data into np.ndarray '
         self.mat_scan_contents = sio.loadmat(self.folder +'\\'+ self.scan_filename)['scan']
         self.scan_result = {}
-        # catagorise scan result into spectrum, description and wavelength
-        for i in ['spec', 'desc', 'wl']:
-            self.scan_result[i] = self.mat_scan_contents[i]
-        # total scan numbers
-        self.total_scan_number = len(self.scan_result['wl'])
-        
-        
-        def convert_struct_to_column(table, header, scan_header, scan_number):
-            'a short function to add column to dict' 
-            table[header] = []
-            for i in self.scan_result[scan_header][scan_number][0]:
-                table[header].append(float(i))
         
         table = {}
-        convert_struct_to_column(table, 'wavelength', 'wl', scan_number = 0)
-        for i in range(self.total_scan_number):
-            # the description about sample temperature and humidity
-            description = str(self.scan_result['desc'][i][0]).replace("[","").replace("]","").replace("\'","")
-            convert_struct_to_column(table, description, 'spec', scan_number = i)
+        table['wavelength'] = [i[0] for i in self.mat_scan_contents[0]['wl'][0]]
+
+
+        for i in range(len(self.mat_scan_contents)):
+            table[self.mat_scan_contents[i]['desc'][0][0]] = [i[0] for i in self.mat_scan_contents[i]['spec'][0]]
+        
+        # use panda to save the table into csv
+        self.df = pd.DataFrame(table)
+        head = ['wavelength'] + [i[0][0] for i in self.mat_scan_contents['desc']]
+        self.df = self.df[head]
+        self.df.to_csv(self.folder +'\\'+ self.output_filename + '.csv',  sep=',')
+        print('saved to ' + self.folder +'\\'+ self.output_filename + '.csv')
+
+
+    def save_matlab_peaks_to_csv(self):
+        'save peak wavelength, peak width and name to another csv'
+        self.mat_scan_contents = sio.loadmat(self.folder +'\\'+ self.scan_filename)['scan']
+        table = {}
+        table['desc'] = []
+        table['desc'] = [i[0][0] for i in self.mat_scan_contents['desc']]
+        
+        if self.output_humidity is True:
+            table['humidity'] = []
+            for description in table['desc']:
+                try:
+                    humidity = self.humidity_re.search(description).group().replace('H','').replace('-','')
+                except:
+                    humidity = None
+                table['humidity'].append(humidity)
             
+
+        for category in ['desc', 'peak_wavelength_matlab', 'peak_intensity_matlab', 'peak_width_matlab']:
+            table[category] = []
+            if category == 'desc':
+                table[category] = [i[0][0] for i in self.mat_scan_contents[category]]
+            else:
+                table[category] = [i[0][0][0] for i in self.mat_scan_contents[category]]
+
+        # use panda to save the table into csv
         self.df = pd.DataFrame(table)
+        self.df.to_csv(self.folder +'\\'+ self.output_filename + '_peaks' + '.csv',  sep=',')
+        print('saved to ' + self.folder +'\\'+ self.output_filename + '_peaks' + '.csv' )
         
-        # rearrange the header
-        header = self.df.columns.tolist()
-        header = header[-1:] + header[:-1]
-        self.df = self.df[header]
-        
-        #writer = pd.ExcelWriter(self.folder +'\\'+ 'output_smoothed_peaks.xlsx')
-        self.df.to_csv(self.folder +'\\'+ self.output_filename,  sep=',')
 
 
+peak_smoothing = False
 
-    def convert_matlab_scan_2(self):
-        'this converts matlab data into np.ndarray '
-        self.mat_scan_contents = sio.loadmat(self.folder +'\\'+ self.scan_filename)['scan']
-        self.scan_result = {}
-        # catagorise scan result into spectrum, description and wavelength
-        for i in ['spec', 'desc', 'wl']:
-            self.scan_result[i] = self.mat_scan_contents[i]
-        # total scan numbers
-        self.total_scan_number = len(self.scan_result['wl'])
-        
-        table = {}
-        # all the spectra share the same wavelength axis
-        table['wavelength'] = []
-        # convert numpy array into a list 
-        list(map(lambda wavelength: table['wavelength'].append(float(wavelength)), self.scan_result['wl'][0][0]))
+if peak_smoothing == True:
+    scan = read_spectrometer()
+    scan.folder = r'C:\Users\herbz\OneDrive - University Of Cambridge\Documents\BIP\dongpo\vortex'
 
-        # assign spectra intensity to sample description into columns
-        for sample_number in range(len(self.scan_result['desc'])):
-            table[self.scan_result['desc'][sample_number][0][0]] = []
-            list(map(lambda intensity: table[self.scan_result['desc'][sample_number][0][0]].append(float(intensity)), self.scan_result['spec'][sample_number][0]))
-        
-        self.df = pd.DataFrame(table)
-        
-        # reverse the header order
-        header = self.df.columns.tolist()[::-1]
-        self.df = self.df[header]
-        self.df.to_csv(self.folder +'\\'+ self.output_filename,  sep=',')
-    
+    # original spectra
+    scan.scan_filename = 'scan_backup.mat'
+    scan.output_filename = 'output_unsmoothed_spectra'
+    scan.save_matlab_spectra_to_csv()
+
+    # smoothed spectra for peak extraction
+    scan.scan_filename = 'scan.mat'
+    scan.output_filename = 'output_smoothed_spectra'
+    scan.save_matlab_spectra_to_csv()
+    # output humidity 
+    #scan.output_humidity = True
+    scan.save_matlab_peaks_to_csv()
 
 
+elif peak_smoothing == False:
+    # for case without peak smoothing
+    scan = read_spectrometer()
+    scan.folder = r'D:\GDrive\Research\BIP\Dongpo\Final data for publication\Microscopy\20171219'
 
-scan = read_spectrometer()
-scan.folder = r'D:\GDrive\Research\BIP\Humidity sensor project\data\20170810 - temper'
-scan.scan_filename = 'smoothed_peaks.mat'
-scan.output_filename = 'output_smoothed_peaks.csv'
-scan.convert_matlab_scan_2()
+    # original spectra
+    scan.scan_filename = 'scan.mat'
+    scan.output_filename = 'output_unsmoothed_spectra'
+    scan.save_matlab_spectra_to_csv()
