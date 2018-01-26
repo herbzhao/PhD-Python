@@ -10,7 +10,7 @@ from tm4.simClasses import Helix
 #%% Investigate the effect of differnt divisions
 pl.figure()
 for div in np.arange(10,34,3):
-    h = heli(CNC,150, 1000, d = div)
+    h = heli(CNC,150, 8000, d = div)
     s.setStructure([h])
     res = s.scanSpectrum(wlRange)
     pl.plot(res[0],res[1], label = 'Division = ' + str(div))
@@ -35,3 +35,5 @@ for div in np.arange(10,34,3):
     res = s.scanSpectrum(wlRange, coupling= 'RR')
     pl.plot(res[0],res[1], label = 'div = ' + str(div))
 pl.legend()
+
+pl.show()

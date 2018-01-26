@@ -70,11 +70,11 @@ class read_spectrometer():
         
 
 
-peak_smoothing = False
+peak_smoothing = True
 
 if peak_smoothing == True:
     scan = read_spectrometer()
-    scan.folder = r'C:\Users\herbz\OneDrive - University Of Cambridge\Documents\BIP\dongpo\vortex'
+    scan.folder = r'D:\GDrive\Research\BIP\Humidity sensor project\data\20170810 - temperature'
 
     # original spectra
     scan.scan_filename = 'scan_backup.mat'
@@ -93,7 +93,7 @@ if peak_smoothing == True:
 elif peak_smoothing == False:
     # for case without peak smoothing
     scan = read_spectrometer()
-    scan.folder = r'D:\GDrive\Research\BIP\Dongpo\Final data for publication\Microscopy\20171219'
+    scan.folder = r'C:\Users\herbz\Dropbox\BIP-dropbox\dongpo\spectra\20171218'
 
     # original spectra
     scan.scan_filename = 'scan.mat'
