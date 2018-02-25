@@ -48,7 +48,7 @@ class chiral_nematic_simulation():
     def chiral_nematic_film(self, materials, half_pitch = 180, thickness = 1000):
         # helicoidal structure with CNC, pitch and thickness
         heli = sim.HeliCoidalStructure
-        h1 = heli(materials, half_pitch, thickness)
+        h1 = heli(materials, half_pitch, thickness, d = 30)
         # set structure for simulation
         self.s.setStructure([h1])
         result = self.s.scanSpectrum(self.wlRange)
@@ -90,7 +90,7 @@ class chiral_nematic_simulation():
 def simulation_situations(simulation_situation):
     # for breathing test
     original_pseudo_layers = 50
-    original_half_pitch = 155
+    original_half_pitch = 150
     # this is the dictionary for panda to convert
     simulated_results = {}
 
@@ -124,7 +124,7 @@ def simulation_situations(simulation_situation):
 
     if simulation_situation == 'pitch_change_refractive_index_change':
         # for swelling with both refractive index change and pitch change
-        for water_volume_fraction in [0,0.06,0.14,0.23,0.35,0.44]:
+        for water_volume_fraction in [0,0.03, 0.06, 0.14,0.23,0.35,0.44]:
             swollen_thickness = original_half_pitch*original_pseudo_layers/(1-water_volume_fraction)
             swollen_half_pitch = swollen_thickness/original_pseudo_layers
             CNC_water_mixture = chiral_simulation.CNC_water_mixture_refractive_index(water_volume_fraction)
@@ -140,8 +140,8 @@ def simulation_situations(simulation_situation):
 
     if simulation_situation == 'film_with_different_color_and_thickness':
         # for CNC with different film thickness
-        RGB_half_pitch = [145, 183, 209]
-        droplet_thickness = [1000, 8000]
+        RGB_half_pitch = [150, 185, 210]
+        droplet_thickness = [2000, 8000]
 
         for film_thickness in droplet_thickness:
             for color_half_pitch in RGB_half_pitch:

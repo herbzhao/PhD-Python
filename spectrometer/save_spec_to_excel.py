@@ -12,7 +12,7 @@ class read_spectrometer():
     ''' convert matlab.mat to csv for output spec'''
     def __init__(self):
         #regex for sample description classification. example file name: sample1-H20-T20-Nikon10x-001
-        self.temperature_re = re.compile('T\d+.?\d*')
+        self.temperature_re = re.compile('T\d+.?\d*-')
         self.humidity_re = re.compile('H\d+.?\d*-')
         self.spot_number_re = re.compile('sample\d+-')
         # default humidity output is false
@@ -54,6 +54,15 @@ class read_spectrometer():
                 except:
                     humidity = None
                 table['humidity'].append(humidity)
+
+        if self.output_temperature is True:
+            table['temperature'] = []
+            for description in table['desc']:
+                try:
+                    temperature = self.temperature_re.search(description).group().replace('T','').replace('-','')
+                except:
+                    temperature = None
+                table['temperature'].append(temperature)
             
 
         for category in ['desc', 'peak_wavelength_matlab', 'peak_intensity_matlab', 'peak_width_matlab']:
@@ -74,7 +83,7 @@ peak_smoothing = True
 
 if peak_smoothing == True:
     scan = read_spectrometer()
-    scan.folder = r'D:\GDrive\Research\BIP\Humidity sensor project\data\20170810 - temperature'
+    scan.folder = r'V:\Group Publications & Reports\Papers & Manuscripts\Song - bottlebrush photonic balls\Final data for publication\Microscopy\2018_02_19 Bottlebrush films\20180219'
 
     # original spectra
     scan.scan_filename = 'scan_backup.mat'
@@ -86,14 +95,16 @@ if peak_smoothing == True:
     scan.output_filename = 'output_smoothed_spectra'
     scan.save_matlab_spectra_to_csv()
     # output humidity 
-    #scan.output_humidity = True
+    scan.output_humidity = True
+    scan.output_temperature = True
     scan.save_matlab_peaks_to_csv()
+
 
 
 elif peak_smoothing == False:
     # for case without peak smoothing
     scan = read_spectrometer()
-    scan.folder = r'C:\Users\herbz\Dropbox\BIP-dropbox\dongpo\spectra\20171218'
+    scan.folder = r'C:\Users\herbz\Dropbox\BIP-dropbox\data\20180214\Green'
 
     # original spectra
     scan.scan_filename = 'scan.mat'
