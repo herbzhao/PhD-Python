@@ -81,10 +81,11 @@ class chiral_nematic_simulation_method():
         return [chiral_nematic_layer, chiral_nematic_excessive_layer]
 
 
-    def calculate_structure(self, materials_layers):
+    def calculate_structure(self, materials_layers, description):
         # the final structure to be simulated
         # also draw the structure 
         self.structure = Berreman4x4.Structure(self.front, materials_layers, self.back)
+        self.structure.drawStructure(description=description)
         # Calculation with Berreman4x4
         data = Berreman4x4.DataList([self.structure.evaluate(self.Kx,k0) for k0 in self.k0_list])
 
@@ -131,7 +132,7 @@ class chiral_nematic_simulation_method():
         # flatten the list of lists and form the materials_layers
         materials_layers = [layer for pair in layers for layer in pair]
         # run simulation and append the data to self.all_data
-        self.all_data[description] = self.calculate_structure(materials_layers)
+        self.all_data[description] = self.calculate_structure(materials_layers, description=description)
 
         
 
@@ -256,16 +257,20 @@ if __name__ == "__main__":
     ########## create parameters for multiple layers () ##################
     CNC = (1.51, 1.59)
     layer1_parameters_set = {}
-    layer1_parameters_set['small_drop'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': 0}
-    layer1_parameters_set['big_drop'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 2000e-9, 'rotation': 0}
+    layer1_parameters_set['test1'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': 0}
+    layer1_parameters_set['test2'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': 0}
 
     layer2_parameters_set = {}
-    layer2_parameters_set['small_drop'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': pi/2}
-    layer2_parameters_set['big_drop'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 2000e-9, 'rotation': pi/2}
+    layer2_parameters_set['test1'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': pi/2}
+    layer2_parameters_set['test2'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': pi/2}
+
+    interface_parameters_set = {}
+    interface_parameters_set['test1'] = {'n':1.55, 'thickness':200e-9}
+    interface_parameters_set['test2'] = {'n':1.55, 'thickness':1000e-9}
 
     # run the simulation!
     chiral_nematic_simulation.multiple_materials_layers_parameter_sets(
                                         layer1_parameters_set=layer1_parameters_set,
                                         layer2_parameters_set=layer2_parameters_set,
-                                        interface_parameters_set=None)
+                                        interface_parameters_set=interface_parameters_set)
 
