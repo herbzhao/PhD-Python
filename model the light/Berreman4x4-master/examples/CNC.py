@@ -15,7 +15,7 @@ import matplotlib.pyplot as pyplot
 import pandas as pd
 
 
-class chiral_nematic_simulation():
+class chiral_nematic_simulation_method():
     def __init__(self):
         # simulation wavelength range
         self.wavelength_range = (300e-9, 800e-9)   # range of simulation
@@ -121,7 +121,36 @@ class chiral_nematic_simulation():
         self.simulation_results['R_ps'] = data.get('R_ps')
 
 
+    def simulate_multiple_parameters(self, description, simulation_parameters):
+        '''
+        description is the water volume fraction, defects, ... 
+
+        create simulation results with simulation_parameters containing n, pitch, thickness
+        Can only do one CNC layer so far
+        
+        '''
+        # assign a 0 degree rotation if it is not specified
+        if not 'rotate_angle' in simulation_parameters:
+             simulation_parameters['rotate_angle'] = 0
+        # Simulation of CNC domain or stacks of domains with z-twist
+        self.CNC = simulation_parameters['n']
+        CNC_layer = chiral_nematic_simulation.create_chiral_nematic_layer(
+                                                    pitch = simulation_parameters['pitch'], 
+                                                    thickness = simulation_parameters['thickness'], 
+                                                    z_rotate_angle = simulation_parameters['rotate_angle'])                                  
+        self.calculate_structure(material_layers = [CNC_layer[0], CNC_layer[1]])
+
+        # simulation conditions: refer to chiral_nematic_simulation.calculate_structure()
+        self.simulation_modes = ['R_RR','R_LL','R_pp','R_sp']
+        # save result to csv
+        self.output_filename = r'Chiral_nematic_film, condition = {}'.format(description)
+        self.output_data_to_csv(simulation_modes = self.simulation_modes)
+        # plot
+        self.plotting(simulation_modes = self.simulation_modes)
+        
+
     def analytical_verification(self):
+        'analytical results, ignore for now'
         birefirengence = abs(self.CNC[0] - self.CNC[1])  # birefriengence
         n_ave = (self.CNC[0] + self.CNC[1])/2 # average n
 
@@ -156,11 +185,11 @@ class chiral_nematic_simulation():
         lbda_B1, lbda_B2 = p*no, p*ne   #peak width
 
 
-    def plotting(self, conditions = ['R_RR', 'R_LL', 'R_ps', 'R_sp']):
+    def plotting(self, simulation_modes = ['R_RR', 'R_LL', 'R_ps', 'R_sp']):
         fig = pyplot.figure()
         ax = fig.add_subplot("111")
-        for condition in conditions:
-            ax.plot(self.wavelength_list, self.simulation_results[condition], label=condition)
+        for mode in simulation_modes:
+            ax.plot(self.wavelength_list, self.simulation_results[mode], label=mode)
 
         ax.legend(loc='center right', bbox_to_anchor=(1.00, 0.50))
 
@@ -173,12 +202,12 @@ class chiral_nematic_simulation():
         self.structure.drawStructure()
         pyplot.show()
 
-    def output_data_to_csv(self, conditions):
+    def output_data_to_csv(self, simulation_modes):
         # use panda to save the table into csv
         self.final_data = {}
         self.final_data['wavelength'] = self.wavelength_list
-        for condition in conditions:
-            self.final_data[condition] = self.simulation_results[condition]
+        for mode in simulation_modes:
+            self.final_data[mode] = self.simulation_results[mode]
         self.df = pd.DataFrame(self.final_data)
         # reverse the columns
         columns = self.df.columns.tolist()
@@ -189,40 +218,23 @@ class chiral_nematic_simulation():
 
 
 
-class water_infiltration():
-    def __init__(self):
-        pass
-
-    def CNC_water_mixture_refractive_index(self, water_volume_fraction):
-        water = 1.33
-        CNC = (1.586, 1.524)
-        # dielectric constant epsilon is sqrt of refractive index
-        # for composite materials, dielectric constant calculation: 
-        # e = e1*v1 + e2*v2  v is the volume fraction   http://www.sciencedirect.com/science/article/pii/S0030401899006951
-        CNC_water_mixture  = (numpy.square(numpy.sqrt(CNC[0])*(1-water_volume_fraction)+numpy.sqrt(water)*water_volume_fraction),
-                            numpy.square(numpy.sqrt(CNC[1])*(1-water_volume_fraction)+numpy.sqrt(water)*water_volume_fraction))
-
-        self.CNC_water_mixture  = sim.UniaxialMaterial(CNC_water_mixture[0], CNC_water_mixture[1])
-        return self.CNC_water_mixture
-
 
 if __name__ == "__main__":
-    cholesteric_simulation = chiral_nematic_simulation()
-    cholesteric_simulation.CNC = (1.51, 1.59)
-    CNC_layer = cholesteric_simulation.create_chiral_nematic_layer(pitch = 300e-9, thickness = 3500e-9, z_rotate_angle = 0)
-    #CNC_interface = cholesteric_simulation.isotropic_layer(refractive_index = 1.6, thickness = 10e-9)
-    #CNC_layer_2 = cholesteric_simulation.create_chiral_nematic_layer(material = CNC, half_pitch = 185e-9, thickness = 2000e-9, z_rotate_angle = 0)
-    cholesteric_simulation.calculate_structure(material_layers = [CNC_layer[0], CNC_layer[1]])
+    # Simulation of CNC domain or stacks of domains with z-twist
+    chiral_nematic_simulation = chiral_nematic_simulation_method()
+    CNC = (1.51, 1.59)
+    pitch = 300e-9
+    thickness = 2000e-9
+    # the folder to save csv
+    chiral_nematic_simulation.folder = r'C:\Users\herbz\Documents\GitHub\PhD-python\model the light\Berreman4x4-master\examples'
 
+    simulation_parameters_set = {}
+    simulation_parameters_set['condition1'] = {'n': CNC, 'pitch': pitch, 'thickness': thickness}
     # simulation conditions: refer to chiral_nematic_simulation.calculate_structure()
-    conditions = ['R_RR','R_LL','R_pp','R_sp']
-    # save result to csv
-    cholesteric_simulation.folder = r'C:\Users\herbz\Documents\GitHub\PhD-python\model the light\Berreman4x4-master\examples'
-    cholesteric_simulation.output_filename = r'simple_chiral_nematic_film'
-    cholesteric_simulation.output_data_to_csv(conditions = conditions)
-    # plot
-    cholesteric_simulation.plotting(conditions = conditions)
+    chiral_nematic_simulation.simulation_modes = ['R_RR','R_LL','R_pp','R_sp']
+   
+    # do the simulation, save the data and plot
+    chiral_nematic_simulation.simulate_multiple_parameters('condition1', simulation_parameters_set['condition1'])
 
 
-# to implement - water infiltration
-
+# to implement, multiple materials layer
