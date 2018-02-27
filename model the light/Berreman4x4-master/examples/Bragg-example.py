@@ -21,7 +21,7 @@ front = Berreman4x4.IsotropicHalfSpace(air)
 back = Berreman4x4.IsotropicHalfSpace(glass)
 
 # Materials for a SiO2/TiO2 Bragg mirror
-lbda0 = 1.550e-6
+lbda0 = 600e-9 # quater-wave plate wavelength
 k0 = 2*pi/lbda0
 nr_SiO2 = 1.47
 nr_TiO2 = 2.23
@@ -35,7 +35,11 @@ n_TiO2 = nr_TiO2 + 1j * ni_TiO2
 SiO2 = Berreman4x4.IsotropicNonDispersiveMaterial(n_SiO2)
 TiO2 = Berreman4x4.IsotropicNonDispersiveMaterial(n_TiO2)
 
-# Layers
+# Layers  - thickness needs to be specified
+# If h is a tuple ('QWP', lbda), the thickness 'h' is calculated with quarter-wave plate at wavelength 'lbda'.
+# Return the thickness of a Quater Wave Plate at wavelength 'lbda'
+# Enough thickness to slow down the light by a quarter period 
+
 L_SiO2 = Berreman4x4.HomogeneousIsotropicLayer(SiO2, ("QWP", lbda0))
 L_TiO2 = Berreman4x4.HomogeneousIsotropicLayer(TiO2, ("QWP", lbda0))
 
@@ -58,7 +62,9 @@ lbda_list = numpy.linspace(lbda1, lbda2, 200)
 
 data = Berreman4x4.DataList([s.evaluate(Kx, 2*pi/lbda) for lbda in lbda_list])
 
+# Reflection
 R = data.get('R_ss')
+# Transmission
 T = data.get('T_ss')
 
 # Plotting 

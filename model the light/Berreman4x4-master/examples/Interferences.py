@@ -40,7 +40,7 @@ for h in h_list:
     data.append(s.evaluate(Kx,k0))
 
 # Extract the power coefficients
-coeff_names = ("T_pp","T_ss","R_ss","R_pp")
+coeff_names = ("T_pp","T_ss","R_ss","R_pp","R_ps")
 values = [data.get(name) for name in coeff_names]
 
 # Prepare plot...

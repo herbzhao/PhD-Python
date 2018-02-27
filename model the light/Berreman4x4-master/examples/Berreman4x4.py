@@ -202,7 +202,7 @@ class NonDispersiveMaterial(Material):
         
         'R' : rotation matrix (from rotation_Euler() or others)
         """
-        E = R * self.epsilon * R.T
+        E = R * self.epsilon * R.T #matrix.T   Returns the transpose of the matrix.
         return NonDispersiveMaterial(E)
     
 
