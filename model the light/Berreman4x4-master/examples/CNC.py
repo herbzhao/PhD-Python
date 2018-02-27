@@ -19,10 +19,14 @@ class chiral_nematic_simulation_method():
     def __init__(self):
         # simulation wavelength range
         self.wavelength_range = (300e-9, 800e-9)   # range of simulation
-        self.wavelength_list = numpy.linspace(self.wavelength_range[0], self.wavelength_range[1], 400) # number of calculated wavelength
+        self.wavelength_list = numpy.linspace(self.wavelength_range[0], self.wavelength_range[1], 200) # number of calculated wavelength
         # Normal incidence, Reduced incidence wavenumber
         self.Kx = 0.0
         self.k0_list = 2*pi/self.wavelength_list    #'k0' : wave vector in vacuum, k0 = ω/c = 2pi/lambda
+        # the illumination and analysing mode - refer to chiral_nematic_simulation.calculate_structure()
+        self.simulation_modes = ['R_RR','R_LL','R_pp','R_sp']
+        # a dictionary to store all the simulated results
+        self.all_data = {}
         # run some methods in the beginning 
         self.materials()
 
@@ -38,10 +42,10 @@ class chiral_nematic_simulation_method():
 
     def isotropic_layer(self, refractive_index = 1.55, thickness = 10e-9):
         isotropic_material = Berreman4x4.IsotropicNonDispersiveMaterial(refractive_index)
-        thickness = 10e-9
-        return  Berreman4x4.HomogeneousIsotropicLayer(isotropic_material, thickness)
+        # keep the syntax uniform, create a None element for isotropic_layer[1]
+        return  [Berreman4x4.HomogeneousIsotropicLayer(isotropic_material, thickness/2), Berreman4x4.HomogeneousIsotropicLayer(isotropic_material, thickness/2)]
 
-    def create_chiral_nematic_layer(self, pitch = 300e-9, thickness = 2000e-9, z_rotate_angle = 0):
+    def create_chiral_nematic_layer(self, refractive_index=(1.51, 1.59), pitch=300e-9, thickness=2000e-9, z_rotate_angle=0):
         ''' 
         The periodicity determines the length of helical axis - anything other than pi gives a incomplete structure and N should be 1
 
@@ -49,7 +53,7 @@ class chiral_nematic_simulation_method():
         '''
         # Creates a uniaxial (bi-refringent) non-dispersive material: https://www.tulane.edu/~sanelson/eens211/uniaxial_minerals.htm
         # An optical axis is a line along with rotational symmetry 
-        nematic = Berreman4x4.UniaxialNonDispersiveMaterial(self.CNC[0], self.CNC[1])  # ne along z
+        nematic = Berreman4x4.UniaxialNonDispersiveMaterial(refractive_index[0], refractive_index[1])  # ne along z
         
         # Returns rotation matrix defined by a unit rotation vector and an angle
         # rotation of pi/2 along y
@@ -69,7 +73,7 @@ class chiral_nematic_simulation_method():
         chiral_nematic_excessive_layer = Berreman4x4.InhomogeneousLayer(chiral_nematic_excessive)
 
         # full pitch of left handed (angle = -2*pi)
-        chiral_nematic = Berreman4x4.TwistedMaterial(material=chiral_nematic, d=pitch, angle=-2*pi, div=100)
+        chiral_nematic = Berreman4x4.TwistedMaterial(material=chiral_nematic, d=pitch, angle=-2*pi, div=30)
         # create repeated layer for multiple pitches
         chiral_nematic_layer = Berreman4x4.InhomogeneousLayer(chiral_nematic)
         chiral_nematic_layer = Berreman4x4.RepeatedLayers(layers=[chiral_nematic_layer], n=N)
@@ -77,10 +81,10 @@ class chiral_nematic_simulation_method():
         return [chiral_nematic_layer, chiral_nematic_excessive_layer]
 
 
-    def calculate_structure(self, material_layers):
+    def calculate_structure(self, materials_layers):
         # the final structure to be simulated
         # also draw the structure 
-        self.structure = Berreman4x4.Structure(self.front, material_layers, self.back)
+        self.structure = Berreman4x4.Structure(self.front, materials_layers, self.back)
         # Calculation with Berreman4x4
         data = Berreman4x4.DataList([self.structure.evaluate(self.Kx,k0) for k0 in self.k0_list])
 
@@ -120,34 +124,53 @@ class chiral_nematic_simulation_method():
         self.simulation_results['R_sp'] = data.get('R_sp')
         self.simulation_results['R_ps'] = data.get('R_ps')
 
+        return data
 
-    def simulate_multiple_parameters(self, description, simulation_parameters):
-        '''
-        description is the water volume fraction, defects, ... 
+    def multiple_materials_layers(self, description='CNC simulation', layers=None):
+        'input the layers and output the simulation results'        
+        # flatten the list of lists and form the materials_layers
+        materials_layers = [layer for pair in layers for layer in pair]
+        # run simulation and append the data to self.all_data
+        self.all_data[description] = self.calculate_structure(materials_layers)
 
-        create simulation results with simulation_parameters containing n, pitch, thickness
-        Can only do one CNC layer so far
         
-        '''
-        # assign a 0 degree rotation if it is not specified
-        if not 'rotate_angle' in simulation_parameters:
-             simulation_parameters['rotate_angle'] = 0
-        # Simulation of CNC domain or stacks of domains with z-twist
-        self.CNC = simulation_parameters['n']
-        CNC_layer = chiral_nematic_simulation.create_chiral_nematic_layer(
-                                                    pitch = simulation_parameters['pitch'], 
-                                                    thickness = simulation_parameters['thickness'], 
-                                                    z_rotate_angle = simulation_parameters['rotate_angle'])                                  
-        self.calculate_structure(material_layers = [CNC_layer[0], CNC_layer[1]])
 
-        # simulation conditions: refer to chiral_nematic_simulation.calculate_structure()
-        self.simulation_modes = ['R_RR','R_LL','R_pp','R_sp']
+    def multiple_materials_layers_parameter_sets(self, layer1_parameters_set=None, layer2_parameters_set=None, interface_parameters_set=None):
+        'Use multiple parameters_set to simulate (different water infiltration..)'
+        # ensures the dictionary key 'condition' is the same for each set
+        for i in layer1_parameters_set:
+            CNC_layer_1 = self.create_chiral_nematic_layer(
+                                    refractive_index=layer1_parameters_set[i]['n'],
+                                    pitch=layer1_parameters_set[i]['pitch'],
+                                    thickness=layer1_parameters_set[i]['thickness'],
+                                    z_rotate_angle=layer1_parameters_set[i]['rotation'])
+        
+            if not layer2_parameters_set is None:
+                CNC_layer_2 = self.create_chiral_nematic_layer(
+                                        refractive_index=layer2_parameters_set[i]['n'],
+                                        pitch=layer2_parameters_set[i]['pitch'],
+                                        thickness=layer2_parameters_set[i]['thickness'],
+                                        z_rotate_angle=layer2_parameters_set[i]['rotation'])
+
+            if not interface_parameters_set is None:    
+                interface_layer = self.isotropic_layer(
+                                        refractive_index=interface_parameters_set[i]['n'], 
+                                        thickness=interface_parameters_set[i]['thickness'])
+            # glue the layers together
+            if interface_parameters_set is None:
+                if layer2_parameters_set is None:
+                    layers = [CNC_layer_1]
+                else:
+                    layers = [CNC_layer_1, CNC_layer_2]
+            else:
+                layers = [CNC_layer_1, interface_layer, CNC_layer_2]
+            # run the simulation
+            self.multiple_materials_layers(description=i,layers=layers)
         # save result to csv
-        self.output_filename = r'Chiral_nematic_film, condition = {}'.format(description)
-        self.output_data_to_csv(simulation_modes = self.simulation_modes)
-        # plot
-        self.plotting(simulation_modes = self.simulation_modes)
+        self.export_data_to_csv()
+        self.plotting()
         
+    
 
     def analytical_verification(self):
         'analytical results, ignore for now'
@@ -185,11 +208,12 @@ class chiral_nematic_simulation_method():
         lbda_B1, lbda_B2 = p*no, p*ne   #peak width
 
 
-    def plotting(self, simulation_modes = ['R_RR', 'R_LL', 'R_ps', 'R_sp']):
+    def plotting(self, simulation_modes=['R_RR', 'R_LL', 'R_ps', 'R_sp']):
         fig = pyplot.figure()
         ax = fig.add_subplot("111")
-        for mode in simulation_modes:
-            ax.plot(self.wavelength_list, self.simulation_results[mode], label=mode)
+        for condition in self.all_data:
+            for mode in self.simulation_modes:
+                ax.plot(self.wavelength_list, self.all_data[condition].get(mode), label='{} in {}'.format(condition, mode))
 
         ax.legend(loc='center right', bbox_to_anchor=(1.00, 0.50))
 
@@ -199,16 +223,18 @@ class chiral_nematic_simulation_method():
         #fmt = ax.xaxis.get_major_formatter()
         #fmt.set_powerlimits((-3,3))
         # draw the refractive index variation
-        self.structure.drawStructure()
+        #self.structure.drawStructure()
         pyplot.show()
 
-    def output_data_to_csv(self, simulation_modes):
+    def export_data_to_csv(self, simulation_modes=['R_RR', 'R_LL', 'R_ps', 'R_sp']):
         # use panda to save the table into csv
-        self.final_data = {}
-        self.final_data['wavelength'] = self.wavelength_list
-        for mode in simulation_modes:
-            self.final_data[mode] = self.simulation_results[mode]
-        self.df = pd.DataFrame(self.final_data)
+        self.data_to_save = {}
+        self.data_to_save['wavelength'] = self.wavelength_list
+        for condition in self.all_data:
+            for mode in self.simulation_modes:
+                self.data_to_save['{}_{}'.format(condition, mode)] = self.all_data[condition].get(mode)
+
+        self.df = pd.DataFrame(self.data_to_save)
         # reverse the columns
         columns = self.df.columns.tolist()
         columns = columns[-1:] + columns[:-1] 
@@ -217,24 +243,29 @@ class chiral_nematic_simulation_method():
         print('saved to ' + self.folder +'\\'+ self.output_filename + '.csv')
 
 
-
-
 if __name__ == "__main__":
     # Simulation of CNC domain or stacks of domains with z-twist
     chiral_nematic_simulation = chiral_nematic_simulation_method()
-    CNC = (1.51, 1.59)
-    pitch = 300e-9
-    thickness = 2000e-9
     # the folder to save csv
+    chiral_nematic_simulation.output_filename = 'big and small'
     chiral_nematic_simulation.folder = r'C:\Users\herbz\Documents\GitHub\PhD-python\model the light\Berreman4x4-master\examples'
-
-    simulation_parameters_set = {}
-    simulation_parameters_set['condition1'] = {'n': CNC, 'pitch': pitch, 'thickness': thickness}
+    
     # simulation conditions: refer to chiral_nematic_simulation.calculate_structure()
-    chiral_nematic_simulation.simulation_modes = ['R_RR','R_LL','R_pp','R_sp']
-   
-    # do the simulation, save the data and plot
-    chiral_nematic_simulation.simulate_multiple_parameters('condition1', simulation_parameters_set['condition1'])
+    chiral_nematic_simulation.simulation_modes = ['R_RR','R_LL']
 
+    ########## create parameters for multiple layers () ##################
+    CNC = (1.51, 1.59)
+    layer1_parameters_set = {}
+    layer1_parameters_set['small_drop'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': 0}
+    layer1_parameters_set['big_drop'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 2000e-9, 'rotation': 0}
 
-# to implement, multiple materials layer
+    layer2_parameters_set = {}
+    layer2_parameters_set['small_drop'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': pi/2}
+    layer2_parameters_set['big_drop'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 2000e-9, 'rotation': pi/2}
+
+    # run the simulation!
+    chiral_nematic_simulation.multiple_materials_layers_parameter_sets(
+                                        layer1_parameters_set=layer1_parameters_set,
+                                        layer2_parameters_set=layer2_parameters_set,
+                                        interface_parameters_set=None)
+
