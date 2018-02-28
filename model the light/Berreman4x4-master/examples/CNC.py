@@ -29,7 +29,7 @@ class chiral_nematic_simulation_method():
     def set_WLrange(self, wavelength_range=(300e-9, 800e-9)):
         # simulation wavelength range
         self.wavelength_range = wavelength_range   # range of simulation
-        n_wavelengths = 200*self.simulation_accuracy
+        n_wavelengths = 600*self.simulation_accuracy
         self.wavelength_list = numpy.linspace(self.wavelength_range[0], self.wavelength_range[1], n_wavelengths) # number of calculated wavelength
         # Normal incidence, Reduced incidence wavenumber
         self.Kx = 0.0
@@ -146,7 +146,7 @@ class chiral_nematic_simulation_method():
 
         
 
-    def multiple_materials_layers_parameter_sets(self, layer1_parameters_set=None, layer2_parameters_set=None, interface_parameters_set=None):
+    def multiple_materials_layers_parameter_sets(self, layer1_parameters_set=None, layer2_parameters_set=None, interface_parameters_set=None, plot_heatmap=False):
         'Use multiple parameters_set of differnet conditions to simulate (different water infiltration..)'
         # ensures the dictionary key 'condition' is the same for each set
         for condition in layer1_parameters_set:
@@ -180,7 +180,8 @@ class chiral_nematic_simulation_method():
         # save result to csv
         self.export_data_to_csv()
         self.plotting()
-        self.plotting_heatmap()
+        if plot_heatmap is True:
+            self.plotting_heatmap()
         
     
 
@@ -274,13 +275,13 @@ class chiral_nematic_simulation_method():
             intensity = []
             samples = []
             i = 0
-            for condition in chiral_nematic_simulation.all_data:
-                intensity.append(chiral_nematic_simulation.all_data[condition].get(mode))
+            for condition in self.all_data:
+                intensity.append(self.all_data[condition].get(mode))
                 samples.append(i)
                 i += 1
             # pcolor needs one more x 
             samples.append(i)
-            wavelength = chiral_nematic_simulation.wavelength_list
+            wavelength = self.wavelength_list
             intensity = numpy.transpose(intensity)
 
             # plotting 
@@ -344,7 +345,8 @@ if __name__ == "__main__":
     chiral_nematic_simulation.multiple_materials_layers_parameter_sets(
                                         layer1_parameters_set=layer1_parameters_set,
                                         layer2_parameters_set=layer2_parameters_set,
-                                        interface_parameters_set=interface_parameters_set)
+                                        interface_parameters_set=interface_parameters_set,
+                                        plot_heatmap=True)
 
     # show the plot in the end to prevent jam
     plt.show()
