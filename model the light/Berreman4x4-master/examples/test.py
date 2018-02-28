@@ -1,4 +1,9 @@
-layers_pair = [[1,2],[3,4],[5,6]]
+import matplotlib.pyplot as plt
 
-flat_layers = [layer for pair in layers_pair for layer in pair]
-print(flat_layers)
+x = [0,1,2,3,4]
+y = [1,2,34,5,7]
+fig, axes = plt.subplots(6, 1, subplot_kw=dict(polar=True))
+axes[0].plot(x, y)
+axes[1].scatter(x, y)
+
+plt.show()

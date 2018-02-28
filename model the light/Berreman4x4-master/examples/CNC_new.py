@@ -9,7 +9,7 @@
 import numpy, Berreman4x4
 from numpy import sin, sqrt, abs
 from Berreman4x4 import c, pi, e_y, e_z, e_x
-import matplotlib.pyplot as pyplot
+import matplotlib.pyplot as plt
 
 # use pandas for data output 
 import pandas as pd
@@ -214,9 +214,9 @@ class chiral_nematic_simulation_method():
         lbda_B1, lbda_B2 = p*no, p*ne   #peak width
 
 
-    def plotting(self, simulation_modes=['R_RR', 'R_LL', 'R_ps', 'R_sp']):
+    def plotting(self):
         'plot all the conditions with all the modes'
-        fig = pyplot.figure()
+        fig = plt.figure()
         ax = fig.add_subplot("111")
         for condition in self.all_data:
             for mode in self.simulation_modes:
@@ -233,7 +233,7 @@ class chiral_nematic_simulation_method():
         #self.structure.drawStructure()
 
 
-    def export_data_to_csv(self, simulation_modes=['R_RR', 'R_LL', 'R_ps', 'R_sp']):
+    def export_data_to_csv(self):
         ''' 
         use panda to save the table into csv
         '''
@@ -255,25 +255,35 @@ class chiral_nematic_simulation_method():
         print('saved to ' + self.folder +'\\'+ self.output_filename + '.csv')
 
 
-    def plotting_heatmap(self, simulation_modes=['R_RR']):
+    def plotting_heatmap(self):
         'plot x(number of test), y (wavelength) and c (intensity).'
 
-        fig = pyplot.figure()
-        ax = fig.add_subplot("111")
+        fig, axes = plt.subplots(1,len(self.simulation_modes))
+        fig_number = 0
         # plot a heatmap by joining the spectra from all the conditions
         # currently just one mode is picked for simplicity
-        c_array = []
         for mode in self.simulation_modes:
+            intensity = []
+            samples = []
+            i = 0
             for condition in chiral_nematic_simulation.all_data:
-                c_array.append(chiral_nematic_simulation.all_data[condition].get('R_LL'))
-            x = chiral_nematic_simulation.wavelength_list
-            y = [0,1,2,3,4,5]
-            c = numpy.transpose(c_array)
-            pyplot.pcolor(y,x,c)
-            ax.set_title(mode)
-            ax.set_xlabel(r"test number")
-            ax.set_ylabel(r"Wavelength /nm")
-        
+                intensity.append(chiral_nematic_simulation.all_data[condition].get(mode))
+                samples.append(i)
+                i += 1
+            # pcolor needs one more x 
+            samples.append(i)
+            wavelength = chiral_nematic_simulation.wavelength_list
+            intensity = numpy.transpose(intensity)
+
+            # plotting 
+            axes[fig_number].pcolor(samples,wavelength,intensity)
+            axes[fig_number].set_title(mode)
+            axes[fig_number].set_xlabel(r"test number")
+            axes[fig_number].set_ylabel(r"Wavelength /nm")
+            axes[fig_number].colorbar()
+            # automatically move on to next plot
+            fig_number += 1
+            
         
 
 
@@ -285,7 +295,7 @@ if __name__ == "__main__":
     chiral_nematic_simulation.folder = r'C:\Users\herbz\Documents\GitHub\PhD-python\model the light\Berreman4x4-master\examples'
     
     # simulation conditions: refer to chiral_nematic_simulation.calculate_structure()
-    chiral_nematic_simulation.simulation_modes = ['R_RR','R_LL']
+    chiral_nematic_simulation.simulation_modes = ['R_RR','R_LL', 'R_pp', 'R_sp']
 
     wavelength_range = (300e-9, 800e-9)
     n_wavelengths = 50
@@ -326,7 +336,7 @@ if __name__ == "__main__":
                                         interface_parameters_set=interface_parameters_set)
 
     chiral_nematic_simulation.plotting_heatmap()
-    pyplot.show()
+    plt.show()
 
     '''
     # need to know n_conditions (and n_wavelengths) to preallocate data stack
@@ -342,8 +352,8 @@ if __name__ == "__main__":
         datastack[:,cidx] = dataslice
     
     # plot heatmap of data stack
-    fig = pyplot.figure()
+    fig = plt.figure()
     ax = fig.add_subplot("111")
-    pyplot.pcolor(datastack)
-    pyplot.show()
+    plt.pcolor(datastack)
+    plt.show()
     '''
