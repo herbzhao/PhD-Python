@@ -17,18 +17,21 @@ import pandas as pd
 
 class chiral_nematic_simulation_method():
     def __init__(self):
-        # simulation wavelength range
-        self.wavelength_range = (300e-9, 800e-9)   # range of simulation
-        self.wavelength_list = numpy.linspace(self.wavelength_range[0], self.wavelength_range[1], 200) # number of calculated wavelength
-        # Normal incidence, Reduced incidence wavenumber
-        self.Kx = 0.0
-        self.k0_list = 2*pi/self.wavelength_list    #'k0' : wave vector in vacuum, k0 = ω/c = 2pi/lambda
         # the illumination and analysing mode - refer to chiral_nematic_simulation.calculate_structure()
         self.simulation_modes = ['R_RR','R_LL','R_pp','R_sp']
         # a dictionary to store all the simulated results
         self.all_data = {}
         # run some methods in the beginning 
         self.materials()
+        self.set_WLrange()
+
+    def set_WLrange(self, wavelength_range=(300e-9, 800e-9), n_wavelengths=200):
+        # simulation wavelength range
+        self.wavelength_range = wavelength_range   # range of simulation
+        self.wavelength_list = numpy.linspace(self.wavelength_range[0], self.wavelength_range[1], n_wavelengths) # number of calculated wavelength
+        # Normal incidence, Reduced incidence wavenumber
+        self.Kx = 0.0
+        self.k0_list = 2*pi/self.wavelength_list    #'k0' : wave vector in vacuum, k0 = ω/c = 2pi/lambda
 
     def materials(self):
         # Materials
@@ -72,7 +75,6 @@ class chiral_nematic_simulation_method():
         chiral_nematic_excessive_layer = Berreman4x4.InhomogeneousLayer(chiral_nematic_excessive)
 
         # full pitch of left handed (angle = -2*pi)
-        # change the div number for more continuous change of refractive index
         chiral_nematic = Berreman4x4.TwistedMaterial(material=chiral_nematic, d=pitch, angle=-2*pi, div=30)
         # create repeated layer for multiple pitches
         chiral_nematic_layer = Berreman4x4.InhomogeneousLayer(chiral_nematic)
@@ -229,7 +231,7 @@ class chiral_nematic_simulation_method():
         #fmt.set_powerlimits((-3,3))
         # draw the refractive index variation
         #self.structure.drawStructure()
-        pyplot.show()
+
 
     def export_data_to_csv(self, simulation_modes=['R_RR', 'R_LL', 'R_ps', 'R_sp']):
         ''' 
@@ -253,6 +255,27 @@ class chiral_nematic_simulation_method():
         print('saved to ' + self.folder +'\\'+ self.output_filename + '.csv')
 
 
+    def plotting_heatmap(self, simulation_modes=['R_RR']):
+        'plot x(number of test), y (wavelength) and c (intensity).'
+
+        fig = pyplot.figure()
+        ax = fig.add_subplot("111")
+        # plot a heatmap by joining the spectra from all the conditions
+        # currently just one mode is picked for simplicity
+        c_array = []
+        for mode in self.simulation_modes:
+            for condition in chiral_nematic_simulation.all_data:
+                c_array.append(chiral_nematic_simulation.all_data[condition].get('R_LL'))
+            x = chiral_nematic_simulation.wavelength_list
+            y = [0,1,2,3,4,5]
+            c = numpy.transpose(c_array)
+            pyplot.pcolor(y,x,c)
+            ax.set_title(mode)
+            ax.set_xlabel(r"test number")
+            ax.set_ylabel(r"Wavelength /nm")
+        
+        
+
 
 if __name__ == "__main__":
     # Simulation of CNC domain or stacks of domains with z-twist
@@ -264,22 +287,37 @@ if __name__ == "__main__":
     # simulation conditions: refer to chiral_nematic_simulation.calculate_structure()
     chiral_nematic_simulation.simulation_modes = ['R_RR','R_LL']
 
+    wavelength_range = (300e-9, 800e-9)
+    n_wavelengths = 50
+    chiral_nematic_simulation.set_WLrange(wavelength_range,n_wavelengths)
+    
     ########## create parameters for multiple layers () ##################
     CNC = (1.51, 1.59)
     layer1_parameters_set = {}
     layer1_parameters_set['test1'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': 0}
     layer1_parameters_set['test2'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': 0}
+    layer1_parameters_set['test3'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': 0}
+    layer1_parameters_set['test4'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': 0}
+    layer1_parameters_set['test5'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': 0}
 
-    # if only want to simulate one domain, set layer2_parameters_set and interface_parameters_set to None
-    # layer2_parameters_set = None 
+    
     layer2_parameters_set = {}
     layer2_parameters_set['test1'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': pi/2}
     layer2_parameters_set['test2'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': pi/2}
+    layer2_parameters_set['test3'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': pi/2}
+    layer2_parameters_set['test4'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': pi/2}
+    layer2_parameters_set['test5'] = {'n': CNC, 'pitch': 300e-9, 'thickness': 600e-9, 'rotation': pi/2}
+    # if only want to simulate one domain, set layer2_parameters_set and interface_parameters_set to None
+    # layer2_parameters_set = None 
 
-    # interface_parameters_set = None
+    
     interface_parameters_set = {}
-    interface_parameters_set['test1'] = {'n':1.55, 'thickness':200e-9}
-    interface_parameters_set['test2'] = {'n':1.55, 'thickness':1000e-9}
+    interface_parameters_set['test1'] = {'n':1.55, 'thickness':0e-9}
+    interface_parameters_set['test2'] = {'n':1.55, 'thickness':100e-9}
+    interface_parameters_set['test3'] = {'n':1.55, 'thickness':200e-9}
+    interface_parameters_set['test4'] = {'n':1.55, 'thickness':500e-9}
+    interface_parameters_set['test5'] = {'n':1.55, 'thickness':1000e-9}
+    # interface_parameters_set = None
 
     # run the simulation!
     chiral_nematic_simulation.multiple_materials_layers_parameter_sets(
@@ -287,3 +325,25 @@ if __name__ == "__main__":
                                         layer2_parameters_set=layer2_parameters_set,
                                         interface_parameters_set=interface_parameters_set)
 
+    chiral_nematic_simulation.plotting_heatmap()
+    pyplot.show()
+
+    '''
+    # need to know n_conditions (and n_wavelengths) to preallocate data stack
+    n_conditions = len(chiral_nematic_simulation.all_data)
+
+    # initialise empty data stack
+    datastack = numpy.zeros([n_wavelengths,n_conditions])
+    
+    # store data slices in data stack
+    mode = 'R_LL'
+    for cidx,condition in enumerate(chiral_nematic_simulation.all_data):
+        dataslice = chiral_nematic_simulation.all_data[condition].get(mode)
+        datastack[:,cidx] = dataslice
+    
+    # plot heatmap of data stack
+    fig = pyplot.figure()
+    ax = fig.add_subplot("111")
+    pyplot.pcolor(datastack)
+    pyplot.show()
+    '''
