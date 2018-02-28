@@ -26,11 +26,8 @@ class chiral_nematic_simulation_method():
         self.materials()
         self.set_WLrange()
 
-    def set_WLrange(self, wavelength_range=(300e-9, 800e-9)):
-        # simulation wavelength range
-        self.wavelength_range = wavelength_range   # range of simulation
-        n_wavelengths = 600*self.simulation_accuracy
-        self.wavelength_list = numpy.linspace(self.wavelength_range[0], self.wavelength_range[1], n_wavelengths) # number of calculated wavelength
+    def set_WLrange(self, wavelength_range=(300e-9, 800e-9), n_wavelengths=500):
+        self.wavelength_list = numpy.linspace(wavelength_range[0], wavelength_range[1], n_wavelengths) # number of calculated wavelength
         # Normal incidence, Reduced incidence wavenumber
         self.Kx = 0.0
         self.k0_list = 2*pi/self.wavelength_list    #'k0' : wave vector in vacuum, k0 = ω/c = 2pi/lambda
@@ -307,11 +304,9 @@ if __name__ == "__main__":
     
     # simulation conditions: refer to chiral_nematic_simulation.calculate_structure()
     chiral_nematic_simulation.simulation_modes = ['R_RR','R_LL', 'R_pp', 'R_sp']
-    # range of wavelength to be simulated
-    wavelength_range = (300e-9, 800e-9)
     # Normally use it 0~1, higher the number, slower the simulation
-    chiral_nematic_simulation.simulation_accuracy = 0.25
-    chiral_nematic_simulation.set_WLrange(wavelength_range)
+    chiral_nematic_simulation.simulation_accuracy = 0.5
+    chiral_nematic_simulation.set_WLrange(wavelength_range=(300e-9, 800e-9), n_wavelengths=500)
     
     ########## create parameters for multiple layers () ##################
     CNC = (1.51, 1.59)

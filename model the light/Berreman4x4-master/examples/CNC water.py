@@ -54,19 +54,19 @@ class CNC_water_infiltration_simulation_method():
             # create a dictionary to store n, pitch and thickness for corresponding water_volume_fraction
             simulation_parameters_set[water_volume_fraction] = {'n': n_swollen_CNC_water_mixture, 'pitch': swollen_pitch, 'thickness': swollen_thickness, 'rotation': 0}
         return simulation_parameters_set
-
+        
 
 if __name__ == "__main__":    
     # Simulation of CNC domain or stacks of domains with z-twist
+    # fun!
     chiral_nematic_simulation = chiral_nematic_simulation_method()
     # Normally use it 0~1, higher the number, slower the simulation
-    chiral_nematic_simulation.simulation_accuracy = 0.7
+    chiral_nematic_simulation.simulation_accuracy = 0.5
+    # range of wavelength to be simulated
+    chiral_nematic_simulation.set_WLrange(wavelength_range=(300e-9, 800e-9), n_wavelengths=300)
     # simulation conditions: refer to chiral_nematic_simulation.calculate_structure()
     chiral_nematic_simulation.simulation_modes = ['R_LL']
 
-    # range of wavelength to be simulated
-    wavelength_range = (300e-9, 1000e-9)
-    chiral_nematic_simulation.set_WLrange(wavelength_range)    
 
     # get parameters form water swelling
     CNC_water_infiltration_simulation = CNC_water_infiltration_simulation_method()
@@ -78,7 +78,9 @@ if __name__ == "__main__":
     
     # type of water swelling mechanisms 
     simulation_parameters_set = CNC_water_infiltration_simulation.pitch_change_refractive_index_change()
-     # the folder to save csv
+
+
+    # the folder to save csv
     chiral_nematic_simulation.output_filename = 'pitch_change_refractive_index_change'
     chiral_nematic_simulation.folder = r'C:\Users\herbz\Documents\GitHub\PhD-python\model the light\Berreman4x4-master\examples'
     
