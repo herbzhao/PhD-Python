@@ -143,7 +143,7 @@ class chiral_nematic_simulation_method():
 
         
 
-    def multiple_materials_layers_parameter_sets(self, layer1_parameters_set=None, layer2_parameters_set=None, interface_parameters_set=None, plot_heatmap=False):
+    def multiple_materials_layers_parameter_sets(self, layer1_parameters_set=None, layer2_parameters_set=None, interface_parameters_set=None):
         'Use multiple parameters_set of differnet conditions to simulate (different water infiltration..)'
         # ensures the dictionary key 'condition' is the same for each set
         for condition in layer1_parameters_set:
@@ -176,9 +176,9 @@ class chiral_nematic_simulation_method():
             self.multiple_materials_layers(description=condition,layers=layers)
         # save result to csv
         self.export_data_to_csv()
-        self.plotting()
-        if plot_heatmap is True:
-            self.plotting_heatmap()
+        #self.plotting()
+        #if plot_heatmap is True:
+        #    self.plotting_heatmap()
         
     
 
@@ -340,8 +340,11 @@ if __name__ == "__main__":
     chiral_nematic_simulation.multiple_materials_layers_parameter_sets(
                                         layer1_parameters_set=layer1_parameters_set,
                                         layer2_parameters_set=layer2_parameters_set,
-                                        interface_parameters_set=interface_parameters_set,
-                                        plot_heatmap=True)
-
+                                        interface_parameters_set=interface_parameters_set)
+    
+    # Seperate plotting option
+    chiral_nematic_simulation.plotting()
+    chiral_nematic_simulation.plotting_heatmap()
+        
     # show the plot in the end to prevent jam
     plt.show()

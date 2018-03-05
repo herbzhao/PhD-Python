@@ -63,7 +63,7 @@ if __name__ == "__main__":
     # Normally use it 0~1, higher the number, slower the simulation
     chiral_nematic_simulation.simulation_accuracy = 0.5
     # range of wavelength to be simulated
-    chiral_nematic_simulation.set_WLrange(wavelength_range=(300e-9, 800e-9), n_wavelengths=300)
+    chiral_nematic_simulation.set_WLrange(wavelength_range=(300e-9, 800e-9), n_wavelengths=100)
     # simulation conditions: refer to chiral_nematic_simulation.calculate_structure()
     chiral_nematic_simulation.simulation_modes = ['R_LL']
 
@@ -93,5 +93,8 @@ if __name__ == "__main__":
                                         layer2_parameters_set=layer2_parameters_set,
                                         interface_parameters_set=interface_parameters_set)
 
+    # Seperate plotting option
+    chiral_nematic_simulation.plotting()
+    
     # show the plot in the end to prevent jam
     plt.show()
