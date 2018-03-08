@@ -16,20 +16,20 @@ glass = Berreman4x4.IsotropicNonDispersiveMaterial(1.55)
 front = back = Berreman4x4.IsotropicHalfSpace(glass)
 
 # Liquid crystal oriented along the x direction
-(no, ne) = (1.51, 1.59)
+(no, ne) = (1.5, 1.7)
 Dn = ne-no
 n_med = (ne + no)/2
 LC = Berreman4x4.UniaxialNonDispersiveMaterial(no, ne)  # ne along z
 R = Berreman4x4.rotation_v_theta(e_y, pi/2) # rotation of pi/2 along y
 LC = LC.rotated(R)                          # apply rotation from z to x
 # Cholesteric pitch:
-p = 300e-9
+p = 0.65e-6
 # One half turn of a right-handed helix:
 TN = Berreman4x4.TwistedMaterial(LC, p/2, angle=+pi, div=35)
 
 # Inhomogeneous layer, repeated layer, and structure
 IL = Berreman4x4.InhomogeneousLayer(TN)
-N = 25      # number half pitch repetitions
+N = 15      # number half pitch repetitions
 h = N * p/2
 L = Berreman4x4.RepeatedLayers([IL], N)
 s = Berreman4x4.Structure(front, [L], back)
@@ -38,7 +38,7 @@ s = Berreman4x4.Structure(front, [L], back)
 Kx = 0.0
 
 # Calculation parameters
-lbda_min, lbda_max = 400e-9, 800e-9   # (m)
+lbda_min, lbda_max = 0.8e-6, 1.2e-6   # (m)
 lbda_B = p * n_med
 lbda_list = numpy.linspace(lbda_min, lbda_max, 100)
 k0_list = 2*pi/lbda_list

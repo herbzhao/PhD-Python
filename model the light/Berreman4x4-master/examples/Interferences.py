@@ -15,9 +15,11 @@ print("\n*** Air / glass / air ***\n")
 # Materials:
 air = Berreman4x4.IsotropicNonDispersiveMaterial(1.0)
 glass = Berreman4x4.IsotropicNonDispersiveMaterial(1.5)
+CNC = Berreman4x4.IsotropicNonDispersiveMaterial(1.55)
 
 # Layer and half-spaces:
-layer = Berreman4x4.HomogeneousIsotropicLayer(glass)
+glass_layer = Berreman4x4.HomogeneousIsotropicLayer(glass)
+CNC_layer = Berreman4x4.HomogeneousIsotropicLayer(glass)
 front = back = Berreman4x4.IsotropicHalfSpace(air)
 
 # Structure:
@@ -40,7 +42,7 @@ for h in h_list:
     data.append(s.evaluate(Kx,k0))
 
 # Extract the power coefficients
-coeff_names = ("T_pp","T_ss","R_ss","R_pp","R_ps")
+coeff_names = ("T_pp","T_ss","R_ss","R_pp")
 values = [data.get(name) for name in coeff_names]
 
 # Prepare plot...

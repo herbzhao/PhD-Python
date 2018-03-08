@@ -75,7 +75,7 @@ class chiral_nematic_simulation():
 
     def CNC_water_mixture_refractive_index(self, water_volume_fraction):
         water = 1.33
-        CNC = (1.586, 1.524)
+        CNC = (1.51, 1.59)
         # dielectric constant epsilon is sqrt of refractive index
         # for composite materials, dielectric constant calculation: 
         # e = e1*v1 + e2*v2  v is the volume fraction   http://www.sciencedirect.com/science/article/pii/S0030401899006951
@@ -124,7 +124,7 @@ def simulation_situations(simulation_situation):
 
     if simulation_situation == 'pitch_change_refractive_index_change':
         # for swelling with both refractive index change and pitch change
-        for water_volume_fraction in [0,0.03, 0.06, 0.14,0.23,0.35,0.44]:
+        for water_volume_fraction in [0, 0.085, 0.18, 0.26, 0.325, 0.38, 0.43]:
             swollen_thickness = original_half_pitch*original_pseudo_layers/(1-water_volume_fraction)
             swollen_half_pitch = swollen_thickness/original_pseudo_layers
             CNC_water_mixture = chiral_simulation.CNC_water_mixture_refractive_index(water_volume_fraction)
@@ -161,11 +161,14 @@ def simulation_situations(simulation_situation):
 
 chiral_simulation = chiral_nematic_simulation()
 chiral_simulation.folder = r'D:\GDrive\Research\BIP\Humidity sensor project\data\Simulation'
-chiral_simulation.output_filename = r'film_with_different_color_and_thickness'
+chiral_simulation.output_filename = r'refractive_index_change_ignore_pitch_change'
 
 chiral_simulation.materials()
-simulated_results = simulation_situations('film_with_different_color_and_thickness')
+simulated_results = simulation_situations('refractive_index_change_ignore_pitch_change')
+
+
 
 chiral_simulation.save_simulation_to_csv(simulated_results)
 
 chiral_simulation.plot_spectrum()
+plt.show()

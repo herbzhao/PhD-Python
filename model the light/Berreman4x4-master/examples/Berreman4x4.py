@@ -202,7 +202,7 @@ class NonDispersiveMaterial(Material):
         
         'R' : rotation matrix (from rotation_Euler() or others)
         """
-        E = R * self.epsilon * R.T #matrix.T   Returns the transpose of the matrix.
+        E = R * self.epsilon * R.T
         return NonDispersiveMaterial(E)
     
 
@@ -1117,7 +1117,7 @@ class Structure:
         n = [ numpy.sqrt((v.T * eps * v)[0,0]) for eps in epsilon ]
         return list(zip(h,n))
 
-    def drawStructure(self, method="graph", lbda=1e-6, margin=0.15, description='sample1'):
+    def drawStructure(self, method="graph", lbda=1e-6, margin=0.15):
         """Draw the structure.
         
         'method' : 'graph' or 'section'
@@ -1135,14 +1135,14 @@ class Structure:
         z = numpy.hstack((-z_margin, z_layers, z_max + z_margin))
         # Call specialized methods
         if method == "graph":
-            fig = self._drawStructureGraph(z,n, description)
+            fig = self._drawStructureGraph(z,n)
         elif method == "section":
-            fig = self._drawStructureSection(z,n, description)
+            fig = self._drawStructureSection(z,n)
         else:
             fig = None
         return fig
 
-    def _drawStructureGraph(self, z, n, description='sample1'):
+    def _drawStructureGraph(self, z, n):
         """Draw a graph of the refractive index profile """
         n = numpy.hstack((n, n[-1]))
         # Draw the graph
@@ -1157,10 +1157,9 @@ class Structure:
         ax.ticklabel_format(style='scientific', axis='x', scilimits=(0,0))
         ax.set_xlim(z.min(), z.max())
         ax.set_ylim(bottom=1.0)
-        ax.set_title(description)
         return fig
 
-    def _drawStructureSection(self, z, n, description='sample1'):
+    def _drawStructureSection(self, z, n):
         """Draw a cross section of the structure"""
         # Prepare arrays for pcolormesh()
         X = z * numpy.ones((2,1))
@@ -1178,7 +1177,6 @@ class Structure:
         colbar = fig.colorbar(stack, orientation='vertical', anchor=(1.2,0.5), 
                               fraction=0.05)
         colbar.ax.set_xlabel("n", position=(3,0))
-        ax.set_title(description)
         return fig
 
 
