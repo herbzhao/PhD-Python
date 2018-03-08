@@ -36,10 +36,11 @@ class chiral_nematic_simulation_method():
 
     def materials(self):
         # Materials
+        self.air = Berreman4x4.IsotropicNonDispersiveMaterial(1.0)
         self.glass = Berreman4x4.IsotropicNonDispersiveMaterial(1.55)
         self.water = 1.33
         self.CNC = (1.51, 1.59)
-        self.front = Berreman4x4.IsotropicHalfSpace(self.glass)
+        self.front = Berreman4x4.IsotropicHalfSpace(self.air)
         self.back = Berreman4x4.IsotropicHalfSpace(self.glass)
 
     def create_isotropic_layer(self, refractive_index = 1.55, thickness = 10e-9):
