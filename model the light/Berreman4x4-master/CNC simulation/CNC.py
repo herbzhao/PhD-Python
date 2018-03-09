@@ -38,7 +38,6 @@ class chiral_nematic_simulation_method():
         # Materials
         self.air = Berreman4x4.IsotropicNonDispersiveMaterial(1.0)
         self.glass = Berreman4x4.IsotropicNonDispersiveMaterial(1.55)
-        self.water = 1.33
         self.CNC = (1.51, 1.59)
         self.front = Berreman4x4.IsotropicHalfSpace(self.air)
         self.back = Berreman4x4.IsotropicHalfSpace(self.glass)
@@ -309,7 +308,7 @@ if __name__ == "__main__":
     chiral_nematic_simulation.simulation_modes = ['R_RR','R_LL', 'R_pp', 'R_sp']
     # Normally use it 0~1, higher the number, slower the simulation
     chiral_nematic_simulation.simulation_accuracy = 0.5
-    chiral_nematic_simulation.set_WLrange(wavelength_range=(300e-9, 800e-9), n_wavelengths=500)
+    chiral_nematic_simulation.set_wave_vector(wavelength_range=(300e-9, 800e-9), n_wavelengths=500)
     
     ########## create parameters for multiple layers () ##################
     CNC = (1.51, 1.59)
