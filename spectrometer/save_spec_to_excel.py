@@ -74,25 +74,26 @@ class read_spectrometer():
 
         # use panda to save the table into csv
         self.df = pd.DataFrame(table)
-        self.df.to_csv(self.folder +'\\'+ self.output_filename + '_peaks' + '.csv',  sep=',')
-        print('saved to ' + self.folder +'\\'+ self.output_filename + '_peaks' + '.csv' )
+        self.df.to_csv(self.folder +'\\'+ self.output_filename + '_peaks_' + self.name_prefix + '.csv',  sep=',')
+        print('saved to ' + self.folder +'\\'+ self.output_filename + '_peaks_' + self.name_prefix + '.csv' )
         
 
 
 peak_smoothing = True
 
-if peak_smoothing == True:
-    scan = read_spectrometer()
-    scan.folder = r'V:\Group Publications & Reports\Papers & Manuscripts\Song - bottlebrush photonic balls\Final data for publication\Microscopy\2018_02_19 Bottlebrush films\20180219'
+scan = read_spectrometer()
+scan.folder = r'D:\GDrive\Research\BIP\Humidity sensor project\data\20180319 - Si humidity'
+scan.name_prefix = '20180319 - Si humidity'
 
+if peak_smoothing == True:
     # original spectra
     scan.scan_filename = 'scan_backup.mat'
-    scan.output_filename = 'output_unsmoothed_spectra'
+    scan.output_filename = 'output_unsmoothed_spectra_' + scan.name_prefix
     scan.save_matlab_spectra_to_csv()
 
     # smoothed spectra for peak extraction
     scan.scan_filename = 'scan.mat'
-    scan.output_filename = 'output_smoothed_spectra'
+    scan.output_filename = 'output_smoothed_spectra_' + scan.name_prefix
     scan.save_matlab_spectra_to_csv()
     # output humidity 
     scan.output_humidity = True
@@ -103,9 +104,6 @@ if peak_smoothing == True:
 
 elif peak_smoothing == False:
     # for case without peak smoothing
-    scan = read_spectrometer()
-    scan.folder = r'C:\Users\herbz\Dropbox\BIP-dropbox\data\20180214\Green'
-
     # original spectra
     scan.scan_filename = 'scan.mat'
     scan.output_filename = 'output_unsmoothed_spectra'
