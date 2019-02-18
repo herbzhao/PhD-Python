@@ -82,8 +82,8 @@ class read_spectrometer():
 peak_smoothing = True
 
 scan = read_spectrometer()
-scan.folder = r'D:\GDrive\Research\BIP\Humidity sensor project\data\20180319 - Si humidity'
-scan.name_prefix = '20180319 - Si humidity'
+scan.folder = r'C:\Users\My Pc\Desktop\20190215 - MCNC EC core'
+scan.name_prefix = 'MCNC 1.0mM - EC core - '
 
 if peak_smoothing == True:
     # original spectra
