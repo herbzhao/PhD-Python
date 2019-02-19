@@ -3,11 +3,14 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 
-image_path = r'C:\Users\My Pc\Documents\GitHub\PhD-Python\dongpo\C3 - top view -02.jpg'
+image_path = r'C:\Users\My Pc\Documents\GitHub\PhD-Python\dongpo\C3 - top view -03.jpg'
 # load the image, clone it for output, and then convert it to grayscale
 image = cv2.imread(image_path)
 # crop out the scale bar etc
 image = image[0:750, 0:1024]
+total_area = 750*1024
+# number of pixels per micron
+scale_bar = 121
 
 output = image.copy()
 print(np.size(image))
@@ -22,7 +25,7 @@ image_gray = cv2.bitwise_not(image_gray)
 #  dialation, erosion etc
 #  https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_imgproc/py_morphological_ops/py_morphological_ops.html
 #  depending upon the size of kernel
-kernel = np.ones((5,5),np.uint8)
+kernel = np.ones((2,2),np.uint8)
 
 
 # closing to filling tiny holes
@@ -48,6 +51,7 @@ number_of_circle = 0
 radii = []
 centers = []
 
+
 for contour in contours:
     area = cv2.contourArea(contour)
     #  use the average area to filter out too small or too big contour
@@ -64,8 +68,11 @@ for contour in contours:
 
         # 
         number_of_circle += 1
-        centers.append(center)
-        radii.append(radius)
+        centers.append([center[0]/scale_bar, center[1]/scale_bar])
+        radii.append(radius/scale_bar)
+
+area_fraction = sum(areas)/total_area
+print('area fraction is: {}'.format(area_fraction) )
 
 
 # Note: imagine the circles to be a projection of spheres at different height - considering the maximum radius found is the size of the original sphere
@@ -79,10 +86,12 @@ for i, radius in enumerate(radii):
 
 #  write the coordinates in a csv file
 # print(spheres)
-with open(r'C:\Users\My Pc\Documents\GitHub\PhD-Python\dongpo\{}.csv'.format(max_radius), 'w+') as file:
-    file.write('x, y, z, r, \n')
+with open(r'C:\Users\My Pc\Documents\GitHub\PhD-Python\dongpo\{}.txt'.format(max_radius), 'w+') as file:
+#     file.write('x, y, z, r, \n')
     for sphere in spheres:
-        file.write('{0}, {1}, {2}, {3} \n'.format(sphere[0], sphere[1], sphere[2], sphere[3]))
+        # file.write('{0}, {1}, {2}, {3} \n'.format(sphere[0], sphere[1], sphere[2], sphere[3]))
+        file.write('{0} {1}\n'.format(sphere[0], sphere[1]))
+
 
 
 
