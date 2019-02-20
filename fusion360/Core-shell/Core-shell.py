@@ -1,10 +1,10 @@
 #Author-
 #Description-
 
-
 import adsk.core, adsk.fusion, traceback
 import math
-from random import randint
+#  unable to import library from other python environment
+
 
 def run(context):
     ui = None
@@ -25,16 +25,16 @@ def run(context):
 
         # Draw some circles.
         #  a method to create sphere from xyz and radius
-        def create_sphere(x=0, y=0, z=0, r=5, angle=360):
+        def create_sphere(center=(0,0,0), r=5, angle=360):
             sketch = sketches.add(xyPlane)
 
             # Draw a circle.
             circles = sketch.sketchCurves.sketchCircles
-            circle = circles.addByCenterRadius(adsk.core.Point3D.create(x, y, z), r)
+            circle = circles.addByCenterRadius(adsk.core.Point3D.create(*center), r)
 
             # Draw a line to use as the axis of revolution.
             lines = sketch.sketchCurves.sketchLines
-            circle_axisLine = lines.addByTwoPoints(adsk.core.Point3D.create(x, y-r, z), adsk.core.Point3D.create(x, y+r, z))
+            circle_axisLine = lines.addByTwoPoints(adsk.core.Point3D.create(center[0], center[1]-r, center[2]), adsk.core.Point3D.create(center[0], center[1]+r, center[2]))
 
             # Get the profile defined by the circle.
             circle_prof = sketch.profiles.item(0)
@@ -54,11 +54,46 @@ def run(context):
             comp = ext.parentComponent
             return comp
         
+        # Draw some arcs.
+        #  a method to create sphere from xyz and radius
+        #  NOTE: change to point1,2,3,  and use a differnt code to decide the coordinates
+        def create_arc_3d(point1=(0,-2,0), point2=(-2,0,0), point3=(0,2,0), angle=360):
+            ''' k determines the ratio of 3 points 
+            - i.e. 1 means everything is the same distance from core, 2 is twice form top and 1 from bot, 1.5 for the left    ''' 
+            sketch = sketches.add(xyPlane)
+
+            # Draw a circle.
+            arcs = sketch.sketchCurves.sketchArcs;
+            # (*point1) - * unpacking operator:
+            arc = arcs.addByThreePoints(adsk.core.Point3D.create(*point1), adsk.core.Point3D.create(*point2), adsk.core.Point3D.create(*point3))
+
+            # Draw a line to use as the axis of revolution.
+            lines = sketch.sketchCurves.sketchLines
+            arc_axisLine = lines.addByTwoPoints(adsk.core.Point3D.create(*point1), adsk.core.Point3D.create(*point3))
+
+            # Get the profile defined by the circle.
+            arc_prof = sketch.profiles.item(0)
+
+            # Create an revolution input to be able to define the input needed for a revolution
+            # while specifying the profile and that a new component is to be created
+            revolves = rootComp.features.revolveFeatures
+            central_line = revolves.createInput(arc_prof, arc_axisLine, adsk.fusion.FeatureOperations.NewComponentFeatureOperation)
+
+            # Define that the extent is an angle of pi to get half of a torus.
+            angle = adsk.core.ValueInput.createByReal(angle/360*2*math.pi) 
+            central_line.setAngleExtent(False, angle)
+
+            # Create the extrusion.
+            ext = revolves.add(central_line)
+
+            # a component that allows further manipulation
+            comp = ext.parentComponent
+            return comp
 
         # Draw some arcs.
         #  a method to create sphere from xyz and radius
         #  NOTE: change to point1,2,3,  and use a differnt code to decide the coordinates
-        def create_arc_3d(x=0, y=0, z=0, r=5, angle=360, pitch=1, k=3, layer=1):
+        def create_arc_3d_old(x=0, y=0, z=0, r=5, angle=360, pitch=1, k=3, layer=1):
             ''' k determines the ratio of 3 points 
             - i.e. 1 means everything is the same distance from core, 2 is twice form top and 1 from bot, 1.5 for the left    ''' 
             sketch = sketches.add(xyPlane)
@@ -105,19 +140,52 @@ def run(context):
             
             # Edit the "Color" property by setting it to a random color.
             color_property= adsk.core.ColorProperty.cast(new_appearance.appearanceProperties.itemByName('Color'))
-            color_property.value = adsk.core.Color.create(rgb[0], rgb[1], rgb[2], 1) 
+            color_property.value = adsk.core.Color.create(*rgb, 1) 
             
             # Assign the new color to the occurrence.
             occurrence.appearance = new_appearance
 
 
-        sphere = create_sphere(x=0,y=0,z=0,r=5,angle=360)
-        change_appearance(sphere, rgb=(123,123,123), base_appearance_name='Aluminum - Anodized Glossy (Grey)', new_appearance_name=sphere)
+        def combine_bodies(component1, component2, operation='cut', keep_tool=True, ):
+            # https://forums.autodesk.com/t5/fusion-360-api-and-scripts/combine-cut-via-api/td-p/6673937
+            combine_features = rootComp.features.combineFeatures
 
-        for angle, layer in zip([180+90,180+75,180+60,180+45,180+30,180+15,180], [1, 2,3,4,5,6,7]):
-            # offset the z a bit otherwise the model overlapse too much
-            arc = create_arc_3d(x=0, y=0, z=layer*0.01, r=5, angle=angle, pitch=1, k=2, layer=layer)
-            change_appearance(arc, rgb=(int(layer*255/7),0, int(layer*255/7)), new_appearance_name='arc_{}'.format(layer))
+            combine_features_input = combine_features.createInput(component1, component2)
+            if operation == 'cut':
+                combine_features_input.operation = adsk.fusion.FeatureOperations.CutFeatureOperation
+            elif operation == 'join':
+                combine_features_input.operation = adsk.fusion.FeatureOperations.JoinFeatureOperation
+            elif operation == 'intersect':
+                combine_features_input.operation = adsk.fusion.FeatureOperations.IntersectFeatureOperation
+
+            combine_features_input.isKeepToolBodies = keep_tool
+
+            combine_features.add(combine_features_input)
+
+
+        def shell_around_core(central_sphere=(0,0,0,5), pitch=1, k=3, number_of_layers=5):
+            ''' a specific function to generates three points for shell arcs '''
+            x, y, z, r = central_sphere
+            arcs_points = {}
+            for layer in range(number_of_layers):
+                # offset the z a bit otherwise the model overlapse too much to cause rendering issue
+                point1 = (x, y-r-pitch*layer, z-0.01*layer)
+                point2 = (x-r-pitch*layer*(k+1)/2, y, z-0.01*layer)
+                point3 = (x, y+r+pitch*layer*k, z-0.01*layer)
+                arcs_points[layer] = (point1, point2, point3)
+
+            return arcs_points
+
+        sphere = create_sphere(center=(0,0,0),r=5,angle=360)
+        change_appearance(sphere, rgb=(123,123,123), base_appearance_name='Aluminum - Anodized Glossy (Grey)', new_appearance_name=sphere)
+        arcs_points = shell_around_core(central_sphere=(0,0,0,5), pitch=1, k=3, number_of_layers=10)
+
+        arc_3d = {}
+        for layer, angle in zip(range(7), [270-15*i for i in range(7)]):
+            arc_3d[layer] = create_arc_3d(*arcs_points[layer], angle=angle)
+            change_appearance(arc_3d[layer], rgb=(int(layer*255/7),0, int(layer*255/7)), new_appearance_name='arc_{}'.format(layer))
+        
+        combine_bodies(arc_3d[5], sphere, operation='cut', keep_tool=True)
 
     except:
         if ui:
