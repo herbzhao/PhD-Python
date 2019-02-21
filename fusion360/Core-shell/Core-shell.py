@@ -90,41 +90,6 @@ def run(context):
             comp = ext.parentComponent
             return comp
 
-        # Draw some arcs.
-        #  a method to create sphere from xyz and radius
-        #  NOTE: change to point1,2,3,  and use a differnt code to decide the coordinates
-        def create_arc_3d_old(x=0, y=0, z=0, r=5, angle=360, pitch=1, k=3, layer=1):
-            ''' k determines the ratio of 3 points 
-            - i.e. 1 means everything is the same distance from core, 2 is twice form top and 1 from bot, 1.5 for the left    ''' 
-            sketch = sketches.add(xyPlane)
-
-            # Draw a circle.
-            arcs = sketch.sketchCurves.sketchArcs;
-            arc = arcs.addByThreePoints(adsk.core.Point3D.create(x, y-r-pitch*layer, z), adsk.core.Point3D.create(x-r-pitch*layer*(k+1)/2, y, z), adsk.core.Point3D.create(x, y+r+pitch*layer*k, z))
-
-            # Draw a line to use as the axis of revolution.
-            lines = sketch.sketchCurves.sketchLines
-            arc_axisLine = lines.addByTwoPoints(adsk.core.Point3D.create(x, y-r-pitch*layer, z), adsk.core.Point3D.create(x, y+r+pitch*layer*k, z))
-
-            # Get the profile defined by the circle.
-            arc_prof = sketch.profiles.item(0)
-
-            # Create an revolution input to be able to define the input needed for a revolution
-            # while specifying the profile and that a new component is to be created
-            revolves = rootComp.features.revolveFeatures
-            central_line = revolves.createInput(arc_prof, arc_axisLine, adsk.fusion.FeatureOperations.NewComponentFeatureOperation)
-
-            # Define that the extent is an angle of pi to get half of a torus.
-            angle = adsk.core.ValueInput.createByReal(angle/360*2*math.pi) 
-            central_line.setAngleExtent(False, angle)
-
-            # Create the extrusion.
-            ext = revolves.add(central_line)
-
-            # a component that allows further manipulation
-            comp = ext.parentComponent
-            return comp
-
         def change_appearance(comp, rgb=(0,0,0), base_appearance_name='Plastic - Translucent Glossy (Yellow)', new_appearance_name='new_color'):
             # https://ekinssolutions.com/setting-colors-in-fusion-360/
             # Get the single occurrence that references the component.
@@ -146,11 +111,20 @@ def run(context):
             occurrence.appearance = new_appearance
 
 
-        def combine_bodies(component1, component2, operation='cut', keep_tool=True, ):
+        def combine_bodies(target_component, tool_components=[], operation='cut', keep_tool=True):
             # https://forums.autodesk.com/t5/fusion-360-api-and-scripts/combine-cut-via-api/td-p/6673937
-            combine_features = rootComp.features.combineFeatures
+            # https://forums.autodesk.com/t5/fusion-360-api-and-scripts/how-do-i-cut-an-occurrence-out-of-a-component/td-p/8354550
+            target_component_occ = rootComp.allOccurrencesByComponent(target_component).item(0)
+            target = target_component.bRepBodies.item(0).createForAssemblyContext(target_component_occ)
 
-            combine_features_input = combine_features.createInput(component1, component2)
+            tools = adsk.core.ObjectCollection.create()
+            tool_component_occ = []
+            for tool_component in tool_components:
+                tool_component_occ.append(rootComp.allOccurrencesByComponent(tool_component).item(0))
+                tools.add(tool_component.bRepBodies.item(0).createForAssemblyContext(tool_component_occ[-1]))
+
+            combine_features = rootComp.features.combineFeatures
+            combine_features_input = combine_features.createInput(target, tools)
             if operation == 'cut':
                 combine_features_input.operation = adsk.fusion.FeatureOperations.CutFeatureOperation
             elif operation == 'join':
@@ -169,23 +143,32 @@ def run(context):
             arcs_points = {}
             for layer in range(number_of_layers):
                 # offset the z a bit otherwise the model overlapse too much to cause rendering issue
-                point1 = (x, y-r-pitch*layer, z-0.01*layer)
-                point2 = (x-r-pitch*layer*(k+1)/2, y, z-0.01*layer)
-                point3 = (x, y+r+pitch*layer*k, z-0.01*layer)
+                point1 = (x, y-r-pitch*layer, z)
+                point2 = (x-r-pitch*layer*(k+1)/2, y, z)
+                point3 = (x, y+r+pitch*layer*k, z)
                 arcs_points[layer] = (point1, point2, point3)
 
             return arcs_points
 
         sphere = create_sphere(center=(0,0,0),r=5,angle=360)
+
         change_appearance(sphere, rgb=(123,123,123), base_appearance_name='Aluminum - Anodized Glossy (Grey)', new_appearance_name=sphere)
         arcs_points = shell_around_core(central_sphere=(0,0,0,5), pitch=1, k=3, number_of_layers=10)
 
         arc_3d = {}
         for layer, angle in zip(range(7), [270-15*i for i in range(7)]):
+            layer+=1
             arc_3d[layer] = create_arc_3d(*arcs_points[layer], angle=angle)
+
+             # NOTE: Due to the way we created arc_3d, we need to create some tools to remove the overlapping volume
+            if layer > 1:
+                # create some tools to remove the overlapping volumewith 360 degrees
+                arc_3d_tool = create_arc_3d(*arcs_points[layer-1], angle=360)
+                combine_bodies(target_component=arc_3d[layer], tool_components=[arc_3d_tool], operation='cut', keep_tool=False)
+
             change_appearance(arc_3d[layer], rgb=(int(layer*255/7),0, int(layer*255/7)), new_appearance_name='arc_{}'.format(layer))
-        
-        combine_bodies(arc_3d[5], sphere, operation='cut', keep_tool=True)
+
+            
 
     except:
         if ui:
