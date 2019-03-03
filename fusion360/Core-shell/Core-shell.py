@@ -1,5 +1,6 @@
-#Author-
+#Author- Tianheng
 #Description-
+# https://help.autodesk.com/view/fusion360/ENU/?guid=GUID-DE98632B-3DC0-422B-A1C6-8A5A15C99E11
 
 import adsk.core, adsk.fusion, traceback
 import math
@@ -22,10 +23,12 @@ def run(context):
         # Create a new sketch on the xy plane.
         sketches = rootComp.sketches
         xyPlane = rootComp.xYConstructionPlane
+        yzPlane = rootComp.yZConstructionPlane
+        xzPlane = rootComp.xZConstructionPlane
 
         # Draw some circles.
         #  a method to create sphere from xyz and radius
-        def create_sphere(center=(0,0,0), r=5, angle=360):
+        def create_sphere(center=(0,0,0), r=5, angle=360, name='sphere'):
             sketch = sketches.add(xyPlane)
 
             # Draw a circle.
@@ -42,22 +45,23 @@ def run(context):
             # Create an revolution input to be able to define the input needed for a revolution
             # while specifying the profile and that a new component is to be created
             revolves = rootComp.features.revolveFeatures
-            central_line = revolves.createInput(circle_prof, circle_axisLine, adsk.fusion.FeatureOperations.NewComponentFeatureOperation)
+            revolves_input = revolves.createInput(circle_prof, circle_axisLine, adsk.fusion.FeatureOperations.NewComponentFeatureOperation)
 
             # Define that the extent is an angle of pi to get half of a torus.
             angle = adsk.core.ValueInput.createByReal(angle/360*2*math.pi) 
-            central_line.setAngleExtent(False, angle)
+            revolves_input.setAngleExtent(False, angle)
 
             # Create the extrusion.
-            ext = revolves.add(central_line)
+            ext = revolves.add(revolves_input)
             # a component that allows further manipulation
             comp = ext.parentComponent
+            comp.name = name
             return comp
         
         # Draw some arcs.
         #  a method to create sphere from xyz and radius
         #  NOTE: change to point1,2,3,  and use a differnt code to decide the coordinates
-        def create_arc_3d(point1=(0,-2,0), point2=(-2,0,0), point3=(0,2,0), angle=360):
+        def create_arc_3d(point1=(0,-2,0), point2=(-2,0,0), point3=(0,2,0), angle=360, name='arc_3d'):
             ''' k determines the ratio of 3 points 
             - i.e. 1 means everything is the same distance from core, 2 is twice form top and 1 from bot, 1.5 for the left    ''' 
             sketch = sketches.add(xyPlane)
@@ -77,17 +81,18 @@ def run(context):
             # Create an revolution input to be able to define the input needed for a revolution
             # while specifying the profile and that a new component is to be created
             revolves = rootComp.features.revolveFeatures
-            central_line = revolves.createInput(arc_prof, arc_axisLine, adsk.fusion.FeatureOperations.NewComponentFeatureOperation)
+            revolves_input = revolves.createInput(arc_prof, arc_axisLine, adsk.fusion.FeatureOperations.NewComponentFeatureOperation)
 
             # Define that the extent is an angle of pi to get half of a torus.
             angle = adsk.core.ValueInput.createByReal(angle/360*2*math.pi) 
-            central_line.setAngleExtent(False, angle)
+            revolves_input.setAngleExtent(False, angle)
 
             # Create the extrusion.
-            ext = revolves.add(central_line)
+            ext = revolves.add(revolves_input)
 
             # a component that allows further manipulation
             comp = ext.parentComponent
+            comp.name = name
             return comp
 
         def change_appearance(comp, rgb=(0,0,0), base_appearance_name='Plastic - Translucent Glossy (Yellow)', new_appearance_name='new_color'):
@@ -136,6 +141,37 @@ def run(context):
 
             combine_features.add(combine_features_input)
 
+    
+        def cross_section(plane='xy', offset=5, direction = -1):
+            # create a plane from (0,0,0) to point, and extend to large area
+            if plane == 'xy':
+                sketch = sketches.add(xyPlane)
+            elif plane =='xz':
+                sketch = sketches.add(xzPlane)
+            elif plane =='yz':
+                sketch = sketches.add(yzPlane)
+
+            # Draw a huge circle for extrusion.
+            circles = sketch.sketchCurves.sketchCircles
+            circle = circles.addByCenterRadius(adsk.core.Point3D.create(0,0,0), 100)
+            # Get the profile defined by the circle.
+            circle_prof = sketch.profiles.item(0)
+
+            # Extrude to remove the             
+            # https://help.autodesk.com/view/fusion360/ENU/?guid=GUID-CB1A2357-C8CD-474D-921E-992CA3621D04
+            extrudes = rootComp.features.extrudeFeatures
+            extrudeInput = extrudes.createInput(circle_prof, adsk.fusion.FeatureOperations.CutFeatureOperation)
+            extrude_distance = adsk.fusion.DistanceExtentDefinition.create(adsk.core.ValueInput.createByReal(100*direction))
+            # Create a start extent that starts from a brep face with an offset of 10 mm.
+            start_offset = adsk.fusion.OffsetStartDefinition.create(adsk.core.ValueInput.createByReal(offset))
+
+            # Create a start extent that starts from a brep face with an offset of 10 mm.
+            # taperAngle should be 0 because extrude start face is not a planar face in this case
+            extrudeInput.startExtent = start_offset
+            extrudeInput.setOneSideExtent(extrude_distance, adsk.fusion.ExtentDirections.PositiveExtentDirection)        
+            # Create the extrusion
+            extrude = extrudes.add(extrudeInput)
+
 
         def shell_around_core(central_sphere=(0,0,0,5), pitch=1, k=3, number_of_layers=5):
             ''' a specific function to generates three points for shell arcs '''
@@ -156,7 +192,7 @@ def run(context):
         arcs_points = shell_around_core(central_sphere=(0,0,0,5), pitch=1, k=3, number_of_layers=10)
 
         arc_3d = {}
-        for layer, angle in zip(range(7), [270-15*i for i in range(7)]):
+        for layer, angle in zip(range(7), [-1*(270-15*i) for i in range(7)]):
             layer+=1
             arc_3d[layer] = create_arc_3d(*arcs_points[layer], angle=angle)
 
@@ -167,6 +203,8 @@ def run(context):
                 combine_bodies(target_component=arc_3d[layer], tool_components=[arc_3d_tool], operation='cut', keep_tool=False)
 
             change_appearance(arc_3d[layer], rgb=(int(layer*255/7),0, int(layer*255/7)), new_appearance_name='arc_{}'.format(layer))
+
+        cross_section()
 
             
 
