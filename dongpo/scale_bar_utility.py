@@ -44,18 +44,23 @@ class scale_bar_finder_class():
             
             # if the 'enter'  key is pressed, break from the loop
             if key == 13:
-                scale_bar_distance = easygui.enterbox("What's the scale bar in real distance?", 'Pixel distance: {}'.format(scale_bar_pixel), '1')
-                scale_bar_distance_per_pixel = float(scale_bar_distance)/float(scale_bar_pixel)
-                print(scale_bar_distance_per_pixel)
+                try:
+                    scale_bar_distance = easygui.enterbox("What's the scale bar in real distance?", 'Pixel distance: {}'.format(scale_bar_pixel), '1')
+                    scale_bar_distance_per_pixel = float(scale_bar_distance)/float(scale_bar_pixel)
+                except:
+                    scale_bar_distance_per_pixel = 1
+                print('scale bar: {}'.format(scale_bar_distance_per_pixel))
+                
                 cv2.destroyWindow('Draw scale bar and press enter')
                 return scale_bar_distance_per_pixel
 
 
 
-
-# image_name = 'X3- plasma 4min -109'
-# image_path = r'images\{}.jpg'.format(image_name)
-# # load the image, clone it for output, and then convert it to grayscale
-# image = cv2.imread(image_path)
-# scale_bar_finder = scale_bar_finder_class(image)
-# scale_bar_distance_per_pixel = scale_bar_finder.draw_scale_bar()
+if __name__ == "__main__":
+    folder_name = r"D:\Dropbox\000 - Inverse opal balls\Correlation analysis" +"\\"
+    image_name = 'X4-2min -158'
+    image_path = r'{}images\{}.jpg'.format(folder_name, image_name)
+    # load the image, clone it for output, and then convert it to grayscale
+    image = cv2.imread(image_path)
+    scale_bar_finder = scale_bar_finder_class(image)
+    scale_bar_distance_per_pixel = scale_bar_finder.draw_scale_bar()
