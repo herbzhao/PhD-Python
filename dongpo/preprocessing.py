@@ -14,11 +14,12 @@ class preprocessor_class():
         return total_area
 
 
-    def convert_to_grayscale(self, show=True):
+    def convert_to_grayscale(self, invert=True, show=True):
         ''' convert image to grayscale for later thresholding''' 
         self.image_gray = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
-        #  invert the black and white
-        self.image_gray = cv2.bitwise_not(self.image_gray)
+        if invert is True:
+            #  invert the black and white
+            self.image_gray = cv2.bitwise_not(self.image_gray)
         if show is True:
             cv2.imshow("Inversed gray image", self.image_gray)
             cv2.waitKey(0)

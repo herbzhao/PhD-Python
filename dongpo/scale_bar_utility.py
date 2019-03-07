@@ -32,28 +32,47 @@ class scale_bar_finder_class():
             key = cv2.waitKey(100) & 0xFF
             # draw the rectangle for the user clicked points 
             if self.end_point != ():
-                    self.image = self.original_image.copy()
-                    cv2.rectangle(self.image, self.start_point, self.end_point, (0, 255, 0), 2)
-                    scale_bar_pixel = self.end_point[0] - self.start_point[0]
-                    self.start_point, self.end_point = [(),()]
+                # remove the existing drawing
+                self.image = self.original_image.copy()
+                cv2.rectangle(self.image, self.start_point, self.end_point, (0, 255, 0), 2)
+                # show the bounding box's dimension
+                x1, x2 = (min(self.start_point[0], self.end_point[0]), max(self.start_point[0], self.end_point[0]))
+                y1, y2 = (min(self.start_point[1], self.end_point[1]), max(self.start_point[1], self.end_point[1]))
+
+                box_width_pixel = x2 - x1
+                box_height_pixel = y2 - y1
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                # if scale bar exist, use real distance
+                try: 
+                    annotation = "width: {:.3f}, height: {:.3f}".format(box_width_pixel*self.scale_bar_distance_per_pixel, box_height_pixel*self.scale_bar_distance_per_pixel)
+                except AttributeError:
+                    annotation = "width: {}, height: {}".format(box_width_pixel, box_height_pixel)
+                cv2.putText(self.image,annotation,self.start_point, font, 1,(255,255,255),2,cv2.LINE_AA)
+                
+                # reset the points
+                self.start_point, self.end_point = [(),()]
+            
+            # if the 'enter'  key is pressed, break from the loop
+            if key == 13 or key == ord('s'):
+                try:
+                    scale_bar_distance = easygui.enterbox("What's the scale bar in real distance?", 'Pixel distance: {}'.format(box_width_pixel), '1')
+                    self.scale_bar_distance_per_pixel = float(scale_bar_distance)/float(box_width_pixel)
+                except:
+                    self.scale_bar_distance_per_pixel = 1
+                print('scale bar: {}'.format(self.scale_bar_distance_per_pixel))
+                if key == 13:
+                    cv2.destroyWindow('Draw scale bar and press enter')
+                    return self.scale_bar_distance_per_pixel
+
+            # if the 'x' or 'esc' key is pressed, break from the loop
+            if key == ord("c") :
+                # self.image = self.image[y1:y2, x1:x2]
+                self.image = self.image[y1:y2, x1:x2]
 
             # if the 'x' or 'esc' key is pressed, break from the loop
             if key == ord("x") or key == 27:
                 cv2.destroyWindow('Draw scale bar and press enter')
                 break
-            
-            # if the 'enter'  key is pressed, break from the loop
-            if key == 13:
-                try:
-                    scale_bar_distance = easygui.enterbox("What's the scale bar in real distance?", 'Pixel distance: {}'.format(scale_bar_pixel), '1')
-                    scale_bar_distance_per_pixel = float(scale_bar_distance)/float(scale_bar_pixel)
-                except:
-                    scale_bar_distance_per_pixel = 1
-                print('scale bar: {}'.format(scale_bar_distance_per_pixel))
-                
-                cv2.destroyWindow('Draw scale bar and press enter')
-                return scale_bar_distance_per_pixel
-
 
 
 if __name__ == "__main__":
