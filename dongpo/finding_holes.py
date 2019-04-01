@@ -46,12 +46,10 @@ preprocessor.convert_to_grayscale()
 # preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'dilation', 'erosion', 'closing', 'opening', 'dilation', ])
 
 # NOTE: for the bigger holes  e.g. X1- plasma 4min -142.jpg
-preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-125)
+preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-150)
 preprocessor.adjust_contrast_and_brightness(alpha=0.8, beta=0)
-
-
 preprocessor.convert_to_binary(method='normal', thresh=100, block_size=5, C_value=2)
-preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'erosion', 'erosion', 'closing', 'opening', 'dilation', 'dilation', ])
+preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'erosion',  'erosion',  'dilation', 'closing',  'opening'])
 
 # NOTE: for the bigger holes  e.g. C3 - top view -03.jpg
 # preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-400)
@@ -68,7 +66,9 @@ image_bw = preprocessor.image_bw
 contour_detector = contour_detector_class(image_bw, image_output)
 contour_detector.find_contours()
 # Warning: one parameter to change
-contour_areas = contour_detector.filter_contours(method='distribution', excluding_portion=0.1)
+# contour_areas = contour_detector.filter_contours(method='distribution', excluding_portion=0.05, upper_k=5, lower_k=0.1)
+contour_areas = contour_detector.filter_contours(method='absolute_area', excluding_portion=0.05, upper_k=3, lower_k=0.3)
+
 centers_pixel, radii_pixel = contour_detector.find_bounding_circles(show=False)
 image_output = contour_detector.image_output
 
