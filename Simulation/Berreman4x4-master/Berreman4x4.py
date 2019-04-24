@@ -1,6 +1,6 @@
 # Encoding: utf-8
 
-# Copyright (C) 2012-2016 Olivier Castany
+# Copyright (C) 2012 Olivier Castany
 # This program is free software (see LICENCE file)
 
 """Berreman4x4: module implementing Berreman's 4x4 matrix method.
@@ -9,7 +9,7 @@ See file "documentation.pdf"
 """
 
 import numpy
-import scipy.linalg, scipy.interpolate
+import scipy.linalg
 from numpy import pi, newaxis
 import matplotlib, matplotlib.pyplot
 
@@ -135,25 +135,6 @@ class SellmeierLaw(DispersionLaw):
         n2 = self.A + self.B * lbda**2 / (lbda**2 - self.lbda0**2)
         return numpy.sqrt(n2)
 
-class  DispersionTable(DispersionLaw):
-    """Dispersion law specified by a table"""
-    
-    n_law = None    # Refractive index law (interpolation)
-    
-    def __init__(self, lbda=None, n=None):
-        """Create a dispersion law from a refraction index list.
-        
-        'lbda'  : Wavelength (m)
-        'n'     : Refractive index (data of same length)
-        """
-        if lbda is not None:
-            self.n_law = scipy.interpolate.interp1d(lbda, n, kind='cubic')
-        
-    def getValue(self, lbda):
-        """Returns refractive index for wavelength 'lbda'."""
-        return self.n_law(lbda)
-
-        
 #########################################################
 # Materials...
 
@@ -458,12 +439,12 @@ def hs_propagator_Pade(Delta, h, k0, q=7):
     P_hs_Pade(h)·P_hs_Pade(-h) = 1. 
     Such property may be suitable for use with Z. Lu's method.
     """
-    P_hs_Pade = scipy.linalg.expm(1j * h * k0 * Delta, q)
+    P_hs_Pade = scipy.linalg.expm(1j * h * k0 * Delta)#, q)
     return numpy.matrix(P_hs_Pade)
 
 def hs_propagator_Taylor(Delta, h, k0, q=5):
     """Returns propagator using Taylor series of order 'q'."""
-    P_hs_Taylor = scipy.linalg.expm3(1j * h * k0 * Delta, q+1)
+    P_hs_Taylor = scipy.linalg.expm3(1j * h * k0 * Delta)#, q+1)
     # 'q+1' to correct SciPy bug 1687
     return numpy.matrix(P_hs_Taylor)
 
@@ -554,11 +535,11 @@ class IsotropicHalfSpace(HalfSpace):
       Can be equally used for the front half-space (Φ = Φi) or for the back 
       half-space (Φ = Φt).
 
-    * Provides relations between incidence angle Φ and reduced wave vector Kx.
+    * Provides relations between angle Φ and reduced wave vector Kx.
 
-      As detailed in the documentation, 'Φ' is the angle of the plane wave 
-      traveling to the right (angle measured with respect to z axis and 
-      oriented by y). The angle of the wave traveling to the left is '-Φ'.
+      'Φ' is the angle of the plane wave traveling to the right (angle measured
+      with respect to z axis and oriented by y). '-Φ' is the angle of the wave 
+      traveling to the left.
     """
 
     def __init__(self, material=None):
@@ -571,12 +552,9 @@ class IsotropicHalfSpace(HalfSpace):
     def get_Kx_from_Phi(self, Phi, k0=1e6):
         """Returns the value of Kx.
         
-        'Phi' : incidence angle of the wave (radians)
-        'k0'  : wavenumber in vacuum
+        'Phi' : angle of the wave traveling to the right (radians)
+        'k0' : wavenumber in vacuum
 
-        As detailed in the documentation, 'Phi' is the angle of the wave 
-        traveling to the right with respect to the horizontal.
-        
         kx = n k0 sin(Φ) : Real and constant throughout the structure. 
                            If n ∈ ℂ, then Φ ∈ ℂ
         Kx = kx/k0 = n sin(Φ) : Reduced wavenumber.
@@ -591,10 +569,8 @@ class IsotropicHalfSpace(HalfSpace):
         'Kx' : Reduced wavenumber,      Kx = kx/k0 = n sin(Φ)
         'k0' : wavenumber in vacuum,    kx = n k0 sin(Φ)
 
-        Returns : reduced wave number Kz = kz/k0
+        Returns : reduced wave number Kz
         """
-        # Not vectorized. Could be? 
-        # Test type(Kz2)
         n = self.material.getRefractiveIndex(2*pi/k0)
         Kz2 = n**2 - Kx**2
         return numpy.sqrt(complex(Kz2))
@@ -607,7 +583,6 @@ class IsotropicHalfSpace(HalfSpace):
 
         Returns : angle Phi in radians.
         """
-        # May be vectorized when I have time?
         n = self.material.getRefractiveIndex(2*pi/k0)
         sin_Phi = Kx/n
         if abs(sin_Phi) > 1:
@@ -887,7 +862,7 @@ class InhomogeneousLayer(MaterialLayer):
         h = numpy.diff(z)
         zmid = (z[:-1] + z[1:]) / 2.
         tensor = [self.material.getTensor(z, lbda) for z in zmid]
-        return list(zip(h, tensor))
+        return zip(h, tensor)
 
     def getPropagationMatrix(self, Kx, k0=1e6, inv=False):
         """Returns propagation matrix P."""
@@ -1027,7 +1002,7 @@ class RepeatedLayers(Layer):
 
 
 #########################################################
-# Structure to simulate...
+# Structures...
 
 class Structure:
     """Description of the whole structure.
@@ -1113,9 +1088,9 @@ class Structure:
         'v' : unit vector, direction of evaluation
         """
         profile = self.getPermittivityProfile(lbda)
-        (h, epsilon) = list(zip(*profile))  # unzip
+        (h, epsilon) = zip(*profile)
         n = [ numpy.sqrt((v.T * eps * v)[0,0]) for eps in epsilon ]
-        return list(zip(h,n))
+        return zip(h,n)
 
     def drawStructure(self, method="graph", lbda=1e-6, margin=0.15):
         """Draw the structure.
@@ -1124,7 +1099,7 @@ class Structure:
         """
         # Build index profile
         profile = self.getIndexProfile(lbda)
-        (h,n) = list(zip(*profile))     # unzip
+        (h,n) = zip(*profile)
         n = numpy.array(n)
         z_layers = numpy.hstack((0., numpy.cumsum(h[1:-1])))
         z_max = z_layers[-1]
@@ -1149,10 +1124,10 @@ class Structure:
         fig = matplotlib.pyplot.figure(figsize=(8,3))
         ax = fig.add_subplot("111")
         fig.subplots_adjust(bottom=0.17)
-        ax.step(z, n.real, 'black', where='post')
+        ax.step(z, n, 'black', where='post')
         ax.spines['top'].set_visible(False)
         ax.xaxis.set_ticks_position('bottom')
-        ax.set_xlabel("z (m)")
+        ax.set_xlabel("z (nm)")
         ax.set_ylabel("n")
         ax.ticklabel_format(style='scientific', axis='x', scilimits=(0,0))
         ax.set_xlim(z.min(), z.max())
@@ -1197,15 +1172,15 @@ class Structure:
         
         Returns : tuple (T_ri, T_ti)
 
-        T_ri is the Jones matrix for reflexion : [[r_pp, r_ps],
-                                                  [r_sp, r_ss]]
+        T_ri is the Jones matrix in reflexion : [[r_pp, r_ps],
+                                                 [r_sp, r_ss]]
 
-        T_ti is the Jones matrix for transmission : [[t_pp, t_ps],
-                                                     [t_sp, t_ss]]
+        T_ti is the Jones matrix in transmission : [[t_pp, t_ps],
+                                                    [t_sp, t_ss]]
        
         Naming convention (Fujiwara, p. 220):
-        't_ps' : transmitted 'p' component for an 's' incident wave
-        't_ss' : transmitted 's' component for an 's' incident wave
+        't_ps' : transmitted p component for a s incident wave
+        't_ss' : transmitted s component for a s incident wave
         ...
 
         Note: If all materials are isotropic, r_ps = r_sp = t_sp = t_ps = 0
@@ -1217,8 +1192,7 @@ class Structure:
         T = self.getStructureMatrix(Kx,k0)
         # Extraction of T_it out of T. "2::-2" means integers {2,0}.
         T_it = T[2::-2,2::-2]
-        # Calculate the inverse and make sure it is a matrix.
-        T_ti = numpy.matrix(numpy.linalg.inv(T_it))
+        T_ti = numpy.matrix(scipy.linalg.inv(T_it))
         
         # Extraction of T_rt out of T. "3::-2" means integers {3,1}.
         T_rt = T[3::-2,2::-2]
@@ -1234,282 +1208,112 @@ class Structure:
         of the Poynting vector:       T = P_t_z / P_i_z
         For isotropic media, we have: T = kb'/kf' |t_bf|^2
         The correction coefficient is kb'/kf' 
-        
-        Note : For the moment it is only meaningful for isotropic half spaces.
         """
         Kzf = self.frontHalfSpace.get_Kz_from_Kx(Kx, k0)
-        if isinstance(self.backHalfSpace, IsotropicHalfSpace):
-            Kzb = self.backHalfSpace.get_Kz_from_Kx(Kx, k0)
-            return Kzb.real / Kzf.real
-        else:
-            return None
-
-    def evaluate(self, Kx, k0=1e6):
-        """Return the Evaluation of the structure for the given parameters"""
-        return Evaluation(self, Kx, k0)
+        Kzb = self.backHalfSpace.get_Kz_from_Kx(Kx, k0)
+        return Kzb.real / Kzf.real
 
 
 #########################################################
-# Record of the evaluation of one structure...
+# Data extraction from the Jones matrices...
 
-class Evaluation:
-    """Record of a simulation result."""
-    
-    structure = None        # Simulated structure
-    Kx = None               # Reduced incidence wavenumber
-    k0 = None               # Wavenumber
-    T_ri = None             # Jones matrix for reflection
-    T_ti = None             # Jones matrix for transmission
-    power_corr = None       # Power correction coefficient for transmission
-        
-    def __init__(self, structure, Kx, k0=1e-6):
-        """Record the result of the requested simulation."""
-        self.structure = structure
-        self.Kx = Kx
-        self.k0 = k0
-        (self.T_ri, self.T_ti) = structure.getJones(Kx,k0)
-        self.power_corr = structure.getPowerTransmissionCorrection(Kx,k0)
+def _getPolarIndex(char):
+    """Returns array index value for polarization 'char'
 
-
-#########################################################
-# Work with Jones matrices...
-
-class _MonitorChangers:
-    """Provides ability to monitor the changes of an object.
-    
-    Usage : MonitoredClass = _MonitorChangers.monitorized(ClassToMonitor)
-   
-    * MonitoredClass is a monitorized copy of ClassToMonitor
-
-    ClassToMonitor should expose two attributes:
-    
-    * 'changed' : a boolean flag that becomes True when a change happens.
-      It can be reset to False by other methods of the class, typically in 
-      method update()
-    
-    * '_changer_methods' : a list of method names that are declared as 
-      changers. They will be wrapped so that every call to one of these
-      methods will turn the 'change' flag to True.
+    'char' : 'p', 'L' -> 0
+             's', 'R' -> 1
     """
+    if   char == 'p' or char == 'L':
+        return 0
+    elif char == 's' or char == 'R':
+        return 1
+    else:
+        raise ValueError("Polarization name not recognized.")
 
-    @staticmethod
-    def proxy_decorator(method):
-        """Return the wrapped 'method'."""
-        def wrapper(self, *args, **kw):
-            self.changed = True
-            return method(self, *args, **kw)
-        wrapper.__name__ = method.__name__
-        return wrapper
+def _getOutputWaveIndex(char):
+    """Returns array index value for output wave 'char'
 
-    @classmethod
-    def monitorized(self, cls):
-        """Return monitorized class after wrapping 'cls._changer_methods'."""
-        # Create new dictionary and wrap methods
-        new_dict = cls.__dict__.copy()
-        for method_name in cls._changer_methods:
-            method = getattr(cls, method_name)
-            new_dict[method_name] = self.proxy_decorator(method)
-        # Return new class
-        return type("Monitorized_" + cls.__name__, cls.__bases__, new_dict)
-
-@_MonitorChangers.monitorized
-class DataList(list):
-    """A class for manipulating the simulation results.
-    
-    Note : The functions getCircularJones() and getEllipsometryParameters()
-    are defined as class methods so that they can be called both from instances
-    ans from the class itself.
+    'char' : 'r' -> 0
+             't' -> 1
     """
+    if   char == 'r':
+        return 0
+    elif char == 't':
+        return 1
+    else:
+        raise ValueError("Coefficient name should start with 'r' or 't'.")
 
-    # Transformation matrix from the (s,p) basis to the (L,R) basis...
-    C = 1 / numpy.sqrt(2) * numpy.matrix([[1, 1], [1j, -1j]])
-    D = 1 / numpy.sqrt(2) * numpy.matrix([[1, 1], [-1j, 1j]])
-    invC = numpy.linalg.inv(C)
-    invD = numpy.linalg.inv(D)
-
-    # For monitoring changes (used by the decorator)
-    _changer_methods = ["__setitem__", "__delitem__", "pop", "append", 
-                        "extend", "insert", "remove", "__iadd__"]
-    changed = False
-
-    # Parameters for table update...
-    _evaluation_keys = ("Kx", "k0", "T_ri", "T_ti", "power_corr")
-    compute_power_transmission = False
-    compute_circular = False
-    compute_ellipsometry = False
-
-    # Initialization...
-    def __init__(self, *evaluation_seq):
-        """Build a data storage from Evaluation objects."""
-        list.__init__(self, *evaluation_seq)
-        self.changed = True
-        self.compute_power_transmission = False
-        self.compute_circular = False
-        self.compute_ellipsometry = False
-
-    def update(self):
-        """Build the data arrays"""
-        # Build arrays from the Evaluation objects...
-        keys = self._evaluation_keys
-        d = self._extract_list(keys, self)
-        for k in keys:
-            setattr(self, k, numpy.array(d[k]))
-
-        # Rename some data...
-        (self.r, self.t) = (self.T_ri, self.T_ti) 
-
-        # Compute additional data...
-        self.R  = abs(self.T_ri)**2
-
-        if self.compute_power_transmission:
-            self.T  = abs(self.T_ti)**2 * self.power_corr[:,newaxis,newaxis]
-       
-        if self.compute_circular:
-            self.Tc_ri = self.getCircularJones(self.T_ri, "reflection")
-            self.Rc = abs(self.Tc_ri)**2
-            self.Tc_ti = self.getCircularJones(self.T_ti, "transmission")
-            self.Tc = abs(self.Tc_ti)**2 * self.power_corr[:,newaxis,newaxis]
-
-        if self.compute_ellipsometry:
-            (self.Psi, self.Delta) = self.getEllipsometryParameters(self.T_ri)
-        
-        # Reset flag...
-        self.changed = False
-
-    @classmethod
-    def _extract_list(cls, keys, l):
-        """Recursive extraction of the 'keys' from objects in list 'l'.
-        
-        'l' : List of objects (the list may be nested to any level).
-        'keys' : Sequence of strings naming the object attributes to extract
-
-        Returns : Dictionary with the extracted keys, reproducing the structure
-                  of the original list.
-        """
-        d = {k:[] for k in keys}
-        if isinstance(l[0], list):
-            for ll in l:
-                dd = cls._extract_list(keys, ll)
-                for k in keys: d[k].append(dd[k])
-        else:
-            for ob in l:
-                for k in keys: d[k].append(getattr(ob, k))
-        return d
-
-    @classmethod
-    def getCircularJones(cls, J, direction="reflection"):
-        """Return the Jones matrix for the circular polarization basis (L,R)
-        
-        The Jones matrices for reflection and transmission (T_ri, T_ti) are
-        based on the (p,s) polarization basis. Their shape is [...,2,2].
-       
-        The Jones matrices in the (L, R) circular polarizations are 
-        Tc_ri = D⁻¹ T_ri C   and   Tc_ti = C⁻¹ T_ti C
-        """
-        if direction[0] == 'r':
-            return numpy.einsum('ij,...jk,kl->...il', cls.invD, J, cls.C)
-        if direction[0] == 't':            
-            return numpy.einsum('ij,...jk,kl->...il', cls.invC, J, cls.C)
-
-    @classmethod
-    def getEllipsometryParameters(cls, J):
-        """Calculate the ellipsomerty parameters from Jones matrix 'J'.
-        
-        The Jones matrix for reflexion is 'T_ri', with shape [...,2,2].
+def extractCoefficient(Jones, pos):
+    """Extracts the desired coefficient from the Jones matrix.
     
-        Ellipsometry coefficients are defined by the relation
-        T_ri / r_ss = [[ tan(Ψ_pp)*exp(-i Δ_pp) , tan(Ψ_ps)*exp(-i Δ_ps) ]
-                       [ tan(Ψ_sp)*exp(-i Δ_sp) ,           1            ]]
+    'Jones' : pair of (Jr, Jt) reflexion and transmission Jones matrices
+              may be an array of shape [...,2,2,2]
     
-        The returned arrays are the angles in degrees, in a tuple
-           Psi = [[ Ψ_pp, Ψ_ps ]        Delta = [[ Δ_pp, Δ_ps ]
-                  [ Ψ_sp, 45°  ]],               [ Δ_sp,  0°  ]].
-        
-        Note: Convention for ellipsometry is used.
-        See Fujiwara, (4.4), (4.6), (6.14), (6.15)     
-        """
-        r_ss = J[...,1,1]           # Extract 'r_ss' and complement shape for
-        r_ss = numpy.array(r_ss)    # element-wise division (the second line
-        r_ss.shape += (1,1)         # works around a Numpy bug)
-        S = J / r_ss                # Normalize matrix
-        S[...,0,:] = -S[...,0,:]    # Change to ellipsometry sign convention
+    'pos' : name of the desired coefficient 'r_sp', 't_pp', 'r_LR', ...
+
+    Returns : desired coefficient value
+    """
+    J = numpy.array(Jones)
+    i0 = _getOutputWaveIndex(pos[0])
+    i1 = _getPolarIndex(pos[2])
+    i2 = _getPolarIndex(pos[3])
+    return J[...,i0,i1,i2]
+
+# Transformation matrix from the (s,p) basis to the (L,R) basis...
+C = 1 / numpy.sqrt(2) * numpy.matrix([[1, 1], [1j, -1j]])
+D = 1 / numpy.sqrt(2) * numpy.matrix([[1, 1], [-1j, 1j]])
+TM = numpy.array([C,C])
+invC = numpy.matrix(scipy.linalg.inv(C))
+invD = numpy.matrix(scipy.linalg.inv(D))
+invTM = numpy.array([invD, invC])
+
+def circularJones(Jones):
+    """Returns the Jones matrices for circular polarization basis
     
-        Psi = numpy.arctan(numpy.abs(S))*180/pi
-        Delta = -numpy.angle(S, deg=True)
-        return (Psi, Delta)
-
-
-    def get(self, name):
-        """Return the data for the requested coefficient 'name'.
-        
-        Examples for 'name'...
-        'r_sp' : Amplitude reflection coefficient from 's' to 'p' polarization.
-        'r_LR' : Reflection from circular right to circular left polarization.
-        'T_pp' : Power transmission coefficient from 'p' to 'p' polarization.
-        'Ψ_ps', 'Δ_pp' : Ellipsometry parameters.
-
-        Note : 'Ψ', 'Δ' are shortcuts for 'Ψ_pp' and 'Δ_pp', which are the only
-        non zero parameters for samples with isotropic layers.
-
-        For more information about the definition of the...
-        * ellipsomtery parameters see getEllipsometryParameters()
-        * circular polarization, see getCircularJones()
-
-        Returns : array of result
-        """
-        param = name[0]
-
-        # Check if some tables should be activated...
-        power_transmission = param == 'T'
-        circular = len(name) > 1 and name[2] in ['L','R']
-        ellipsometry = param in ['Ψ', 'Δ']
-
-        if not self.compute_power_transmission and power_transmission:
-            self.compute_power_transmission = True
-            self.changed = True
-
-        if not self.compute_ellipsometry and ellipsometry:
-            self.compute_ellipsometry = True
-            self.changed = True
-
-        if not self.compute_circular and circular:
-            self.compute_circular = True
-            self.changed = True
-
-        if self.changed:
-            self.update()
-
-        # Read the requested indices...
-        (i,j) = map(self._polarIndex, name[2:4]) if len(name) > 1 else (0,0)
-
-        # Select the requested array...
-        if   param == 'r':
-            M = self.Tc_ri if circular else self.T_ri
-        elif param == 't':
-            M = self.Tc_ti if circular else self.T_ti
-        elif param == 'R':
-            M = self.Rc if circular else self.R
-        elif param == 'T':
-            M = self.Tc if circular else self.T
-        elif param == 'Ψ':
-            M = self.Psi
-        elif param == 'Δ':
-            M = self.Delta
-
-        # Return the requested data...
-        return M[...,i,j]
-
-    def _polarIndex(self, char):
-        """Return polarization index for character 'char'.
-        
-        Returned value : 'p', 'L' -> 0
-                         's', 'R' -> 1
-        """
-        if   char in ['p', 'L']:
-            return 0
-        elif char in ['s', 'R']:
-            return 1
+    'Jones' : pair of (Jr, Jt) reflexion and transmission Jones matrices
+              may be an array of shape [...,2,2,2]
    
+    The Jones matrices for circular polarization are Jr^c = D⁻¹ Jr C  and
+    Jt^c = C⁻¹ Jt C.
+
+    Returns : array of the same shape.
+    """
+    J = numpy.array(Jones)
+    P = (J[...,:,:,newaxis] * TM[...,newaxis,:,:]).sum(axis=-2)
+    P = (invTM[...,:,:,newaxis] * P[...,newaxis,:,:]).sum(axis=-2)
+    return P
+
+def extractEllipsoParam(Jr):
+    """Return the ellipsomerty parameters.
+    
+    'Jr' : Jones matrix for reflection
+
+    Ellipsometry coefficients are introduced by 
+    Jr / r_ss = [[ tan(Ψ_pp)*exp(-i Δ_pp) , tan(Ψ_ps)*exp(-i Δ_ps) ]
+                 [ tan(Ψ_sp)*exp(-i Δ_sp) ,           1            ]]
+
+    Returns : matrix([[Ψ_pp, Δ_pp],          Angles in degrees with:
+                      [Ψ_ps, Δ_ps],          * tan(Ψ) ≥ 0, Ψ ∈ [0, π/2]
+                      [Ψ_sp, Δ_sp]])         * Δ ∈ [-π, π]
+    
+    Note: Convention for ellipsometry is used.
+    See Fujiwara, (4.4), (4.6), (6.14), (6.15)     
+    """
+    r_ss = Jr[1,1]
+    S = Jr / r_ss   # Normalized matrix (element-wise division)
+    S[0] = -S[0]    # Change to ellipsometry convention
+
+    Psi = numpy.arctan(numpy.abs(S))*180/pi
+    Delta = -numpy.angle(S, deg=True)
+
+    PsiDelta = numpy.vstack((Psi.flatten(), Delta.flatten())).T
+    # Ordering: matrix([[Psi_pp, Delta_pp],
+    #                   [Psi_ps, Delta_ps],
+    #                   [Psi_sp, Delta_sp]
+    #                   [  45  ,     0   ]])
+    return PsiDelta[:3,:]
+
+
 
 ###############################################################################
 ###############################################################################
@@ -1684,7 +1488,7 @@ class _TwistedLayer:
         # Name AP : A for "alpha", P for "propagation matrix"
         left_idx = Deltas.shape[:-2]  
                 # left indices of array Deltas : (alpha,Kx)
-        ap = [ [ scipy.linalg.expm(1j * k_0 * Deltas[i] * dz, q=3)
+        ap = [ [ scipy.linalg.expm(1j * k_0 * Deltas[i] * dz)#, q=3)
                  for k_0 in k0 ]
                for i in numpy.ndindex(left_idx) ]
         AP = numpy.array(ap)            # shape : (prod(left_idx),k0,4,4)

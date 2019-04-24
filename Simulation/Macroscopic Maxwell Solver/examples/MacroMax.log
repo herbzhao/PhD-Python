@@ -1,0 +1,3 @@
+2019-04-17 10:17:13,142|MacroMax-INFO: Module pyfftw for FFTW not found, using numpy Fast Fourier transform instead.
+2019-04-17 10:17:23,090|MacroMax-INFO: alpha = 1.481 + 0.769i, beta = 1
+2019-04-17 10:17:23,095|MacroMax-INFO: Preparing pre-conditioned operators...
