@@ -82,8 +82,8 @@ class read_spectrometer():
 peak_smoothing = True
 
 scan = read_spectrometer()
-scan.folder = r'C:\Users\My Pc\Desktop\20190215 - MCNC EC core'
-scan.name_prefix = 'MCNC 1.0mM - EC core - '
+scan.folder = r'D:\Dropbox\001 - Templated CNC\OM\20190712'
+scan.name_prefix = '20190712'
 
 if peak_smoothing == True:
     # original spectra

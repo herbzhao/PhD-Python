@@ -4,12 +4,14 @@ import cv2
 from scale_bar_utility import scale_bar_finder_class 
 from preprocessing import preprocessor_class
 from contour_detect import contour_detector_class
+import os
+
 
 # import matplotlib.pyplot as plt
 
-folder_name = r"D:\Dropbox\000 - Inverse opal balls\Correlation analysis"
-image_name = 'X1- plasma 4min -143'
-image_path = r'{}\images\{}.jpg'.format(folder_name, image_name)
+folder_name = r"D:\Dropbox\000 - Inverse opal balls\Correlation analysis\images\20190731 - C2\small green"
+image_name = 'C2 - red balls (small green)-no plasma -269'
+image_path = r'{}\{}.jpg'.format(folder_name, image_name)
 print(image_path)
 # load the image
 image = cv2.imread(image_path)
@@ -22,7 +24,7 @@ scale_bar = scale_bar_finder.draw_scale_bar()
 #  NOTE: preprocessing, convert to binary image for feature extraction
 preprocessor = preprocessor_class(image)
 total_area = preprocessor.cropping()
-preprocessor.convert_to_grayscale()
+preprocessor.convert_to_grayscale(show=False)
 # Warning: three parameters to change
 
 # NOTE: for the smaller holes e.g. C5_plasma 5min_109.jpg
@@ -46,16 +48,27 @@ preprocessor.convert_to_grayscale()
 # preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'dilation', 'erosion', 'closing', 'opening', 'dilation', ])
 
 # NOTE: for the bigger holes  e.g. X1- plasma 4min -142.jpg
-preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-150)
-preprocessor.adjust_contrast_and_brightness(alpha=0.8, beta=0)
-preprocessor.convert_to_binary(method='normal', thresh=100, block_size=5, C_value=2)
-preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'erosion',  'erosion',  'dilation', 'closing',  'opening'])
+# preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-150)
+# preprocessor.adjust_contrast_and_brightness(alpha=0.8, beta=0)
+# preprocessor.convert_to_binary(method='normal', thresh=100, block_size=5, C_value=2)
+# preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'erosion',  'erosion',  'dilation', 'closing',  'opening'])
 
 # NOTE: for the bigger holes  e.g. C3 - top view -03.jpg
 # preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-400)
 # preprocessor.convert_to_binary(method='normal', thresh=100, block_size=5, C_value=2)
 # preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'dilation', 'erosion', 'closing', 'opening', 'dilation', ])
 
+# NOTE: for the bigger holes top vieww  e.g. C2 - blue balls -no plasma -140
+preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-500)
+preprocessor.convert_to_binary(method='adaptive', thresh=100, block_size=51, C_value=2)
+
+preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'dilation', 'erosion', 'closing', 'opening', 'dilation', ])
+
+# NOTE: for the cut view e.g. C2 - blue balls -no plasma -96|
+# preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-400)
+# # preprocessor.adjust_contrast_and_brightness(alpha=3, beta=0)
+# preprocessor.convert_to_binary(method='adaptive', thresh=50, block_size=21, C_value=10)
+# preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'dilation', 'erosion', 'closing', 'opening', 'dilation', ])
 
 image = preprocessor.image
 #  create a copy of the original image for displaying the holes
@@ -89,9 +102,12 @@ for i, radius in enumerate(radii_um):
     Z_offset = (max_radius**2 - radius**2)**(1/2)
     spheres.append((centers_um[i][0], centers_um[i][1], Z_offset, radius))
 
+result_folder = folder_name + '\\result'
+if not os.path.exists(result_folder):
+        os.mkdir(result_folder)
 #  write the coordinates in a csv file
 # print(spheres)
-with open(r'{}\data\{}.txt'.format(folder_name, image_name), 'w+') as file:
+with open(r'{}\{}.txt'.format(result_folder, image_name), 'w+') as file:
 #     file.write('x, y, z, r, \n')
     for sphere in spheres:
         # file.write('{0}, {1}, {2}, {3} \n'.format(sphere[0], sphere[1], sphere[2], sphere[3]))
@@ -101,5 +117,6 @@ with open(r'{}\data\{}.txt'.format(folder_name, image_name), 'w+') as file:
 image_output = np.hstack((image, image_output))
 
 cv2.imshow("Overlay image", image_output)
-cv2.imwrite( r"{}\data\{}.jpg".format(folder_name, image_name), image_output);
+
+cv2.imwrite( r"{}\{}.jpg".format(result_folder, image_name), image_output);
 cv2.waitKey(0)
