@@ -12,7 +12,7 @@ class contour_detector_class():
 
     def find_contours(self):
         ''' detect countours on bw image'''
-        temp_image, self.contours, hierarchy = cv2.findContours(self.image_bw, cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+        self.contours, hierarchy = cv2.findContours(self.image_bw, cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
     def filter_contours(self, method='distribution', excluding_portion = 0.01, upper_k=5, lower_k=0.1):
         ''' use this to filter out the area that is too big or too small'''

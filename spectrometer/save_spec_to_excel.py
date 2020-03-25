@@ -82,8 +82,8 @@ class read_spectrometer():
 peak_smoothing = True
 
 scan = read_spectrometer()
-scan.folder = r'D:\Dropbox\001 - Templated CNC\OM\20190712'
-scan.name_prefix = '20190712'
+scan.folder = r'D:\Dropbox\000 - Inverse opal balls\spectra\20200312'
+scan.name_prefix = '20200312-'
 
 if peak_smoothing == True:
     # original spectra

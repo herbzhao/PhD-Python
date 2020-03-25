@@ -9,8 +9,8 @@ import os
 
 # import matplotlib.pyplot as plt
 
-folder_name = r"D:\Dropbox\000 - Inverse opal balls\Correlation analysis\images\20190731 - C2\small green"
-image_name = 'C2 - red balls (small green)-no plasma -269'
+folder_name = r"D:\Dropbox\000 - Inverse opal balls\Correlation analysis\images\20200319 - 1to50 special"
+image_name = '0.02wt% SDS-1to50 8k 15s-115'
 image_path = r'{}\{}.jpg'.format(folder_name, image_name)
 print(image_path)
 # load the image
@@ -27,48 +27,17 @@ total_area = preprocessor.cropping()
 preprocessor.convert_to_grayscale(show=False)
 # Warning: three parameters to change
 
-# NOTE: for the smaller holes e.g. C5_plasma 5min_109.jpg
-# preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-550)
-# preprocessor.convert_to_binary(method='normal', thresh=100, block_size=5, C_value=2)
-# preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'dilation', 'erosion', 'closing', 'opening', 'dilation', ])
-
-# NOTE: for the smaller holes e.g. C2-2min -134.jpg
-# preprocessor.adjust_contrast_and_brightness(alpha=2.5, beta=-300)
-# preprocessor.convert_to_binary(method='normal', thresh=100, block_size=5, C_value=2)
-# preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'erosion', 'dilation', 'dilation', 'erosion'])
-
-# NOTE: for the smaller holes e.g. X4-2min -157.jpg
-# preprocessor.adjust_contrast_and_brightness(alpha=2, beta=-250)
-# preprocessor.convert_to_binary(method='normal', thresh=100, block_size=5, C_value=2)
-# preprocessor.morphologrical_transformation(kernel_size=2, steps=['erosion', 'erosion', 'dilation', 'dilation', 'erosion'])
-
-# NOTE: for the bigger holes  e.g. X3- plasma 4min -104.jpg
-# preprocessor.adjust_contrast_and_brightness(alpha=10, beta=-1000)
-# preprocessor.convert_to_binary(method='normal', thresh=100, block_size=5, C_value=2)
-# preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'dilation', 'erosion', 'closing', 'opening', 'dilation', ])
-
-# NOTE: for the bigger holes  e.g. X1- plasma 4min -142.jpg
-# preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-150)
-# preprocessor.adjust_contrast_and_brightness(alpha=0.8, beta=0)
-# preprocessor.convert_to_binary(method='normal', thresh=100, block_size=5, C_value=2)
-# preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'erosion',  'erosion',  'dilation', 'closing',  'opening'])
-
-# NOTE: for the bigger holes  e.g. C3 - top view -03.jpg
-# preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-400)
-# preprocessor.convert_to_binary(method='normal', thresh=100, block_size=5, C_value=2)
-# preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'dilation', 'erosion', 'closing', 'opening', 'dilation', ])
 
 # NOTE: for the bigger holes top vieww  e.g. C2 - blue balls -no plasma -140
-preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-500)
-preprocessor.convert_to_binary(method='adaptive', thresh=100, block_size=51, C_value=2)
-
-preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'dilation', 'erosion', 'closing', 'opening', 'dilation', ])
+# preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-500)
+# preprocessor.convert_to_binary(method='adaptive', thresh=100, block_size=51, C_value=2)
+# preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'dilation', 'erosion', 'closing', 'opening', 'dilation', ])
 
 # NOTE: for the cut view e.g. C2 - blue balls -no plasma -96|
-# preprocessor.adjust_contrast_and_brightness(alpha=4, beta=-400)
-# # preprocessor.adjust_contrast_and_brightness(alpha=3, beta=0)
-# preprocessor.convert_to_binary(method='adaptive', thresh=50, block_size=21, C_value=10)
-# preprocessor.morphologrical_transformation(kernel_size=3, steps=['erosion', 'dilation', 'erosion', 'closing', 'opening', 'dilation', ])
+preprocessor.adjust_contrast_and_brightness(alpha=3, beta=-300)
+preprocessor.convert_to_binary(method='adaptive', thresh=100, block_size=51, C_value=3)
+preprocessor.morphologrical_transformation(kernel_size=2, steps=['erosion', 'dilation', 'erosion', 'closing', 'opening', 'dilation', ])
+
 
 image = preprocessor.image
 #  create a copy of the original image for displaying the holes
@@ -109,6 +78,7 @@ if not os.path.exists(result_folder):
 # print(spheres)
 with open(r'{}\{}.txt'.format(result_folder, image_name), 'w+') as file:
 #     file.write('x, y, z, r, \n')
+    file.write('area fraction: {}\n'.format(area_fraction))
     for sphere in spheres:
         # file.write('{0}, {1}, {2}, {3} \n'.format(sphere[0], sphere[1], sphere[2], sphere[3]))
         file.write('{0} {1} {2}\n'.format(sphere[0], sphere[1], sphere[3]))
