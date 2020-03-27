@@ -9,8 +9,8 @@ import os
 
 # import matplotlib.pyplot as plt
 
-folder_name = r"D:\Dropbox\000 - Inverse opal balls\Correlation analysis\images\20200319 - 1to50 special"
-image_name = '0.02wt% SDS-1to50 8k 15s-115'
+folder_name = r"D:\Dropbox\000 - Inverse opal balls\Correlation analysis\images\20200225 - IOB 1to50\jpg"
+image_name = '1to50-6k 5s138'
 image_path = r'{}\{}.jpg'.format(folder_name, image_name)
 print(image_path)
 # load the image
@@ -24,6 +24,7 @@ scale_bar = scale_bar_finder.draw_scale_bar()
 #  NOTE: preprocessing, convert to binary image for feature extraction
 preprocessor = preprocessor_class(image)
 total_area = preprocessor.cropping()
+
 preprocessor.convert_to_grayscale(show=False)
 # Warning: three parameters to change
 
@@ -57,8 +58,10 @@ image_output = contour_detector.image_output
 # Convert pixel into real unit
 centers_um =[[center_pixel[0]*scale_bar, center_pixel[1]*scale_bar] for center_pixel in centers_pixel]
 radii_um = [radii_pixel*scale_bar for radii_pixel in radii_pixel]
+# calculate the area of circles
+circles_area = np.sum([radius ** 2 * 3.14 for radius in radii_pixel])
 
-area_fraction = sum(contour_areas)/total_area
+area_fraction = circles_area / total_area
 print('area fraction is: {}'.format(area_fraction))
 
 
