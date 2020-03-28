@@ -2,7 +2,7 @@ from PIL import Image
 import os
 import numpy as np
 
-folder_name = r"D:\Dropbox\000 - Inverse opal balls\Correlation analysis\images\20200319 - 1to50 special"
+folder_name = r"D:\Dropbox\000 - Inverse opal balls\Correlation analysis\images\20200318 - 1to50\tiff"
 file_names = (os.listdir(r"{}".format(folder_name)))
 tiff_file_names = [name for name in file_names if '.tif' in name ]
 

@@ -2,6 +2,7 @@
 import cv2
 import numpy as np
 from preprocessing import preprocessor_class
+import pandas as pd
 
 
 class contour_detector_class():
@@ -71,6 +72,57 @@ class contour_detector_class():
         
         return centers_pixel, radii_pixel
 
+    def draw_circles(self, circle):
+        cv2.circle(self.image_output,(circle['x'], circle['y']),circle['r'],(0,0,255),1)
+
+    # two other helper functions
+    # collision detection -- if two circles are overlapping, remove the bigger circle
+    def collision_detection(self, circles):
+        circles = circles.sort_values(by=['r'], ascending=False)
+        circles = circles.reset_index(drop=True)
+        circles = circles.drop_duplicates(keep='first')
+        index_to_drop = []
+
+        def collision_detection_func(circle_0, circle_1):
+            # do a quick check to avoid squares that slows down stuff
+            distance = ((circle_0['x'] - circle_1['x']) ** 2 + (circle_0['y'] - circle_1['y']) ** 2)**(1/2)
+            touching_radius = distance - circle_1['r']
+            if touching_radius < circle_0['r']:
+                collision = True
+            else:
+                collision = False
+            return collision, int(touching_radius)
+
+        for index, circle_0 in circles.iterrows():
+            # print(circle_0['x'], circle_0['y'], circle_0['r'])
+            print(index)
+            for index_1, circle_1 in circles[index+1:].iterrows():
+                collision, touching_radius = collision_detection_func(circle_0, circle_1)
+                if collision is True:
+                    # when circle is inside another circle
+                    if touching_radius < 0:
+                        index_to_drop.append(index_1)
+                    else:
+                        circles.loc[index, 'r'] = touching_radius
+
+        circles = circles.drop(index_to_drop)
+        circles = circles.reset_index(drop=True)
+        return circles
+
+    def circle_dropout(self, circles, method='quantile', lower_quantile=0.2, upper_quantile=0.8, upper_k=5, lower_k=0.3):
+        circles = circles.sort_values(by=['r'], ascending=False)
+        print(len(circles))
+        circles = circles.reset_index(drop=True)
+        if method == 'quantile':
+            # print(circles['r'].quantile(1-0.05))
+            circles = circles.loc[(circles['r'] <= circles['r'].quantile(upper_quantile)) & (circles['r'] >= circles['r'].quantile(lower_quantile))] 
+        elif method == 'boundary':
+            average_radius = np.average(circles['r'])
+            upper_bound = average_radius * upper_k
+            lower_bound = average_radius * lower_k
+            circles = circles.loc[(circles['r'] <= upper_bound) & (circles['r'] >= lower_bound)] 
+        print(len(circles))
+        return circles
 
 if __name__ == "__main__":
     folder_name = r"D:\Dropbox\000 - Inverse opal balls\Correlation analysis" +"\\"
